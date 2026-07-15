@@ -1,0 +1,19 @@
+# 环境与缓存
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# 数据与产物 (体积大, 可由脚本重建)
+data/
+weights/
+*.mp4
+*.avi
+*.npz
+
+# 本地配置
+.claude/settings.local.json
+
+# 系统杂项
+.DS_Store
+Thumbs.db
