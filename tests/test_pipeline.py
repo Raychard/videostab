@@ -57,6 +57,57 @@ def test_report_fields(tmp_path):
     write_video(frames, src)
     report = Stabilizer(PipelineConfig()).stabilize(src, dst)
     for key in ("frames", "shots", "l1_ratio", "l2_ratio",
-                "max_correction_px"):
+                "max_correction_px", "audio"):
         assert key in report
     assert report["shots"] >= 1
+
+
+def test_multi_shot_video(tmp_path):
+    """双镜头视频: 转场应切分, 两段独立防抖, 输出帧数不变."""
+    a, _ = make_shaky_clip(T=20, amp=4.0, seed=1)
+    b, _ = make_shaky_clip(T=20, amp=4.0, seed=99)
+    dark = [(f * 0.35 + 10).astype(np.uint8) for f in b]  # 亮度差异触发切点
+    src = str(tmp_path / "cuts.avi")
+    dst = str(tmp_path / "cuts_out.avi")
+    write_video(a + dark, src)
+    report = Stabilizer(PipelineConfig()).stabilize(src, dst)
+    assert report["frames"] == 40
+    assert report["shots"] == 2
+    assert len(list(VideoReader(dst))) == 40
+
+
+def test_very_short_video(tmp_path):
+    """2 帧视频: 不崩溃, 输出帧数一致."""
+    frames, _ = make_shaky_clip(T=2, amp=3.0)
+    src = str(tmp_path / "short.avi")
+    dst = str(tmp_path / "short_out.avi")
+    write_video(frames, src)
+    report = Stabilizer(PipelineConfig()).stabilize(src, dst)
+    assert report["frames"] == 2
+    assert len(list(VideoReader(dst))) == 2
+
+
+def test_portrait_video(tmp_path):
+    """竖屏 (320x240 -> 240x320): 网格/预算按宽高各自计算, 不崩溃."""
+    frames, _ = make_shaky_clip(T=20, size=(320, 240), amp=4.0)
+    src = str(tmp_path / "portrait.avi")
+    dst = str(tmp_path / "portrait_out.avi")
+    write_video(frames, src)
+    report = Stabilizer(PipelineConfig()).stabilize(src, dst)
+    out = list(VideoReader(dst))
+    assert report["frames"] == 20
+    assert out[0].shape == frames[0].shape
+
+
+def test_smoother_ckpt_roundtrip(tmp_path):
+    """新格式 checkpoint: radius 显式存取; 旧格式(裸 state_dict)兼容."""
+    import torch
+    from videostab.smoothing import DynamicKernelNet
+    net = DynamicKernelNet(radius=8)
+    new_p = str(tmp_path / "new.pt")
+    old_p = str(tmp_path / "old.pt")
+    torch.save({"radius": 8, "state_dict": net.state_dict()}, new_p)
+    torch.save(net.state_dict(), old_p)
+    for p in (new_p, old_p):
+        cfg = PipelineConfig(smoother_weights=p)
+        assert Stabilizer(cfg).kernel_net.radius == 8

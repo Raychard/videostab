@@ -20,6 +20,9 @@ python stabilize.py input.mp4 output.mp4 --crop 0.12 --metrics
 # 推理 (学习增强模式)
 python stabilize.py input.mp4 output.mp4 \
     --refine-weights weights/refine.pt --smoother-weights weights/smoother.pt
+
+# 质量档: RAFT 光流跟踪 (需 GPU, 首次运行自动下载 torchvision 权重)
+python stabilize.py input.mp4 output.mp4 --flow raft --device cuda
 ```
 
 `--crop` 为裁剪预算硬约束（总裁剪比例），输出保证不出现黑边；`--metrics`
@@ -88,6 +91,10 @@ python -m pytest tests/ -q     # 36 个测试, 全部离线合成数据, CPU 可
 
 ## 已知限制
 
-- 单应+网格先验: 极端视差、大面积动态前景下退化（由 L1/L2 降级兜底）；
+- 单应+网格先验: 极端视差、大面积动态前景下退化（由 L1/L2 降级兜底，
+  前景剔除为顺序多模型 RANSAC，不会误杀视差平面）；
 - 非全帧: warp 后按预算裁剪（全帧补全为二期高质档）；
-- 果冻效应未显式校正（网格 warp 吸收部分）。
+- 果冻效应未显式校正（网格 warp 吸收部分）；
+- 音频通过 ffmpeg remux 保留（环境无 ffmpeg 时输出为纯视频流，
+  report 中 `audio` 字段标明）；旋转 metadata 与 VFR 时间戳归一化
+  尚未实现——VFR 输入会按恒定帧率处理。

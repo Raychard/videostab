@@ -6,6 +6,8 @@ Pass 1 (流式): 代理灰度 -> 转场检测 + 稀疏运动 + 多单应传播(+
                -> 裁剪预算投影.
 Pass 2 (流式): 原分辨率 warp + 预算裁剪 + 写出.
 """
+import os
+
 import numpy as np
 import torch
 
@@ -19,7 +21,7 @@ from .render import crop_and_resize, warp_frame
 from .smoothing import (DynamicKernelNet, accumulate_path,
                         crop_budget_project, gaussian_smooth_path,
                         smooth_path_nn)
-from .utils.video_io import VideoReader, VideoWriter, to_proxy
+from .utils.video_io import VideoReader, VideoWriter, mux_audio, to_proxy
 
 import cv2
 
@@ -29,6 +31,10 @@ class Stabilizer:
         self.cfg = cfg or PipelineConfig()
         self.refine_net = self._load(ResidualRefineNet, self.cfg.refine_weights)
         self.kernel_net = self._load_smoother(self.cfg.smoother_weights)
+        self.tracker = None
+        if self.cfg.flow == "raft":
+            from .motion.flow import RaftFlow
+            self.tracker = RaftFlow(self.cfg.device).track
 
     def _load(self, ctor, path):
         if not path:
@@ -39,12 +45,16 @@ class Stabilizer:
         return model.to(self.cfg.device).eval()
 
     def _load_smoother(self, path):
-        """radius 从权重形状自动推断(输出核宽 K=2r+1), 免手动对齐."""
         if not path:
             return None
-        sd = torch.load(path, map_location=self.cfg.device, weights_only=True)
-        K = sd["net.4.weight"].shape[0]
-        model = DynamicKernelNet(radius=(K - 1) // 2)
+        ckpt = torch.load(path, map_location=self.cfg.device,
+                          weights_only=True)
+        if isinstance(ckpt, dict) and "state_dict" in ckpt:  # 新格式
+            radius, sd = ckpt["radius"], ckpt["state_dict"]
+        else:  # 旧格式: 从输出核宽 K=2r+1 推断
+            sd = ckpt
+            radius = (sd["net.4.weight"].shape[0] - 1) // 2
+        model = DynamicKernelNet(radius=radius)
         model.load_state_dict(sd)
         return model.to(self.cfg.device).eval()
 
@@ -81,23 +91,31 @@ class Stabilizer:
         return motions, levels, shots, shape_hw
 
     def _pair_motion(self, gray0, gray1):
-        """单对帧: 稀疏运动 -> 守门判级 -> 按级传播. 返回 (m, level)."""
+        """单对帧: 稀疏运动 -> 先判级 -> 按级选传播算法. 返回 (m, level).
+
+        判级前置: L1/L2 时跳过多单应传播(白算), L0 传播后仍可被
+        grid_err 二次降级到 L1.
+        """
         cfg = self.cfg
-        sm = estimate_sparse_motion(gray0, gray1, cfg.motion)
-        grid, kp_init, info = propagate_homography(
-            sm.pts, sm.motions, gray0.shape, cfg.propagation)
-        signals = dict(sm.signals, grid_err=info["grid_err"])
-        level = decide_level(signals, cfg.guard)
+        gh, gw = cfg.propagation.grid_size
+        sm = estimate_sparse_motion(gray0, gray1, cfg.motion,
+                                    tracker=self.tracker)
+        level = decide_level(sm.signals, cfg.guard)
         if level == GuardLevel.L2_PASSTHROUGH:
-            gh, gw = cfg.propagation.grid_size
             return np.zeros((gh, gw, 2), np.float32), level
-        if level == GuardLevel.L1_CONSERVATIVE:
+
+        def conservative():
             # 保守模式: 全局中位平移场, 不会产生畸变
             t = (np.median(sm.motions, axis=0) if len(sm.motions)
                  else np.zeros(2, np.float32))
-            gh, gw = cfg.propagation.grid_size
-            return np.broadcast_to(
-                t.astype(np.float32), (gh, gw, 2)).copy(), level
+            return np.broadcast_to(t.astype(np.float32), (gh, gw, 2)).copy()
+
+        if level == GuardLevel.L1_CONSERVATIVE:
+            return conservative(), level
+        grid, kp_init, info = propagate_homography(
+            sm.pts, sm.motions, gray0.shape, cfg.propagation)
+        if info["grid_err"] > cfg.guard.max_grid_err:  # 传播质量二次守门
+            return conservative(), GuardLevel.L1_CONSERVATIVE
         if self.refine_net is not None:
             grid = refine_grid(self.refine_net, grid, sm.pts, sm.motions,
                                kp_init, gray0.shape, cfg.device)
@@ -137,13 +155,20 @@ class Stabilizer:
 
         scale = reader.height / shape_hw[0]
         crop = self.cfg.smoothing.crop_ratio
-        with VideoWriter(out_path, reader.fps,
+        root, ext = os.path.splitext(out_path)
+        tmp_path = f"{root}.videostream{ext}"  # 先写纯视频流, 再并入音频
+        with VideoWriter(tmp_path, reader.fps,
                          (reader.width, reader.height)) as writer:
             for t, frame in enumerate(reader):
                 out = warp_frame(frame, B_all[t], scale)
                 writer.write(crop_and_resize(out, crop))
                 if progress:
                     progress(t)
+        audio_copied = mux_audio(tmp_path, in_path, out_path)
+        if audio_copied:
+            os.remove(tmp_path)
+        else:  # 无 ffmpeg 或无音频流: 回退纯视频
+            os.replace(tmp_path, out_path)
 
         lv = np.array([int(l) for l in levels])
         return {
@@ -151,4 +176,5 @@ class Stabilizer:
             "l1_ratio": float((lv == 1).mean()),
             "l2_ratio": float((lv == 2).mean()),
             "max_correction_px": float(np.abs(B_all).max()),
+            "audio": "copied" if audio_copied else "none",
         }

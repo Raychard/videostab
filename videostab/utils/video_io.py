@@ -1,4 +1,8 @@
 """视频读写与代理分辨率工具. 两遍式流水线依赖 VideoReader 可重复打开."""
+import os
+import shutil
+import subprocess
+
 import cv2
 import numpy as np
 
@@ -31,11 +35,17 @@ class VideoReader:
 
 class VideoWriter:
     def __init__(self, path: str, fps: float, size_wh: tuple):
-        # .avi 用 MJPG(近无损, 测试/评测友好), 其余用 mp4v
-        codec = "MJPG" if path.lower().endswith(".avi") else "mp4v"
-        fourcc = cv2.VideoWriter_fourcc(*codec)
-        self.writer = cv2.VideoWriter(path, fourcc, fps, size_wh)
-        if not self.writer.isOpened():
+        # .avi 用 MJPG(近无损, 测试/评测友好); 其余优先 H.264, 不可用则回退 mp4v
+        codecs = ("MJPG",) if path.lower().endswith(".avi") else ("avc1", "mp4v")
+        self.writer = None
+        for codec in codecs:
+            w = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*codec),
+                                fps, size_wh)
+            if w.isOpened():
+                self.writer = w
+                break
+            w.release()
+        if self.writer is None:
             raise IOError(f"无法创建输出视频: {path}")
 
     def write(self, frame: np.ndarray):
@@ -49,6 +59,24 @@ class VideoWriter:
 
     def __exit__(self, *exc):
         self.close()
+
+
+def mux_audio(video_path: str, audio_src: str, out_path: str) -> bool:
+    """用 ffmpeg 把 audio_src 的音频流按流复制并入 video_path.
+
+    无 ffmpeg / 无音频流 / 失败时返回 False, 调用方回退纯视频输出.
+    """
+    ff = shutil.which("ffmpeg")
+    if ff is None:
+        return False
+    cmd = [ff, "-y", "-loglevel", "error", "-i", video_path,
+           "-i", audio_src, "-map", "0:v:0", "-map", "1:a:0?",
+           "-c", "copy", out_path]
+    try:
+        r = subprocess.run(cmd, capture_output=True, timeout=600)
+        return r.returncode == 0 and os.path.getsize(out_path) > 0
+    except (OSError, subprocess.SubprocessError):
+        return False
 
 
 def to_proxy(frame: np.ndarray, proxy_height: int) -> tuple:

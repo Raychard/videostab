@@ -57,3 +57,40 @@ def test_cache_and_datasets_and_one_step(tmp_path):
     loss2.backward()
     assert torch.isfinite(loss2)
     assert set(parts) == {"temporal", "freq", "dist", "spatial"}
+
+
+def test_path_windows_never_cross_segments(tmp_path):
+    """人造双段缓存: 窗口采样不得跨 segment 断点."""
+    import numpy as np
+    from train.dataset import PathWindowDataset
+    cache = tmp_path / "cache2"
+    cache.mkdir()
+    n1, n2, gh, gw = 40, 50, 12, 16
+    grid = np.random.default_rng(0).normal(
+        0, 2, (n1 + n2, gh, gw, 2)).astype(np.float32)
+    seg = np.array([0] * n1 + [1] * n2, np.int64)
+    np.savez_compressed(cache / "fake.npz", grid_init=grid, segment=seg,
+                        shape_hw=np.array([240, 320]))
+    window = 32
+    ds = PathWindowDataset(str(cache), window=window)
+    # 段1 路径长 41 -> 10 个窗口; 段2 路径长 51 -> 20 个窗口
+    assert len(ds) == (n1 + 1 - window + 1) + (n2 + 1 - window + 1)
+    for i in range(len(ds)):
+        assert ds[i].shape == (2, window, gh, gw)
+
+
+def test_per_sample_shape_normalization():
+    """混合宽高比 batch: sample_field 逐样本归一化 (回归防护)."""
+    import numpy as np
+    from train.losses import sample_field
+    field = torch.zeros(2, 2, 12, 16)
+    # 场值 = x 坐标归一化值, 便于校验采样位置
+    field[:, 0] = torch.linspace(0, 1, 16).view(1, 1, 16)
+    # 两个样本分辨率不同, 同一像素点应映射到不同网格位置
+    pts = torch.full((2, 1, 2), 160.0)      # x=160
+    shapes = torch.tensor([[240.0, 320.0], [240.0, 640.0]])
+    out = sample_field(field, pts, shapes)
+    x_narrow = out[0, 0, 0].item()   # 160/319 ≈ 0.50
+    x_wide = out[1, 0, 0].item()     # 160/639 ≈ 0.25
+    assert abs(x_narrow - 160 / 319) < 0.01
+    assert abs(x_wide - 160 / 639) < 0.01

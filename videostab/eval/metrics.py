@@ -28,11 +28,18 @@ def _to_grays(frames):
             for f in frames]
 
 
-def cropping_ratio(orig_frames, stab_frames) -> float:
+def _cross_homographies(orig_frames, stab_frames) -> list:
+    """对应帧 orig->stab 的逐帧单应列表(失败为 None). C/D 共享此计算."""
+    return [_pair_homography(g0, g1) for g0, g1 in
+            zip(_to_grays(orig_frames), _to_grays(stab_frames))]
+
+
+def cropping_ratio(orig_frames, stab_frames, _hs: list = None) -> float:
     """对应帧 orig->stab 单应的尺度分量: 放大越多裁剪越大, 1 为无裁剪."""
+    hs = _hs if _hs is not None else _cross_homographies(
+        orig_frames, stab_frames)
     ratios = []
-    for g0, g1 in zip(_to_grays(orig_frames), _to_grays(stab_frames)):
-        H = _pair_homography(g0, g1)
+    for H in hs:
         if H is None:
             continue
         s = np.sqrt(abs(np.linalg.det(H[:2, :2])))
@@ -41,12 +48,13 @@ def cropping_ratio(orig_frames, stab_frames) -> float:
     return float(np.mean(ratios)) if ratios else 0.0
 
 
-def distortion_value(orig_frames, stab_frames) -> float:
+def distortion_value(orig_frames, stab_frames, _hs: list = None) -> float:
     """orig->stab 单应仿射部分的各向异性 sqrt(λmin/λmax), 取最差帧."""
+    hs = _hs if _hs is not None else _cross_homographies(
+        orig_frames, stab_frames)
     worst = 1.0
     got = False
-    for g0, g1 in zip(_to_grays(orig_frames), _to_grays(stab_frames)):
-        H = _pair_homography(g0, g1)
+    for H in hs:
         if H is None:
             continue
         got = True
@@ -54,6 +62,19 @@ def distortion_value(orig_frames, stab_frames) -> float:
         if w[1] > 1e-9:
             worst = min(worst, float(np.sqrt(max(w[0], 0.0) / w[1])))
     return worst if got else 0.0
+
+
+def evaluate(orig_frames, stab_frames) -> dict:
+    """一次性计算 C/D/S(+输入稳定度), 单应只提取一遍."""
+    orig = list(orig_frames)
+    stab = list(stab_frames)
+    hs = _cross_homographies(orig, stab)
+    return {
+        "cropping": cropping_ratio(orig, stab, _hs=hs),
+        "distortion": distortion_value(orig, stab, _hs=hs),
+        "stability": stability_score(stab),
+        "stability_input": stability_score(orig),
+    }
 
 
 def _lowfreq_ratio(sig: np.ndarray) -> float:

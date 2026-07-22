@@ -26,8 +26,24 @@ def _apply_h(H: np.ndarray, pts: np.ndarray) -> np.ndarray:
         pts.reshape(-1, 1, 2).astype(np.float32), H).reshape(-1, 2)
 
 
-def _fit_cluster_homographies(pts, motions, labels, K):
-    """逐簇 RANSAC 单应. 返回 (Hs, errs): 失败簇 H=None."""
+def _perspective_px(H: np.ndarray, shape_hw: tuple) -> float:
+    """单应透视分量在四角产生的最大位移(px).
+
+    真实帧间相机运动的透视分量极小(<1px); 双平面运动被单个 8 自由度
+    单应"弯曲拟合"时, 残差可以很小但透视分量异常大 —— 这是病态拟合
+    的可靠指纹, 残差分位数无法发现它.
+    """
+    h, w = shape_hw
+    corners = np.array([[0, 0], [w - 1, 0], [0, h - 1], [w - 1, h - 1]],
+                       np.float32)
+    full = _apply_h(H, corners)
+    affine = corners @ H[:2, :2].T + H[:2, 2]
+    return float(np.abs(full - affine).max())
+
+
+def _fit_cluster_homographies(pts, motions, labels, K, shape_hw,
+                              cfg: PropagationConfig):
+    """逐簇 RANSAC 单应. 返回 (Hs, errs): 失败/病态簇 err=inf."""
     Hs, errs = [], []
     for k in range(K):
         idx = labels == k
@@ -41,15 +57,18 @@ def _fit_cluster_homographies(pts, motions, labels, K):
             Hs.append(None)
             errs.append(np.inf)
             continue
+        Hs.append(H)
+        if _perspective_px(H, shape_hw) > cfg.max_perspective_px:
+            errs.append(np.inf)  # 病态拟合: 推动 K 增大
+            continue
         err = np.linalg.norm(
             _apply_h(H, pts[idx]) - (pts[idx] + motions[idx]), axis=1)
-        Hs.append(H)
         # 75 分位而非中位数: RANSAC 拟合半数点(如双平面)时中位数会假性为 0
         errs.append(float(np.percentile(err, 75)))
     return Hs, errs
 
 
-def _adaptive_cluster(pts, motions, cfg: PropagationConfig):
+def _adaptive_cluster(pts, motions, shape_hw, cfg: PropagationConfig):
     """自适应选 K: 误差达标即停, 簇过小不再分裂. 返回 (labels, Hs)."""
     n = len(pts)
     best = None
@@ -64,8 +83,9 @@ def _adaptive_cluster(pts, motions, cfg: PropagationConfig):
             counts = np.bincount(labels, minlength=K)
             if counts.min() < max(8, cfg.min_cluster_frac * n):
                 break  # 分裂出碎簇, 停止加 K
-        Hs, errs = _fit_cluster_homographies(pts, motions, labels, K)
-        med = float(np.median([e for e in errs if np.isfinite(e)] or [np.inf]))
+        Hs, errs = _fit_cluster_homographies(pts, motions, labels, K,
+                                             shape_hw, cfg)
+        med = max(errs) if errs else np.inf  # 最差簇决定质量(病态=inf)
         if best is None or med < best[2]:
             best = (labels, Hs, med)
         if med < cfg.kmeans_err_thresh:
@@ -110,7 +130,7 @@ def propagate_homography(pts: np.ndarray, motions: np.ndarray,
         kp_init = np.broadcast_to(t.astype(np.float32), (len(pts), 2)).copy()
         return grid, kp_init, {"K": 0, "grid_err": np.inf}
 
-    labels, Hs, med_err = _adaptive_cluster(pts, motions, cfg)
+    labels, Hs, med_err = _adaptive_cluster(pts, motions, shape_hw, cfg)
     sigma = cfg.soft_sigma_frac * min(shape_hw)
     grid = _soft_fusion(verts, pts, labels, Hs, sigma).reshape(gh, gw, 2)
     kp_init = _soft_fusion(pts, pts, labels, Hs, sigma)

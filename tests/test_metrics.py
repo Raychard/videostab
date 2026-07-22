@@ -29,6 +29,18 @@ def test_cropping_detects_zoom():
     assert 0.85 < c < 0.95  # 10% 裁剪 -> 比值约 0.9
 
 
+def test_evaluate_matches_individual_metrics():
+    """共享单应的 evaluate 应与逐个调用完全一致."""
+    from videostab.eval.metrics import evaluate
+    frames = [cv2.cvtColor(make_texture(240, 320, s), cv2.COLOR_GRAY2BGR)
+              for s in range(6)]
+    zoomed = [cv2.resize(f[12:228, 16:304], (320, 240)) for f in frames]
+    ev = evaluate(frames, zoomed)
+    assert abs(ev["cropping"] - cropping_ratio(frames, zoomed)) < 1e-9
+    assert abs(ev["distortion"] - distortion_value(frames, zoomed)) < 1e-9
+    assert abs(ev["stability"] - stability_score(zoomed)) < 1e-9
+
+
 def test_stability_ranks_shaky_below_static():
     shaky, _ = make_shaky_clip(T=60, amp=6.0)
     static, _ = make_shaky_clip(T=60, amp=0.0)

@@ -20,15 +20,35 @@ class SparseMotion:
     signals: dict = field(default_factory=dict)
 
 
-def _reject_foreground(pts, motions, thresh: float):
-    """RANSAC 全局单应内点判定, 剔除运动异常点(动态前景/误跟踪)."""
-    if len(pts) < 8:
-        return np.ones(len(pts), bool), 0.0
-    H, mask = cv2.findHomography(pts, pts + motions, cv2.RANSAC, thresh)
-    if H is None:
-        return np.ones(len(pts), bool), 0.0
-    inl = mask.ravel().astype(bool)
-    return inl, float(inl.mean())
+def _reject_foreground(pts, motions, thresh: float, max_models: int = 3):
+    """顺序多模型 RANSAC 剔除动态前景/误跟踪.
+
+    依次拟合最多 max_models 个单应平面(拟合->移除内点->对剩余点再拟合),
+    保留所有主平面内点的并集; 被剔除的是不属于任何主平面的点.
+    单模型版本会把视差场景的第二平面整体误判为前景, 使下游多单应失效.
+    """
+    n = len(pts)
+    if n < 8:
+        return np.ones(n, bool), 0.0
+    keep = np.zeros(n, bool)
+    remaining = np.arange(n)
+    min_plane = max(8, int(0.05 * n))  # 平面内点数下限, 太小不算主平面
+    for _ in range(max_models):
+        if len(remaining) < min_plane:
+            break
+        H, mask = cv2.findHomography(pts[remaining],
+                                     pts[remaining] + motions[remaining],
+                                     cv2.RANSAC, thresh)
+        if H is None:
+            break
+        inl = mask.ravel().astype(bool)
+        if inl.sum() < min_plane:
+            break
+        keep[remaining[inl]] = True
+        remaining = remaining[~inl]
+    if not keep.any():
+        return np.ones(n, bool), 0.0
+    return keep, float(keep.mean())
 
 
 def estimate_sparse_motion(gray0: np.ndarray, gray1: np.ndarray,

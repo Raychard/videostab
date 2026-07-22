@@ -61,7 +61,9 @@ def main():
         print(f"epoch {ep + 1}/{args.epochs}  loss={tot / nb:.4f}  {detail}")
 
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
-    torch.save(model.state_dict(), args.out)
+    # 显式存 radius, 推理端不再依赖权重键名推断
+    torch.save({"radius": args.radius, "state_dict": model.state_dict()},
+               args.out)
     print(f"已保存 {args.out}")
 
 

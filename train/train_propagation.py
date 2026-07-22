@@ -45,11 +45,11 @@ def main():
             feat = batch["feat"].to(args.device)
             grid_init = batch["grid_init"].to(args.device)
             pred = grid_init + model(feat) * MOTION_NORM
-            shape_hw = tuple(batch["shape_hw"][0].tolist())
             loss, dl_ = propagation_loss(
                 pred, batch["kp"].to(args.device),
                 batch["motion"].to(args.device),
-                batch["mask"].to(args.device), shape_hw)
+                batch["mask"].to(args.device),
+                batch["shape_hw"].to(args.device))  # 逐样本 (B,2)
             opt.zero_grad()
             loss.backward()
             opt.step()

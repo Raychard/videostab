@@ -8,9 +8,17 @@ def charbonnier(x: torch.Tensor, eps: float = 1e-3) -> torch.Tensor:
 
 
 def sample_field(field: torch.Tensor, pts: torch.Tensor,
-                 shape_hw: tuple) -> torch.Tensor:
-    """在关键点处双线性采样网格场. field (B,2,GH,GW), pts (B,N,2) 像素坐标."""
-    h, w = shape_hw
+                 shape_hw) -> torch.Tensor:
+    """在关键点处双线性采样网格场. field (B,2,GH,GW), pts (B,N,2) 像素坐标.
+
+    shape_hw: (h,w) 元组, 或逐样本 (B,2) 张量[h,w] —— 混合宽高比 batch
+    必须逐样本归一化, 否则采样坐标错位.
+    """
+    if torch.is_tensor(shape_hw) and shape_hw.dim() == 2:
+        h = shape_hw[:, 0:1].to(pts)          # (B,1)
+        w = shape_hw[:, 1:2].to(pts)
+    else:
+        h, w = float(shape_hw[0]), float(shape_hw[1])
     gx = pts[..., 0] / (w - 1) * 2 - 1
     gy = pts[..., 1] / (h - 1) * 2 - 1
     grid = torch.stack([gx, gy], dim=-1).unsqueeze(1)      # (B,1,N,2)

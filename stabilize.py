@@ -24,6 +24,8 @@ def main(argv=None):
     p.add_argument("--proxy-height", type=int, default=480)
     p.add_argument("--refine-weights", default="")
     p.add_argument("--smoother-weights", default="")
+    p.add_argument("--flow", choices=["lk", "raft"], default="lk",
+                   help="关键点跟踪: lk=金字塔LK(CPU实时) raft=RAFT质量档(需GPU)")
     p.add_argument("--device", default="cpu")
     p.add_argument("--metrics", action="store_true",
                    help="输出后计算 C/D/S 指标(采样帧)")
@@ -32,14 +34,13 @@ def main(argv=None):
     cfg = PipelineConfig(proxy_height=args.proxy_height,
                          refine_weights=args.refine_weights,
                          smoother_weights=args.smoother_weights,
-                         device=args.device)
+                         flow=args.flow, device=args.device)
     cfg.smoothing.crop_ratio = args.crop
 
     report = Stabilizer(cfg).stabilize(args.input, args.output)
 
     if args.metrics:
-        from videostab.eval import (cropping_ratio, distortion_value,
-                                    stability_score)
+        from videostab.eval.metrics import evaluate
         from videostab.utils.video_io import VideoReader
 
         def sample(path, stride=5, limit=120):
@@ -51,12 +52,10 @@ def main(argv=None):
                     break
             return frames
 
-        orig, stab = sample(args.input), sample(args.output)
         report["metrics"] = {
-            "cropping": round(cropping_ratio(orig, stab), 4),
-            "distortion": round(distortion_value(orig, stab), 4),
-            "stability": round(stability_score(stab), 4),
-            "stability_input": round(stability_score(orig), 4),
+            k: round(v, 4)
+            for k, v in evaluate(sample(args.input),
+                                 sample(args.output)).items()
         }
 
     print(json.dumps(report, indent=2, ensure_ascii=False))

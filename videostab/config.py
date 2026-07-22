@@ -16,9 +16,11 @@ class MotionConfig:
 class PropagationConfig:
     grid_size: tuple = (12, 16)       # 顶点网格 (GH, GW)
     max_planes: int = 3               # 自适应 K 上限
-    kmeans_err_thresh: float = 3.0    # 中位重投影误差超过该值则增大 K
+    kmeans_err_thresh: float = 3.0    # 重投影误差(75分位)超过该值则增大 K
     min_cluster_frac: float = 0.15    # 簇占比低于此值不再分裂
     soft_sigma_frac: float = 0.15     # 软融合距离核 sigma (相对短边)
+    max_perspective_px: float = 2.0   # 帧间单应透视分量上限(px): 双平面被
+                                      # 单应"弯曲拟合"时透视分量异常大
 
 
 @dataclass
@@ -49,4 +51,5 @@ class PipelineConfig:
     guard: GuardConfig = field(default_factory=GuardConfig)
     refine_weights: str = ""          # 传播残差网络权重路径, 空=不启用
     smoother_weights: str = ""        # 动态核网络权重路径, 空=用经典 fallback
+    flow: str = "lk"                  # 关键点跟踪: "lk" | "raft"(质量档, 需GPU)
     device: str = "cpu"
