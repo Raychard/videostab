@@ -18,6 +18,9 @@ class SparseMotion:
     n_tracked: int = 0     # 跟踪成功(过前后向校验)数
     inlier_ratio: float = 0.0  # RANSAC 背景内点率
     signals: dict = field(default_factory=dict)
+    # 仅 keep_debug=True 时填充, 供可视化展示前景剔除效果:
+    rejected_pts: np.ndarray = None      # (M,2) 被剔除的点(前景/误跟踪)
+    rejected_motions: np.ndarray = None  # (M,2) 对应运动
 
 
 def _reject_foreground(pts, motions, thresh: float, max_models: int = 3):
@@ -53,8 +56,12 @@ def _reject_foreground(pts, motions, thresh: float, max_models: int = 3):
 
 def estimate_sparse_motion(gray0: np.ndarray, gray1: np.ndarray,
                            cfg: MotionConfig = None,
-                           tracker=None) -> SparseMotion:
-    """tracker: 可注入 RaftFlow().track, 默认 LK."""
+                           tracker=None, keep_debug: bool = False
+                           ) -> SparseMotion:
+    """tracker: 可注入 RaftFlow().track, 默认 LK.
+
+    keep_debug: 保留被前景剔除的点供可视化(热路径默认关闭, 零开销).
+    """
     cfg = cfg or MotionConfig()
     pts = detect_keypoints(gray0, cfg)
     if tracker is None:
@@ -69,4 +76,7 @@ def estimate_sparse_motion(gray0: np.ndarray, gray1: np.ndarray,
                       inlier_ratio=ratio)
     sm.signals = {"n_kp": len(sm.pts), "inlier_ratio": ratio,
                   "track_ratio": sm.n_tracked / max(n_det, 1)}
+    if keep_debug:
+        sm.rejected_pts = pts[~inl]
+        sm.rejected_motions = motions[~inl]
     return sm

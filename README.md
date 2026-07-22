@@ -23,10 +23,28 @@ python stabilize.py input.mp4 output.mp4 \
 
 # 质量档: RAFT 光流跟踪 (需 GPU, 首次运行自动下载 torchvision 权重)
 python stabilize.py input.mp4 output.mp4 --flow raft --device cuda
+
+# 诊断: 输出各阶段可视化, 定位是哪一环出问题
+python stabilize.py input.mp4 output.mp4 --debug-dir debug --debug-stride 5
 ```
 
 `--crop` 为裁剪预算硬约束（总裁剪比例），输出保证不出现黑边；`--metrics`
 附带输出 NUS 三指标（C/D/S，仅供仓库内部一致比较）。
+
+### 可视化诊断 (`--debug-dir`)
+
+排查"哪里出了问题"时开启，输出各阶段中间产物到目录（纯 OpenCV 绘制，
+无额外依赖）：
+
+| 文件 | 内容 | 排查用途 |
+|---|---|---|
+| `frames/frame_XXXX.jpg` | 逐帧三联面板：①关键点+光流（绿=保留背景点，红=被剔除前景点）②网格运动场（标注平面数 K、拟合残差、守门等级）③校正场+裁剪框 | 单帧为何降级/畸变：`kp=0` → 无纹理触发 L2；`rej` 大量 → 前景剔除过激；箭头杂乱 → 跟踪失败 |
+| `paths_shotK.png` | 每镜头相机路径 X/Y：红=原始抖动路径 C，绿=平滑路径 P | P 贴合 C→平滑过弱；P 撞裁剪框→预算不足 |
+| `guard_timeline.png` | 逐帧守门等级色带（绿 L0/黄 L1/红 L2）+ 防抖强度曲线 | 一眼看出哪些时间段降级、强度渐变是否平滑 |
+| `summary.txt` | 守门分布、K 分布、最大校正量 + 排查提示 | 整体体检 |
+
+`--debug-stride N` 每 N 帧渲染一张逐帧面板，`--debug-max-frames M` 限制总数。
+逐帧面板在代理分辨率下绘制，向量按 4× 放大以便观察（图上已标注比例）。
 
 ## 训练 (完全无监督, 只需不稳定视频)
 
@@ -47,7 +65,7 @@ python train/train_smoother.py    --cache data/cache --out weights/smoother.pt
 ## 测试
 
 ```bash
-python -m pytest tests/ -q     # 36 个测试, 全部离线合成数据, CPU 可跑
+python -m pytest tests/ -q     # 56 个测试, 全部离线合成数据, CPU 可跑
 ```
 
 含各模块单元测试与端到端冒烟测试（合成抖动视频 → 防抖 → 残余抖动路径
@@ -76,6 +94,7 @@ python -m pytest tests/ -q     # 36 个测试, 全部离线合成数据, CPU 可
 | `videostab/render` | 稠密 remap 渲染、预算裁剪 |
 | `videostab/guard` | 降级判级与强度渐变曲线 |
 | `videostab/eval` | C/D/S 指标 |
+| `videostab/debug` | 各阶段可视化诊断 (纯 OpenCV, `--debug-dir` 触发) |
 | `videostab/pipeline.py` | 两遍式流水线编排 |
 | `train/` | 特征缓存、无监督损失、两个训练脚本 |
 | `scripts/` | 数据下载、合成抖动数据生成 |

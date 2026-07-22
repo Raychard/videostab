@@ -6,12 +6,15 @@
   python stabilize.py input.mp4 output.mp4 --crop 0.12 \
       --refine-weights weights/refine.pt --smoother-weights weights/smoother.pt \
       --metrics
+  # 输出各阶段可视化诊断到 debug/ , 排查哪一环出问题
+  python stabilize.py input.mp4 output.mp4 --debug-dir debug --debug-stride 5
 """
 import argparse
 import json
 import sys
 
 from videostab.config import PipelineConfig
+from videostab.debug import DebugOptions
 from videostab.pipeline import Stabilizer
 
 
@@ -29,6 +32,12 @@ def main(argv=None):
     p.add_argument("--device", default="cpu")
     p.add_argument("--metrics", action="store_true",
                    help="输出后计算 C/D/S 指标(采样帧)")
+    p.add_argument("--debug-dir", default="",
+                   help="非空则输出各阶段可视化诊断图到该目录")
+    p.add_argument("--debug-stride", type=int, default=5,
+                   help="每 N 帧渲染一张逐帧诊断面板")
+    p.add_argument("--debug-max-frames", type=int, default=60,
+                   help="逐帧诊断面板数量上限")
     args = p.parse_args(argv)
 
     cfg = PipelineConfig(proxy_height=args.proxy_height,
@@ -37,7 +46,11 @@ def main(argv=None):
                          flow=args.flow, device=args.device)
     cfg.smoothing.crop_ratio = args.crop
 
-    report = Stabilizer(cfg).stabilize(args.input, args.output)
+    debug = None
+    if args.debug_dir:
+        debug = DebugOptions(out_dir=args.debug_dir, stride=args.debug_stride,
+                             max_frames=args.debug_max_frames)
+    report = Stabilizer(cfg).stabilize(args.input, args.output, debug=debug)
 
     if args.metrics:
         from videostab.eval.metrics import evaluate
