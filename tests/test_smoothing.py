@@ -76,8 +76,8 @@ def test_jacobi_has_fixed_point():
     C = _jitter_path(T=80)
     t = torch.from_numpy(C.transpose(3, 0, 1, 2))[None]
     offsets = [-3, -2, -1, 1, 2, 3]
-    w = torch.ones(1, len(offsets), *t.shape[2:])
-    lam = torch.full((1, 1) + t.shape[2:], 1.5)
+    w = torch.ones(1, 2, len(offsets), *t.shape[2:])     # 逐轴核
+    lam = torch.full((1, 2) + t.shape[2:], 1.5)
     P15 = jacobi_smooth(t, w, lam, offsets, iters=15)
     P200 = jacobi_smooth(t, w, lam, offsets, iters=200)
     # 15 次与 200 次结果几乎相同 => 已收敛到不动点
@@ -90,10 +90,10 @@ def test_lambda_monotonically_controls_smoothing():
     C = _jitter_path(T=80)
     t = torch.from_numpy(C.transpose(3, 0, 1, 2))[None]
     offsets = [-3, -2, -1, 1, 2, 3]
-    w = torch.ones(1, len(offsets), *t.shape[2:])
+    w = torch.ones(1, 2, len(offsets), *t.shape[2:])
     roughs = []
     for lv in (0.1, 1.0, 10.0):
-        lam = torch.full((1, 1) + t.shape[2:], lv)
+        lam = torch.full((1, 2) + t.shape[2:], lv)
         P = jacobi_smooth(t, w, lam, offsets, iters=30)
         roughs.append(_roughness(P[0].numpy().transpose(1, 2, 3, 0)))
     assert roughs[0] > roughs[1] > roughs[2]   # λ 越大越平滑

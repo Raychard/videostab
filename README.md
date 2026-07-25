@@ -8,6 +8,11 @@
 **开箱即用**：不依赖任何训练权重即可运行（多单应传播 + 自适应高斯平滑的
 纯经典路径）；训练两个 <15K 参数的小网络后自动升级为学习增强路径。
 
+**实测效果**（DeepStab 7 视频，同一评测框架内对照，详见
+[DUT 对比文档 §6](docs/DUT算法详解与NoLabels-NoLookAhead对比.md)）：启用平滑
+网络后残余抖动 **降低 25%**（高抖动子集 33%），distortion 持平、stability
++0.005、裁剪预算不变——严格的帕累托改进。
+
 ## 快速开始
 
 ```bash
@@ -17,7 +22,10 @@ source .venv/bin/activate
 # 推理 (纯经典模式, 无需权重)
 python stabilize.py input.mp4 output.mp4 --crop 0.12 --metrics
 
-# 推理 (学习增强模式)
+# 推理 (学习增强模式, 推荐: 只启用平滑网络)
+python stabilize.py input.mp4 output.mp4 --smoother-weights weights/smoother.pt
+
+# 可选: additionally 启用传播网络(以少量 distortion 换更低残余抖动)
 python stabilize.py input.mp4 output.mp4 \
     --refine-weights weights/refine.pt --smoother-weights weights/smoother.pt
 

@@ -72,13 +72,44 @@ def shape_preservation(motion: torch.Tensor, shape_hw) -> torch.Tensor:
     return charbonnier(v3 - (v2 + r90)).mean()
 
 
-def propagation_loss(pred_grid, pts, motions, mask, shape_hw,
-                     kp_field=None, lam=(10.0, 40.0, 40.0)):
+def vertex_neighborhood_l1(pred_grid, verts, pts, motions, mask,
+                           k_neighbors: int = 32):
+    """DUT L_vm: ‖n_ik − m_ij‖₁·O_ij —— **顶点中心**的邻域一致性.
+
+    对每个网格顶点, 取其最近 k 个关键点, 用 L1 比较顶点自身运动与这些
+    关键点的观测运动. L1 的极小点是邻域**中位数**, 因此该项天然抗离群点,
+    是 DUT 用来对抗跟踪噪声的正则项.
+
+    注意与 L_kp 的本质区别: L_kp 是"把场采样到关键点位置去精确匹配"
+    (关键点中心, 鼓励精确拟合); 本项是"把顶点拉向邻域中位数"
+    (顶点中心, 鼓励局部平滑). 早期实现把两项都写成前者, 等于 50 的
+    总权重全压在精确拟合上, 丢掉了 DUT 的正则化机制.
+    """
+    B, _, GH, GW = pred_grid.shape
+    vert_motion = pred_grid.flatten(2).transpose(1, 2)      # (B,V,2)
+    N = pts.shape[1]
+    k = min(k_neighbors, N)
+    d2 = torch.cdist(verts, pts).pow(2)                     # (B,V,N)
+    d2 = d2.masked_fill(~mask.unsqueeze(1), float("inf"))
+    idx = d2.topk(k, dim=-1, largest=False).indices         # (B,V,k)
+    bi = torch.arange(B, device=pts.device).view(B, 1, 1)
+    nb_mot = motions[bi, idx]                               # (B,V,k,2)
+    nb_ok = mask[bi, idx].unsqueeze(-1).float()             # (B,V,k,1)
+    diff = charbonnier(vert_motion.unsqueeze(2) - nb_mot)   # (B,V,k,2)
+    return (diff * nb_ok).sum() / nb_ok.sum().clamp(min=1) / 2
+
+
+def propagation_loss(pred_grid, verts, pts, motions, mask, shape_hw,
+                     kp_field=None, k_neighbors: int = 32,
+                     lam=(10.0, 40.0, 400.0)):
     """DUT L_MR = λ_m·L_vm + λ_v·L_kp + λ_s·L_sp.
 
-    pred_grid (B,2,GH,GW); pts/motions (B,N,2); mask (B,N).
-    kp_field: 预先算好的 pred_grid 在关键点处的采样(可选, 省一次采样).
+    pred_grid (B,2,GH,GW); verts (B,V,2) 顶点坐标; pts/motions (B,N,2).
     返回 (total, data_err) —— data_err 用于日志(关键点残差, px).
+
+    λ_s 从 DUT 的 40 提到 400: R90 残差的绝对量级(~0.005)比数据项(~1.8)
+    小两个数量级, 按 DUT 原权重时数据:保形实测为 9:1, 保形项根本压不住,
+    导致网络用网格规整度换关键点拟合精度(R90 非矩形度实测升高 64~293%).
     """
     lam_m, lam_v, lam_s = lam
     m = mask.unsqueeze(-1).float()
@@ -86,10 +117,11 @@ def propagation_loss(pred_grid, pts, motions, mask, shape_hw,
     sampled = kp_field if kp_field is not None else sample_field(
         pred_grid, pts, shape_hw)
 
-    # L_kp: 关键点投影一致(场在关键点处应等于观测运动), L2
+    # L_kp: 关键点投影一致(场采样到关键点处应等于观测运动), L2
     l_kp = (charbonnier(sampled - motions).pow(2) * m).sum() / denom
-    # L_vm: 顶点-邻域关键点运动一致, L1 (对离群关键点更鲁棒)
-    l_vm = (charbonnier(sampled - motions) * m).sum() / denom
+    # L_vm: 顶点中心的邻域一致性, L1 -> 邻域中位数, 抗离群点
+    l_vm = vertex_neighborhood_l1(pred_grid, verts, pts, motions, mask,
+                                  k_neighbors)
     # L_sp: R90 保形
     l_sp = shape_preservation(pred_grid, shape_hw)
 
@@ -100,7 +132,7 @@ def propagation_loss(pred_grid, pts, motions, mask, shape_hw,
 
 def smoother_loss(P, C, shape_hw, crop_ratio: float = 0.12,
                   adapt_v0: float = 6.0, freq_cut_div: int = 16,
-                  lam=(0.01, 100.0, 0.0, 50.0, 1.0)):
+                  lam=(0.0005, 100.0, 0.0, 50.0, 1.0)):
     """平滑损失. P/C: (B,2,T,GH,GW).
 
     lam: (数据保真, 自适应二阶, 频域, 预算越界, 保形).
@@ -109,6 +141,8 @@ def smoother_loss(P, C, shape_hw, crop_ratio: float = 0.12,
     - 数据保真项量级可达 45, 权重必须很小, 否则完全主导损失并把网络推向
       "不平滑"的退化解 (前三次训练崩溃的真凶). 这里它只作为让 λ 保持有限
       的弱正则 —— 真正的锚是裁剪预算项 (DUT 无预算概念故必须重用数据项).
+      权重 0.01 时它仍占损失 51%, 把工作点压得过于保守: 实测把学到的 λ
+      放大 10~30 倍才追平/超过经典基线, 故进一步降到 0.0005.
     - 二阶项是唯一与渲染稳定度单调同向的项 (它本身就是路径二阶差分),
       且对线性漂移的响应恰为 0 —— 正是"保留匀速运镜、只压抖动"所需,
       故给最大权重.

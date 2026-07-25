@@ -48,7 +48,7 @@ def test_cache_and_datasets_and_one_step(tmp_path):
     delta = net(verts, b["kp"][None], (b["motion"] - b["kp_init"])[None],
                 b["mask"][None])
     pred = gi + delta.transpose(1, 2).reshape(1, 2, GH, GW) * MOTION_NORM
-    loss, _ = propagation_loss(pred, b["kp"][None], b["motion"][None],
+    loss, _ = propagation_loss(pred, verts, b["kp"][None], b["motion"][None],
                                b["mask"][None], shp)
     loss.backward()
     assert torch.isfinite(loss)

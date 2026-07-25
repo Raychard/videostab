@@ -57,7 +57,9 @@ def main():
             pred = grid_init + delta.transpose(1, 2).reshape(
                 B, 2, GH, GW) * MOTION_NORM
 
-            loss, err = propagation_loss(pred, kp, motion, mask, shape_hw)
+            loss, err = propagation_loss(pred, verts, kp, motion, mask,
+                                         shape_hw,
+                                         k_neighbors=args.k_neighbors)
             opt.zero_grad()
             loss.backward()
             opt.step()

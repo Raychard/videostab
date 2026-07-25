@@ -96,7 +96,7 @@ def test_overfit_single_sample():
     for _ in range(200):
         delta = net(verts, kp, tr, mask)
         pred = gi + delta.transpose(1, 2).reshape(1, 2, *GRID) * MOTION_NORM
-        loss, err = propagation_loss(pred, kp, tm, mask, SHAPE)
+        loss, err = propagation_loss(pred, verts, kp, tm, mask, SHAPE)
         opt.zero_grad()
         loss.backward()
         opt.step()

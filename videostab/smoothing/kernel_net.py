@@ -71,18 +71,27 @@ def gaussian_base_torch(C: torch.Tensor, cfg: SmoothingConfig) -> torch.Tensor:
 
 def jacobi_smooth(C: torch.Tensor, w: torch.Tensor, lam: torch.Tensor,
                   offsets, iters: int = JACOBI_ITERS) -> torch.Tensor:
-    """DUT Jacobi 数据锚迭代. C (B,2,T,GH,GW); w (B,K,T,GH,GW)>=0;
-    lam (B,1,T,GH,GW)>0. 返回平滑路径 P, 同形状."""
+    """DUT Jacobi 数据锚迭代. C (B,2,T,GH,GW).
+
+    w: (B,2,K,T,GH,GW) 或 (B,K,T,GH,GW)(自动广播到双轴); >=0
+    lam: (B,2,T,GH,GW) 或 (B,1,T,GH,GW); >0
+
+    逐轴 w/λ 是必要的: 裁剪预算本身按画幅比例不对称(640x360 下
+    x 预算 38.4px vs y 预算 21.6px, 相差 1.78x). 共用单个 λ 时它必须
+    迁就更紧的 y 轴, x 轴预算被白白浪费.
+    """
     r = max(abs(o) for o in offsets)
     T = C.shape[2]
-    wsum = w.sum(dim=1, keepdim=True)                    # (B,1,T,GH,GW)
+    if w.dim() == 5:                                     # (B,K,...) -> 双轴共享
+        w = w.unsqueeze(1).expand(-1, 2, -1, -1, -1, -1)
+    wsum = w.sum(dim=2)                                  # (B,2,T,GH,GW)
     denom = 1.0 + lam * wsum
     P = C
     for _ in range(iters):
         pad = F.pad(P, (0, 0, 0, 0, r, r), mode="replicate")
         taps = torch.stack([pad[:, :, r + o: r + o + T] for o in offsets],
-                           dim=1)                        # (B,K,2,T,GH,GW)
-        agg = (w.unsqueeze(2) * taps).sum(dim=1)         # (B,2,T,GH,GW)
+                           dim=2)                        # (B,2,K,T,GH,GW)
+        agg = (w * taps).sum(dim=2)                      # (B,2,T,GH,GW)
         P = (C + lam * agg) / denom
     return P
 
@@ -104,8 +113,9 @@ class DynamicKernelNet(nn.Module):
         self.trunk = nn.Sequential(
             nn.Conv3d(4, hidden, (5, 3, 3), padding=(2, 1, 1)), nn.GELU(),
             nn.Conv3d(hidden, hidden, (5, 3, 3), padding=(2, 1, 1)), nn.GELU())
-        self.w_head = nn.Conv3d(hidden, K, 1)
-        self.lam_head = nn.Conv3d(hidden, 1, 1)
+        # 逐轴输出: w 为 2*K 通道, λ 为 2 通道 (x/y 各一套)
+        self.w_head = nn.Conv3d(hidden, 2 * K, 1)
+        self.lam_head = nn.Conv3d(hidden, 2, 1)
         # 零初始化 => w 全 1(经 softplus 后为常数), λ 取先验值 => 各向同性
         # 均匀 Jacobi 平滑, 是一个良态且已经有效的起点.
         for h in (self.w_head, self.lam_head):
@@ -114,9 +124,11 @@ class DynamicKernelNet(nn.Module):
         nn.init.constant_(self.lam_head.bias, 1.2564)  # softplus(1.2564)≈1.5
 
     def forward(self, vel, headroom):
-        """vel/headroom: (B,2,T,GH,GW) -> (w, lam)."""
+        """vel/headroom: (B,2,T,GH,GW) -> w (B,2,K,T,GH,GW), lam (B,2,T,GH,GW)."""
         f = self.trunk(torch.cat([vel, headroom], dim=1))
-        w = F.softplus(self.w_head(f))
+        B, _, T, GH, GW = f.shape
+        K = len(self.offsets)
+        w = F.softplus(self.w_head(f)).reshape(B, 2, K, T, GH, GW)
         lam = F.softplus(self.lam_head(f))
         return w, lam
 
