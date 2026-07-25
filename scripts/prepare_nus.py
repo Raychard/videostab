@@ -20,21 +20,30 @@ CATEGORIES = ("Regular", "QuickRotation", "Zooming", "Parallax",
               "Crowd", "Running")
 
 
-def extract(zip_path: Path, out_dir: Path) -> int:
-    """把 zip 内所有视频平铺解压到 out_dir, 返回数量."""
+def extract(zip_path: Path, out_dir: Path) -> tuple:
+    """解压 zip 内的**不稳定输入**视频, 返回 (输入数, 跳过的stb数).
+
+    NUS 每类含两套同名文件: `N.avi` 是不稳定输入, `Nstb.avi` 是原论文
+    方法的稳定化输出(参考结果). 必须只取前者 —— 把 stb 当输入等于对
+    已稳定视频再做一次防抖, 评测结果毫无意义.
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
-    n = 0
+    n = skipped = 0
     with zipfile.ZipFile(zip_path) as z:
         for name in z.namelist():
             if not name.lower().endswith(VIDEO_EXT):
                 continue
             if name.startswith("__MACOSX"):
                 continue
+            stem = Path(name).stem.lower()
+            if stem.endswith("stb"):
+                skipped += 1
+                continue
             dst = out_dir / Path(name).name
             with z.open(name) as src, open(dst, "wb") as f:
                 f.write(src.read())
             n += 1
-    return n
+    return n, skipped
 
 
 def main():
@@ -45,19 +54,19 @@ def main():
 
     raw, out = Path(args.raw), Path(args.out)
     total = 0
-    print(f"{'类别':16} {'状态':>10} {'视频数':>7}")
+    print(f"{'类别':16} {'状态':>10} {'输入':>6} {'跳过stb':>8}")
     for cat in CATEGORIES:
         zp = raw / f"{cat}.zip"
-        if not zp.exists():
-            print(f"{cat:16} {'缺失':>10} {'-':>7}")
+        if not zp.exists() or zp.stat().st_size == 0:
+            print(f"{cat:16} {'缺失/未完成':>10} {'-':>6} {'-':>8}")
             continue
         try:
-            n = extract(zp, out / cat)
+            n, skipped = extract(zp, out / cat)
             total += n
-            print(f"{cat:16} {'OK':>10} {n:7d}")
+            print(f"{cat:16} {'OK':>10} {n:6d} {skipped:8d}")
         except zipfile.BadZipFile:
-            print(f"{cat:16} {'损坏':>10} {'-':>7}  (删除后重下)")
-    print(f"\n合计 {total} 段视频 -> {out}/<类别>/")
+            print(f"{cat:16} {'未下完':>10} {'-':>6} {'-':>8}")
+    print(f"\n合计 {total} 段不稳定输入 -> {out}/<类别>/")
     if total:
         print("分场景评测: python scripts/eval_bench.py --data", out)
 

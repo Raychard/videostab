@@ -16,11 +16,15 @@ class MotionConfig:
 class PropagationConfig:
     grid_size: tuple = (12, 16)       # 顶点网格 (GH, GW)
     max_planes: int = 3               # 自适应 K 上限
-    kmeans_err_thresh: float = 3.0    # 重投影误差(75分位)超过该值则增大 K
+    split_gain: float = 0.9           # 相对模型选择: K+1 的误差需降到 K 的
+                                      # 该倍数以下才接受分裂(不依赖绝对尺度).
+                                      # 0.7/0.8/0.9 实测: Parallax 上
+                                      # distortion 与 stability 随该值单调
+                                      # 改善(0.926->0.936, 0.938->0.944),
+                                      # DeepStab 上分裂率虽升到 19% 但指标
+                                      # 无变化(误分裂无害)
     min_cluster_frac: float = 0.15    # 簇占比低于此值不再分裂
     soft_sigma_frac: float = 0.15     # 软融合距离核 sigma (相对短边)
-    max_perspective_px: float = 2.0   # 帧间单应透视分量上限(px): 双平面被
-                                      # 单应"弯曲拟合"时透视分量异常大
 
 
 @dataclass

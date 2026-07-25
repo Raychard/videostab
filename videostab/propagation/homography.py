@@ -1,9 +1,15 @@
 """稀疏→稠密运动传播: 自适应 K 多单应初始化 + 软融合 (DUT 硬归属的升级).
 
-- K 自适应: 从 1 开始, 中位重投影误差超阈值且簇够大时增大 K (替代 DUT
+- K 自适应: 相对模型选择, 仅当 K+1 显著降低拟合误差时才分裂 (替代 DUT
   固定两平面 + 手调阈值).
 - 软融合: 顶点对各平面单应按邻域关键点隶属度 + 距离衰减加权混合,
   消除平面边界撕裂 (NLNL).
+
+实测提醒: 真实"视差"场景是深度**连续**分布, 而非两个离散平面.
+NUS Parallax 上 err(K=2)/err(K=1) 的中位数为 0.993 —— 一半帧对上分平面
+对拟合毫无改善, 25% 以上情况反而更差. 因此多单应机制的适用面比
+"分平面处理视差"的直觉要窄得多, 连续深度变化主要由后续残差网络吸收
+(这也是传播网改善 stability 却损失 distortion 的来源).
 """
 import cv2
 import numpy as np
@@ -26,24 +32,13 @@ def _apply_h(H: np.ndarray, pts: np.ndarray) -> np.ndarray:
         pts.reshape(-1, 1, 2).astype(np.float32), H).reshape(-1, 2)
 
 
-def _perspective_px(H: np.ndarray, shape_hw: tuple) -> float:
-    """单应透视分量在四角产生的最大位移(px).
+def _fit_cluster_homographies(pts, motions, labels, K, shape_hw=None,
+                              cfg: PropagationConfig = None):
+    """逐簇 RANSAC 单应. 返回 (Hs, errs): 拟合失败的簇 err=inf.
 
-    真实帧间相机运动的透视分量极小(<1px); 双平面运动被单个 8 自由度
-    单应"弯曲拟合"时, 残差可以很小但透视分量异常大 —— 这是病态拟合
-    的可靠指纹, 残差分位数无法发现它.
+    误差用 75 分位而非中位数: RANSAC 只需拟合半数点(如双平面场景)时,
+    中位数会假性为 0.
     """
-    h, w = shape_hw
-    corners = np.array([[0, 0], [w - 1, 0], [0, h - 1], [w - 1, h - 1]],
-                       np.float32)
-    full = _apply_h(H, corners)
-    affine = corners @ H[:2, :2].T + H[:2, 2]
-    return float(np.abs(full - affine).max())
-
-
-def _fit_cluster_homographies(pts, motions, labels, K, shape_hw,
-                              cfg: PropagationConfig):
-    """逐簇 RANSAC 单应. 返回 (Hs, errs): 失败/病态簇 err=inf."""
     Hs, errs = [], []
     for k in range(K):
         idx = labels == k
@@ -58,39 +53,43 @@ def _fit_cluster_homographies(pts, motions, labels, K, shape_hw,
             errs.append(np.inf)
             continue
         Hs.append(H)
-        if _perspective_px(H, shape_hw) > cfg.max_perspective_px:
-            errs.append(np.inf)  # 病态拟合: 推动 K 增大
-            continue
         err = np.linalg.norm(
             _apply_h(H, pts[idx]) - (pts[idx] + motions[idx]), axis=1)
-        # 75 分位而非中位数: RANSAC 拟合半数点(如双平面)时中位数会假性为 0
         errs.append(float(np.percentile(err, 75)))
     return Hs, errs
 
 
 def _adaptive_cluster(pts, motions, shape_hw, cfg: PropagationConfig):
-    """自适应选 K: 误差达标即停, 簇过小不再分裂. 返回 (labels, Hs)."""
+    """自适应选 K —— 相对模型选择: 只有当 K+1 把误差降到 K 的
+    split_gain 倍以下时才接受分裂. 返回 (labels, Hs, err).
+
+    为何用相对判据而非绝对像素阈值: 单应拟合误差的绝对量级随场景/运动
+    幅度剧烈变化, 任何固定阈值都会在一部分数据上失效. 早先版本用
+    "误差<3px 即停 + 透视分量>2px 判为病态", 结果在真实视差数据上
+    单应的合法透视分量中位数就有 75px(视差本身就是这么来的), 守门逢帧
+    必触发, 把所有 K 的误差都置为 inf, 自适应逻辑完全瘫痪(实测 Parallax
+    上 K>=2 占比仅 1%). 相对判据不依赖绝对尺度, 且天然能识别"单个单应
+    弯曲拟合双平面"——那种情况下 K=2 会显著降低误差.
+    """
     n = len(pts)
-    best = None
-    for K in range(1, cfg.max_planes + 1):
-        if K == 1:
-            labels = np.zeros(n, np.int32)
-        else:
-            crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_MAX_ITER, 20, 0.5)
-            _, labels, _ = cv2.kmeans(motions.astype(np.float32), K, None,
-                                      crit, 3, cv2.KMEANS_PP_CENTERS)
-            labels = labels.ravel()
-            counts = np.bincount(labels, minlength=K)
-            if counts.min() < max(8, cfg.min_cluster_frac * n):
-                break  # 分裂出碎簇, 停止加 K
-        Hs, errs = _fit_cluster_homographies(pts, motions, labels, K,
-                                             shape_hw, cfg)
-        med = max(errs) if errs else np.inf  # 最差簇决定质量(病态=inf)
-        if best is None or med < best[2]:
-            best = (labels, Hs, med)
-        if med < cfg.kmeans_err_thresh:
-            break
-    return best[0], best[1], best[2]
+    crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_MAX_ITER, 20, 0.5)
+    labels = np.zeros(n, np.int32)
+    Hs, errs = _fit_cluster_homographies(pts, motions, labels, 1)
+    best = (labels, Hs, max(errs))
+
+    for K in range(2, cfg.max_planes + 1):
+        _, lab, _ = cv2.kmeans(motions.astype(np.float32), K, None,
+                               crit, 3, cv2.KMEANS_PP_CENTERS)
+        lab = lab.ravel()
+        counts = np.bincount(lab, minlength=K)
+        if counts.min() < max(8, cfg.min_cluster_frac * n):
+            break                      # 分裂出碎簇, 停止加 K
+        Hs_k, errs_k = _fit_cluster_homographies(pts, motions, lab, K)
+        err_k = max(errs_k)
+        if not np.isfinite(err_k) or err_k > best[2] * cfg.split_gain:
+            break                      # 增益不足, 不值得多一个平面
+        best = (lab, Hs_k, err_k)
+    return best
 
 
 def _soft_fusion(query: np.ndarray, pts, labels, Hs, sigma: float):
