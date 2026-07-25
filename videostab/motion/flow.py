@@ -54,16 +54,30 @@ class RaftFlow:
         return (fw[0, :, :h, :w].cpu().numpy().transpose(1, 2, 0),
                 bw[0, :, :h, :w].cpu().numpy().transpose(1, 2, 0))
 
+    @staticmethod
+    def _sample(field: np.ndarray, xy: np.ndarray) -> np.ndarray:
+        """在任意亚像素位置双线性采样光流场. field (H,W,2), xy (N,2).
+
+        必须用双线性而非整数取整: 取整会给每个关键点引入最多 0.5px 误差,
+        而防抖路径的精度正是亚像素级的 —— 实测取整版本会让 RAFT 的
+        端到端 rough 劣于 LK, 得出"学习式光流更差"的错误结论.
+        """
+        h, w = field.shape[:2]
+        x = np.clip(xy[:, 0], 0, w - 1.001)
+        y = np.clip(xy[:, 1], 0, h - 1.001)
+        x0, y0 = np.floor(x).astype(int), np.floor(y).astype(int)
+        fx, fy = (x - x0)[:, None], (y - y0)[:, None]
+        return (field[y0, x0] * (1 - fx) * (1 - fy)
+                + field[y0, x0 + 1] * fx * (1 - fy)
+                + field[y0 + 1, x0] * (1 - fx) * fy
+                + field[y0 + 1, x0 + 1] * fx * fy)
+
     def track(self, gray0, gray1, pts, fb_thresh: float = 1.0):
         if len(pts) == 0:
             return np.empty((0, 2), np.float32), np.empty((0,), bool)
         fw, bw = self._dense(gray0, gray1)
-        h, w = gray0.shape[:2]
-        xi = np.clip(pts[:, 0].round().astype(int), 0, w - 1)
-        yi = np.clip(pts[:, 1].round().astype(int), 0, h - 1)
-        motions = fw[yi, xi]
+        motions = self._sample(fw, pts)
         # 前后向一致性: fw(p) + bw(p + fw(p)) 应接近 0
-        x1 = np.clip((pts[:, 0] + motions[:, 0]).round().astype(int), 0, w - 1)
-        y1 = np.clip((pts[:, 1] + motions[:, 1]).round().astype(int), 0, h - 1)
-        fb_err = np.linalg.norm(motions + bw[y1, x1], axis=1)
+        fb_err = np.linalg.norm(motions + self._sample(bw, pts + motions),
+                                axis=1)
         return motions.astype(np.float32), fb_err < fb_thresh

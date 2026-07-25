@@ -51,9 +51,10 @@ def path_roughness(frames) -> float:
     return float(np.abs(p[2:] - 2 * p[1:-1] + p[:-2]).mean())
 
 
-def make_cfg(name, args):
+def make_cfg(name, flow, args):
     use_r, use_s = CONFIGS[name]
-    c = PipelineConfig(device=args.device, proxy_height=args.proxy_height)
+    c = PipelineConfig(device=args.device, proxy_height=args.proxy_height,
+                       flow=flow)
     c.smoothing.crop_ratio = args.crop
     if use_r:
         c.refine_weights = args.refine_weights
@@ -62,9 +63,21 @@ def make_cfg(name, args):
     return c
 
 
-def run_one(cfg, src, dst):
+# Stabilizer 复用: RAFT 权重加载约 27s, 每个视频重建会拖垮整个实验.
+# stabilize() 每次调用都会重置内部状态, 跨视频复用是安全的.
+_STAB_CACHE = {}
+
+
+def get_stabilizer(name, flow, args):
+    key = (name, flow)
+    if key not in _STAB_CACHE:
+        _STAB_CACHE[key] = Stabilizer(make_cfg(name, flow, args))
+    return _STAB_CACHE[key]
+
+
+def run_one(stab, src, dst):
     t0 = time.time()
-    report = Stabilizer(cfg).stabilize(src, dst)
+    report = stab.stabilize(src, dst)
     report["sec_per_frame"] = (time.time() - t0) / max(report["frames"], 1)
     return report
 
@@ -81,6 +94,8 @@ def main():
     p.add_argument("--configs", nargs="*", default=["classic", "smooth",
                                                     "full"],
                    choices=list(CONFIGS))
+    p.add_argument("--flow", nargs="*", default=["lk"], choices=["lk", "raft"],
+                   help="关键点跟踪方式; 给多个则逐一对比(前端是否为瓶颈)")
     p.add_argument("--limit", type=int, default=0,
                    help="每类别最多评测多少段(0=全部)")
     p.add_argument("--crop", type=float, default=0.12)
@@ -98,6 +113,8 @@ def main():
         sys.exit(f"未在 {root} 找到类别子目录; 先跑 scripts/prepare_nus.py")
     work = Path(args.work) if args.work else root / "_stab_out"
     work.mkdir(parents=True, exist_ok=True)
+    # 待评组合: 配置 x 光流. 键名 "配置@光流"
+    variants = [(c, f, f"{c}@{f}") for f in args.flow for c in args.configs]
 
     # 断点续跑: 已有结果直接复用
     out_path = Path(args.out)
@@ -120,24 +137,24 @@ def main():
                 continue
             r_in = path_roughness(orig)
             results.setdefault(key0, {})["input_rough"] = r_in
-            for name in args.configs:
-                if name in results[key0]:
+            for name, flow, key in variants:
+                if key in results[key0]:
                     continue                       # 已算过
-                dst = work / f"{cat.name}_{vid.stem}_{name}.avi"
+                dst = work / f"{cat.name}_{vid.stem}_{name}_{flow}.avi"
                 try:
-                    rep = run_one(make_cfg(name, args), str(vid), str(dst))
+                    rep = run_one(get_stabilizer(name, flow, args),
+                                  str(vid), str(dst))
                     out = list(VideoReader(str(dst)))
-                    m = evaluate(orig, out)
-                    rep.update(m)
+                    rep.update(evaluate(orig, out))
                     rep["rough"] = path_roughness(out)
-                    results[key0][name] = rep
+                    results[key0][key] = rep
                 except Exception as e:
-                    print(f"  {vid.name} [{name}] 失败: {e}")
+                    print(f"  {vid.name} [{key}] 失败: {e}")
                 finally:
                     dst.unlink(missing_ok=True)
             out_path.write_text(json.dumps(results, indent=1,
                                            ensure_ascii=False))
-            got = results[key0].get(args.configs[0], {})
+            got = results[key0].get(variants[0][2], {})
             print(f"  {vid.name:28} in={r_in:.3f} "
                   f"rough={fmt(got.get('rough'))} "
                   f"L1/L2={fmt(got.get('l1_ratio'),2)}/"
@@ -150,48 +167,44 @@ def main():
                 if name in results.get(k, {}) and field in results[k][name]]
         return float(np.mean(vals)) if vals else None
 
-    print("\n" + "=" * 76)
+    def row(keys, key, label):
+        pct = lambda f: (v * 100 if (v := agg(keys, key, f)) is not None
+                         else None)
+        print(f"{'':14}{label:13}"
+              f"{fmt(agg(keys,key,'cropping')):>7}"
+              f"{fmt(agg(keys,key,'distortion')):>8}"
+              f"{fmt(agg(keys,key,'stability')):>7}"
+              f"{fmt(agg(keys,key,'rough'),4):>8}"
+              f"{fmt(pct('l1_ratio'),1):>6}{fmt(pct('l2_ratio'),1):>6}"
+              f"{fmt(agg(keys,key,'k_mean'),2):>7}"
+              f"{fmt(pct('k_ge2_ratio'),1):>7}")
+
+    print("\n" + "=" * 80)
     print("分场景报表 (rough=绝对残余抖动, 主指标; 越小越好)")
-    hdr = f"{'类别':14}{'配置':9}{'crop':>7}{'distort':>8}{'stab':>7}" \
-          f"{'rough':>8}{'L1%':>6}{'L2%':>6}{'K均值':>7}{'K≥2%':>7}"
-    print(hdr)
-    print("-" * 76)
+    print(f"{'类别':14}{'配置@光流':13}{'crop':>7}{'distort':>8}{'stab':>7}"
+          f"{'rough':>8}{'L1%':>6}{'L2%':>6}{'K均值':>7}{'K≥2%':>7}")
+    print("-" * 80)
     for cat in cats:
         keys = [k for k in results if k.startswith(cat.name + "/")]
         if not keys:
             continue
-        rin = agg(keys, args.configs[0], "input_rough")
         ins = [results[k]["input_rough"] for k in keys
                if "input_rough" in results[k]]
-        print(f"{cat.name:14}{'(输入)':9}{'':>7}{'':>8}{'':>7}"
+        print(f"{cat.name:14}{'(输入)':13}{'':>7}{'':>8}{'':>7}"
               f"{np.mean(ins):8.4f}")
-        for name in args.configs:
-            print(f"{'':14}{name:9}"
-                  f"{fmt(agg(keys,name,'cropping')):>7}"
-                  f"{fmt(agg(keys,name,'distortion')):>8}"
-                  f"{fmt(agg(keys,name,'stability')):>7}"
-                  f"{fmt(agg(keys,name,'rough'),4):>8}"
-                  f"{fmt(v*100 if (v:=agg(keys,name,'l1_ratio')) is not None else None,1):>6}"
-                  f"{fmt(v*100 if (v:=agg(keys,name,'l2_ratio')) is not None else None,1):>6}"
-                  f"{fmt(agg(keys,name,'k_mean'),2):>7}"
-                  f"{fmt(v*100 if (v:=agg(keys,name,'k_ge2_ratio')) is not None else None,1):>7}")
-        print("-" * 76)
+        for _, _, key in variants:
+            row(keys, key, key)
+        print("-" * 80)
 
     allk = list(results)
-    print(f"{'全部':14}{'':9}")
-    for name in args.configs:
-        print(f"{'':14}{name:9}"
-              f"{fmt(agg(allk,name,'cropping')):>7}"
-              f"{fmt(agg(allk,name,'distortion')):>8}"
-              f"{fmt(agg(allk,name,'stability')):>7}"
-              f"{fmt(agg(allk,name,'rough'),4):>8}"
-              f"{fmt(v*100 if (v:=agg(allk,name,'l1_ratio')) is not None else None,1):>6}"
-              f"{fmt(v*100 if (v:=agg(allk,name,'l2_ratio')) is not None else None,1):>6}"
-              f"{fmt(agg(allk,name,'k_mean'),2):>7}"
-              f"{fmt(v*100 if (v:=agg(allk,name,'k_ge2_ratio')) is not None else None,1):>7}")
-    spf = agg(allk, args.configs[-1], "sec_per_frame")
-    if spf:
-        print(f"\n吞吐({args.configs[-1]}): {spf*1000:.0f} ms/帧 @{args.device}")
+    print(f"{'全部':14}")
+    for _, _, key in variants:
+        row(allk, key, key)
+    print()
+    for _, _, key in variants:
+        spf = agg(allk, key, "sec_per_frame")
+        if spf:
+            print(f"吞吐 {key:16} {spf*1000:6.0f} ms/帧 @{args.device}")
     print(f"明细已存 {out_path} (重跑本脚本会跳过已算项)")
 
 
