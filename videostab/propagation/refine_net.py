@@ -1,95 +1,112 @@
-"""传播残差细化网络 (NLNL EfficientMotionPro 的精简复刻).
+"""传播残差细化网络 (DUT 点云式关键点注意力).
 
-输入 5 通道网格特征: 多单应初始化运动(2) + 关键点残差 splat(2) + splat 权重(1);
-输出逐顶点残差运动(2). 参数量 ~20K, 深度可分离卷积 + ECA 通道注意力.
+DUT 把关键点与网格顶点视作两个点云, 对每个顶点在其邻域关键点上做注意力
+聚合: 输入 [距离向量, 关键点残差运动] -> 双编码器 -> 1D 卷积 -> 注意力
+权重 -> 加权聚合 -> 解码残差运动; 最终 n = n̂(多单应初始化) + Δn.
+
+与早期实现的关键差别: 早期把关键点 splat 到网格再用 2D 卷积 + ECA
+**通道**注意力. ECA 在原理上无法在关键点之间做选择, 而"选择信任哪些
+关键点"正是 DUT 对抗离群点/误跟踪的核心鲁棒机制; splat 还会在进网络前
+就把同格关键点平均掉, 并丢失距离向量信息.
 """
 import numpy as np
 import torch
 import torch.nn as nn
 
-MOTION_NORM = 16.0  # 运动归一化尺度(px), 训练/推理必须一致
+MOTION_NORM = 16.0   # 运动归一化尺度(px), 训练/推理必须一致
+DIST_NORM = 100.0    # 距离向量归一化尺度(px)
+K_NEIGHBORS = 32     # 每个顶点聚合的最近关键点数
 
 
-class ECA(nn.Module):
-    """Efficient Channel Attention: GAP + 1D conv 门控."""
-
-    def __init__(self, channels: int, k: int = 3):
-        super().__init__()
-        self.conv = nn.Conv1d(1, 1, k, padding=k // 2, bias=False)
-
-    def forward(self, x):
-        w = x.mean((-2, -1))                       # (B,C)
-        w = self.conv(w.unsqueeze(1)).squeeze(1)   # (B,C)
-        return x * torch.sigmoid(w)[..., None, None]
-
-
-class _Block(nn.Module):
-    def __init__(self, ch: int):
-        super().__init__()
-        self.dw = nn.Conv2d(ch, ch, 3, padding=1, groups=ch)
-        self.pw = nn.Conv2d(ch, ch, 1)
-        self.eca = ECA(ch)
-        self.act = nn.GELU()
-
-    def forward(self, x):
-        return x + self.eca(self.act(self.pw(self.dw(x))))
+def _mlp1d(cin, cout, hidden):
+    return nn.Sequential(nn.Conv1d(cin, hidden, 1), nn.GELU(),
+                         nn.Conv1d(hidden, cout, 1))
 
 
 class ResidualRefineNet(nn.Module):
-    def __init__(self, in_ch: int = 5, hidden: int = 48, blocks: int = 2):
+    def __init__(self, hidden: int = 32, k_neighbors: int = K_NEIGHBORS):
         super().__init__()
-        self.stem = nn.Conv2d(in_ch, hidden, 3, padding=1)
-        self.body = nn.Sequential(*[_Block(hidden) for _ in range(blocks)])
-        self.head = nn.Conv2d(hidden, 2, 3, padding=1)
-        nn.init.zeros_(self.head.weight)  # 初始为零残差, 训练前不破坏初始化场
-        nn.init.zeros_(self.head.bias)
+        self.k = k_neighbors
+        self.dist_enc = _mlp1d(2, hidden, hidden)    # 距离向量编码器
+        self.mot_enc = _mlp1d(2, hidden, hidden)     # 残差运动编码器
+        self.fuse = nn.Sequential(
+            nn.Conv1d(2 * hidden, hidden, 1), nn.GELU(),
+            nn.Conv1d(hidden, hidden, 1), nn.GELU())
+        self.attn = nn.Conv1d(hidden, 1, 1)          # 关键点注意力
+        self.dec = nn.Sequential(nn.Conv1d(hidden, hidden, 1), nn.GELU(),
+                                 nn.Conv1d(hidden, 2, 1))
+        nn.init.zeros_(self.dec[-1].weight)  # 零初始化 => 退化到多单应初始化
+        nn.init.zeros_(self.dec[-1].bias)
 
-    def forward(self, x):
-        """x: (B,5,GH,GW) 归一化特征 -> (B,2,GH,GW) 归一化残差."""
-        return self.head(self.body(nn.functional.gelu(self.stem(x))))
+    def forward(self, verts, kp, kp_resid, mask):
+        """verts (B,V,2) 顶点坐标; kp (B,N,2); kp_resid (B,N,2) 关键点残差
+        运动(观测-初始化); mask (B,N) 有效关键点. 返回 (B,V,2) 顶点残差(归一化)."""
+        B, V, _ = verts.shape
+        N = kp.shape[1]
+        k = min(self.k, N)
+        # 邻域选择: 每个顶点取最近 k 个有效关键点
+        d2 = torch.cdist(verts, kp).pow(2)                     # (B,V,N)
+        d2 = d2.masked_fill(~mask.unsqueeze(1), float("inf"))
+        idx = d2.topk(k, dim=-1, largest=False).indices        # (B,V,k)
+        bi = torch.arange(B, device=verts.device).view(B, 1, 1)
+        nb_kp = kp[bi, idx]                                    # (B,V,k,2)
+        nb_mot = kp_resid[bi, idx]
+        nb_ok = mask[bi, idx]                                  # (B,V,k)
+
+        dist = (verts.unsqueeze(2) - nb_kp) / DIST_NORM
+        feat_d = self.dist_enc(dist.reshape(B * V, k, 2).transpose(1, 2))
+        feat_m = self.mot_enc(
+            (nb_mot / MOTION_NORM).reshape(B * V, k, 2).transpose(1, 2))
+        f = self.fuse(torch.cat([feat_d, feat_m], dim=1))      # (B*V,H,k)
+
+        logit = self.attn(f)                                   # (B*V,1,k)
+        logit = logit.masked_fill(
+            ~nb_ok.reshape(B * V, 1, k), float("-inf"))
+        # 全部无效的顶点: 退化为均匀权重, 后续残差仍近似 0
+        allbad = (~nb_ok).all(dim=-1).reshape(B * V, 1, 1)
+        logit = torch.where(allbad, torch.zeros_like(logit), logit)
+        w = torch.softmax(logit, dim=-1)
+
+        attended = (f * w).sum(dim=-1, keepdim=True)           # (B*V,H,1)
+        out = self.dec(attended).squeeze(-1).reshape(B, V, 2)
+        return out
 
 
-def _splat_to_grid(pts, values, shape_hw, grid_size):
-    """双线性 splat 稀疏值到顶点网格. 返回 (GH,GW,C), (GH,GW) 权重."""
+def grid_vertex_tensor(shape_hw, grid_size, device):
+    """(1,V,2) 网格顶点坐标, 与 propagation.grid_vertices 一致."""
+    h, w = float(shape_hw[0]), float(shape_hw[1])
     gh, gw = grid_size
-    h, w = shape_hw
-    acc = np.zeros((gh, gw, values.shape[1]), np.float32)
-    wacc = np.zeros((gh, gw), np.float32)
-    if len(pts) == 0:
-        return acc, wacc
-    u = pts[:, 0] / (w - 1) * (gw - 1)
-    v = pts[:, 1] / (h - 1) * (gh - 1)
-    i0 = np.clip(np.floor(u).astype(int), 0, gw - 2)
-    j0 = np.clip(np.floor(v).astype(int), 0, gh - 2)
-    fu, fv = u - i0, v - j0
-    for dj, di, wgt in ((0, 0, (1 - fu) * (1 - fv)), (0, 1, fu * (1 - fv)),
-                        (1, 0, (1 - fu) * fv), (1, 1, fu * fv)):
-        np.add.at(acc, (j0 + dj, i0 + di), wgt[:, None] * values)
-        np.add.at(wacc, (j0 + dj, i0 + di), wgt)
-    ok = wacc > 0
-    acc[ok] /= wacc[ok, None]
-    return acc, wacc
+    ys = torch.linspace(0, h - 1, gh, device=device)
+    xs = torch.linspace(0, w - 1, gw, device=device)
+    gy, gx = torch.meshgrid(ys, xs, indexing="ij")
+    return torch.stack([gx, gy], dim=-1).reshape(1, gh * gw, 2)
 
 
-def build_refine_input(grid_init, pts, motions, kp_init, shape_hw):
-    """组装网络输入 (5,GH,GW) float32 (已归一化)."""
-    gh, gw = grid_init.shape[:2]
-    resid, wgt = _splat_to_grid(pts, (motions - kp_init).astype(np.float32),
-                                shape_hw, (gh, gw))
-    feat = np.concatenate([
-        grid_init / MOTION_NORM,
-        resid / MOTION_NORM,
-        np.minimum(wgt, 4.0)[..., None] / 4.0,
-    ], axis=-1).astype(np.float32)
-    return feat.transpose(2, 0, 1)  # (5,GH,GW)
+def grid_vertex_batch(shape_hw: torch.Tensor, grid_size) -> torch.Tensor:
+    """(B,V,2) 逐样本网格顶点坐标, 支持混合分辨率 batch.
+    shape_hw: (B,2) 张量 [h,w]."""
+    gh, gw = grid_size
+    dev = shape_hw.device
+    h = shape_hw[:, 0].float().view(-1, 1, 1) - 1
+    w = shape_hw[:, 1].float().view(-1, 1, 1) - 1
+    uy = torch.linspace(0, 1, gh, device=dev).view(1, gh, 1)
+    ux = torch.linspace(0, 1, gw, device=dev).view(1, 1, gw)
+    gy = (uy * h).expand(-1, gh, gw)
+    gx = (ux * w).expand(-1, gh, gw)
+    return torch.stack([gx, gy], dim=-1).reshape(shape_hw.shape[0], gh * gw, 2)
 
 
 @torch.no_grad()
 def refine_grid(model: ResidualRefineNet, grid_init, pts, motions, kp_init,
                 shape_hw, device: str = "cpu"):
-    """推理: 初始化场 + 网络残差 -> 细化网格运动场 (GH,GW,2)."""
-    x = torch.from_numpy(
-        build_refine_input(grid_init, pts, motions, kp_init, shape_hw)
-    )[None].to(device)
-    res = model(x)[0].cpu().numpy().transpose(1, 2, 0) * MOTION_NORM
-    return grid_init + res
+    """推理: 多单应初始化 + 网络残差 -> 细化网格运动场 (GH,GW,2)."""
+    gh, gw = grid_init.shape[:2]
+    if len(pts) == 0:
+        return grid_init
+    verts = grid_vertex_tensor(shape_hw, (gh, gw), device)
+    kp = torch.from_numpy(np.ascontiguousarray(pts)).float()[None].to(device)
+    resid = torch.from_numpy(
+        np.ascontiguousarray(motions - kp_init)).float()[None].to(device)
+    mask = torch.ones(1, kp.shape[1], dtype=torch.bool, device=device)
+    out = model(verts, kp, resid, mask)[0].cpu().numpy() * MOTION_NORM
+    return grid_init + out.reshape(gh, gw, 2)

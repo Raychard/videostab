@@ -7,6 +7,7 @@ Pass 1 (流式): 代理灰度 -> 转场检测 + 稀疏运动 + 多单应传播(+
 Pass 2 (流式): 原分辨率 warp + 预算裁剪 + 写出.
 """
 import os
+from dataclasses import replace
 
 import numpy as np
 import torch
@@ -42,9 +43,10 @@ class Stabilizer:
     def _load(self, ctor, path):
         if not path:
             return None
-        model = ctor()
-        model.load_state_dict(
-            torch.load(path, map_location=self.cfg.device, weights_only=True))
+        ckpt = torch.load(path, map_location=self.cfg.device,
+                          weights_only=True)
+        model = ctor(k_neighbors=ckpt.get("k_neighbors", 32))
+        model.load_state_dict(ckpt["state_dict"])
         return model.to(self.cfg.device).eval()
 
     def _load_smoother(self, path):
@@ -52,13 +54,8 @@ class Stabilizer:
             return None
         ckpt = torch.load(path, map_location=self.cfg.device,
                           weights_only=True)
-        if isinstance(ckpt, dict) and "state_dict" in ckpt:  # 新格式
-            radius, sd = ckpt["radius"], ckpt["state_dict"]
-        else:  # 旧格式: 从输出核宽 K=2r+1 推断
-            sd = ckpt
-            radius = (sd["net.4.weight"].shape[0] - 1) // 2
-        model = DynamicKernelNet(radius=radius)
-        model.load_state_dict(sd)
+        model = DynamicKernelNet(radius=ckpt["radius"])
+        model.load_state_dict(ckpt["state_dict"])
         return model.to(self.cfg.device).eval()
 
     # ---------- Pass 1: 分析 ----------
@@ -156,8 +153,10 @@ class Stabilizer:
         cfg = self.cfg.smoothing
         C = accumulate_path(motions)
         if self.kernel_net is not None and len(C) > 4:
-            P = smooth_path_nn(self.kernel_net, C, cfg.iterations,
-                               self.cfg.device)
+            # 预算感知 λ 需要实际代理分辨率
+            scfg = replace(cfg, proxy_hw=tuple(shape_hw))
+            P = smooth_path_nn(self.kernel_net, C, device=self.cfg.device,
+                               cfg=scfg)
         else:
             P = gaussian_smooth_path(C, cfg)
         s = strength_curve(levels, self.cfg.guard)

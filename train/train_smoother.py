@@ -14,6 +14,7 @@ from torch.utils.data import DataLoader
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from train.dataset import PathWindowDataset  # noqa: E402
 from train.losses import smoother_loss  # noqa: E402
+from videostab.config import SmoothingConfig  # noqa: E402
 from videostab.smoothing.kernel_net import (  # noqa: E402
     DynamicKernelNet, smooth_path_torch)
 
@@ -40,6 +41,9 @@ def main():
     sched = torch.optim.lr_scheduler.OneCycleLR(
         opt, max_lr=args.lr, total_steps=args.epochs * max(len(dl), 1))
     shape_hw = (args.proxy_height, int(args.proxy_height * 16 / 9))
+    # 预算感知 λ 需要知道代理分辨率与裁剪预算
+    scfg = SmoothingConfig(radius=args.radius, crop_ratio=args.crop,
+                           proxy_hw=shape_hw)
 
     print(f"窗口样本 {len(ds)} | 参数 "
           f"{sum(x.numel() for x in model.parameters())} | {args.device}")
@@ -47,7 +51,7 @@ def main():
         tot, nb, parts_acc = 0.0, 0, {}
         for C in dl:
             C = C.to(args.device)
-            P = smooth_path_torch(model, C)
+            P = smooth_path_torch(model, C, cfg=scfg)
             loss, parts = smoother_loss(P, C, shape_hw, args.crop)
             opt.zero_grad()
             loss.backward()

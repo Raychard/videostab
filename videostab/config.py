@@ -30,6 +30,7 @@ class SmoothingConfig:
     base_sigma: float = 12.0          # fallback 高斯核基准 sigma
     adapt_v0: float = 6.0             # 运动自适应: 速度衰减常数(px/帧)
     crop_ratio: float = 0.12          # 裁剪预算 c_max (总裁剪比例, 硬约束)
+    proxy_hw: tuple = (480, 854)      # 预算感知 λ 用的代理分辨率 (h,w)
 
 
 @dataclass

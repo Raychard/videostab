@@ -100,14 +100,20 @@ def test_portrait_video(tmp_path):
 
 
 def test_smoother_ckpt_roundtrip(tmp_path):
-    """新格式 checkpoint: radius 显式存取; 旧格式(裸 state_dict)兼容."""
+    """checkpoint 显式存 radius, 推理端不依赖权重键名推断."""
     import torch
     from videostab.smoothing import DynamicKernelNet
     net = DynamicKernelNet(radius=8)
-    new_p = str(tmp_path / "new.pt")
-    old_p = str(tmp_path / "old.pt")
-    torch.save({"radius": 8, "state_dict": net.state_dict()}, new_p)
-    torch.save(net.state_dict(), old_p)
-    for p in (new_p, old_p):
-        cfg = PipelineConfig(smoother_weights=p)
-        assert Stabilizer(cfg).kernel_net.radius == 8
+    p = str(tmp_path / "sm.pt")
+    torch.save({"radius": 8, "state_dict": net.state_dict()}, p)
+    assert Stabilizer(PipelineConfig(smoother_weights=p)).kernel_net.radius == 8
+
+
+def test_refine_ckpt_roundtrip(tmp_path):
+    """传播网络 checkpoint 存 k_neighbors."""
+    import torch
+    from videostab.propagation import ResidualRefineNet
+    net = ResidualRefineNet(k_neighbors=16)
+    p = str(tmp_path / "rf.pt")
+    torch.save({"k_neighbors": 16, "state_dict": net.state_dict()}, p)
+    assert Stabilizer(PipelineConfig(refine_weights=p)).refine_net.k == 16

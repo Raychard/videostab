@@ -36,27 +36,34 @@ def test_cache_and_datasets_and_one_step(tmp_path):
                                                 smooth_path_torch)
 
     # 传播网络: 一步反向传播
+    from videostab.propagation.refine_net import grid_vertex_batch
     ds = PropagationDataset(str(cache_dir))
     assert len(ds) > 10
     b = ds[0]
     net = ResidualRefineNet()
-    pred = (b["grid_init"][None]
-            + net(b["feat"][None]) * MOTION_NORM)
+    gi = b["grid_init"][None]
+    GH, GW = gi.shape[-2:]
+    shp = b["shape_hw"][None]
+    verts = grid_vertex_batch(shp, (GH, GW))
+    delta = net(verts, b["kp"][None], (b["motion"] - b["kp_init"])[None],
+                b["mask"][None])
+    pred = gi + delta.transpose(1, 2).reshape(1, 2, GH, GW) * MOTION_NORM
     loss, _ = propagation_loss(pred, b["kp"][None], b["motion"][None],
-                               b["mask"][None],
-                               tuple(b["shape_hw"].tolist()))
+                               b["mask"][None], shp)
     loss.backward()
     assert torch.isfinite(loss)
 
     # 平滑网络: 一步反向传播
+    from videostab.config import SmoothingConfig
     ds2 = PathWindowDataset(str(cache_dir), window=32)
     C = ds2[0][None]
     net2 = DynamicKernelNet(radius=8)
-    P = smooth_path_torch(net2, C, iterations=1)
+    P = smooth_path_torch(net2, C,
+                          cfg=SmoothingConfig(radius=8, proxy_hw=(240, 320)))
     loss2, parts = smoother_loss(P, C, (240, 320))
     loss2.backward()
     assert torch.isfinite(loss2)
-    assert set(parts) == {"temporal", "freq", "dist", "spatial"}
+    assert set(parts) == {"data", "temporal", "freq", "budget", "shape"}
 
 
 def test_path_windows_never_cross_segments(tmp_path):

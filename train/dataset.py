@@ -13,7 +13,6 @@ import torch
 from torch.utils.data import Dataset
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from videostab.propagation.refine_net import build_refine_input  # noqa: E402
 
 _CACHE_MAX_FILES = 8
 
@@ -62,19 +61,15 @@ class PropagationDataset(Dataset):
     def __getitem__(self, i):
         f, t = self.index[i]
         d = self.cache.get(f)
-        mask = d["mask"][t]
-        shape_hw = tuple(d["shape_hw"])
-        feat = build_refine_input(
-            d["grid_init"][t], d["kp"][t][mask], d["motion"][t][mask],
-            d["kp_init"][t][mask], shape_hw)
+        # 点云式网络直接吃原始关键点集, 不再 splat 到网格
         return {
-            "feat": torch.from_numpy(feat),
             "grid_init": torch.from_numpy(
                 d["grid_init"][t].transpose(2, 0, 1)),
             "kp": torch.from_numpy(d["kp"][t]),
             "motion": torch.from_numpy(d["motion"][t]),
-            "mask": torch.from_numpy(mask),
-            "shape_hw": torch.tensor(shape_hw),
+            "kp_init": torch.from_numpy(d["kp_init"][t]),
+            "mask": torch.from_numpy(d["mask"][t]),
+            "shape_hw": torch.tensor(tuple(d["shape_hw"])),
         }
 
 

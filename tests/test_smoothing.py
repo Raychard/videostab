@@ -57,13 +57,46 @@ def test_crop_budget_hard_constraint():
 
 
 def test_kernel_net_zero_init_is_box_filter():
-    """零初始化 head -> softmax 均匀权重 -> 未训练即为盒式滤波, 可用."""
+    """Jacobi 数据锚求解器: 零初始化 = 均匀 w + 固定 λ, 已是良态平滑器."""
     torch.manual_seed(0)
+    cfg = SmoothingConfig(radius=8, proxy_hw=(240, 320))
     net = DynamicKernelNet(radius=8).eval()
     C = _jitter_path(T=60)
-    P = smooth_path_nn(net, C, iterations=2)
+    P = smooth_path_nn(net, C, cfg=cfg)
     assert P.shape == C.shape
     assert _roughness(P) < _roughness(C) * 0.2
+
+
+def test_jacobi_has_fixed_point():
+    """DUT 数据锚形式的核心性质: 迭代收敛到不动点, 对迭代次数不敏感.
+
+    纯卷积形式没有这个性质(平滑量随迭代无界增长), 是早期实现失败的根因.
+    """
+    from videostab.smoothing.kernel_net import jacobi_smooth
+    C = _jitter_path(T=80)
+    t = torch.from_numpy(C.transpose(3, 0, 1, 2))[None]
+    offsets = [-3, -2, -1, 1, 2, 3]
+    w = torch.ones(1, len(offsets), *t.shape[2:])
+    lam = torch.full((1, 1) + t.shape[2:], 1.5)
+    P15 = jacobi_smooth(t, w, lam, offsets, iters=15)
+    P200 = jacobi_smooth(t, w, lam, offsets, iters=200)
+    # 15 次与 200 次结果几乎相同 => 已收敛到不动点
+    assert (P15 - P200).abs().max() < 0.05 * C.std()
+
+
+def test_lambda_monotonically_controls_smoothing():
+    """λ 是良态旋钮: 单调控制平滑/保真权衡."""
+    from videostab.smoothing.kernel_net import jacobi_smooth
+    C = _jitter_path(T=80)
+    t = torch.from_numpy(C.transpose(3, 0, 1, 2))[None]
+    offsets = [-3, -2, -1, 1, 2, 3]
+    w = torch.ones(1, len(offsets), *t.shape[2:])
+    roughs = []
+    for lv in (0.1, 1.0, 10.0):
+        lam = torch.full((1, 1) + t.shape[2:], lv)
+        P = jacobi_smooth(t, w, lam, offsets, iters=30)
+        roughs.append(_roughness(P[0].numpy().transpose(1, 2, 3, 0)))
+    assert roughs[0] > roughs[1] > roughs[2]   # λ 越大越平滑
 
 
 def test_kernel_net_param_budget():
