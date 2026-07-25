@@ -39,6 +39,7 @@ class Stabilizer:
         self._dbg = None            # 诊断状态; stabilize() 内按需赋值
         self._dbg_records = []
         self._dbg_shots = []
+        self._k_stats = []          # 逐帧对的多单应平面数
 
     def _load(self, ctor, path):
         if not path:
@@ -136,6 +137,7 @@ class Stabilizer:
             return g, level, pack(g)
         grid, kp_init, info = propagate_homography(
             sm.pts, sm.motions, gray0.shape, cfg.propagation)
+        self._k_stats.append(info["K"])   # 多单应平面数, 反映视差复杂度
         if info["grid_err"] > cfg.guard.max_grid_err:  # 传播质量二次守门
             g = conservative()
             dbg = pack(g, info["K"], info["grid_err"])
@@ -173,6 +175,7 @@ class Stabilizer:
         self._dbg = debug
         self._dbg_records = []
         self._dbg_shots = []
+        self._k_stats = []
         reader = VideoReader(in_path)
         motions, levels, shots, shape_hw = self._analyze(reader)
         if shape_hw is None:
@@ -216,6 +219,10 @@ class Stabilizer:
             "max_correction_px": float(np.abs(B_all).max()),
             "audio": "copied" if audio_copied else "none",
         }
+        if self._k_stats:   # 多单应平面数分布(视差复杂度指标)
+            ks = np.array(self._k_stats, dtype=float)
+            report["k_mean"] = float(ks.mean())
+            report["k_ge2_ratio"] = float((ks >= 2).mean())
         if debug is not None:
             from .debug.render import render_debug
             report["debug_dir"] = render_debug(
