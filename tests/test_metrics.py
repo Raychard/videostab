@@ -41,6 +41,25 @@ def test_evaluate_matches_individual_metrics():
     assert abs(ev["stability"] - stability_score(zoomed)) < 1e-9
 
 
+def test_camera_path_recovers_known_motion():
+    """camera_path 基本契约: 匀速平移下路径应线性、二阶差分近零.
+
+    注: 本项目曾用 cv2.phaseCorrelate 估路径, 在真实大位移素材上会锁错
+    相关峰(实测某帧给出 (0,-166)px 与 (-68,+690)px, 相关峰值同时塌到
+    0.00~0.02), 把 NUS QuickRotation 整类误判为算法失效. 该失效依赖真实
+    视频的多尺度结构与内容变化, **合成纹理无法可靠复现**, 故此处只锁
+    基本契约; 真实数据上的三方比对结论记录在 camera_path 的文档字符串.
+    """
+    from videostab.eval import camera_path, path_roughness
+    big = make_texture(300, 900, seed=5)
+    frames = [cv2.cvtColor(big[40:280, 20 + 8 * t: 340 + 8 * t],
+                           cv2.COLOR_GRAY2BGR) for t in range(20)]
+    p = camera_path(frames)
+    dx = np.diff(p[:, 0])
+    assert np.allclose(dx, -8.0, atol=1.0), f"未还原匀速平移: {dx[:5]}"
+    assert path_roughness(frames) < 1.0    # 匀速 => 二阶差分近零
+
+
 def test_stability_ranks_shaky_below_static():
     shaky, _ = make_shaky_clip(T=60, amp=6.0)
     static, _ = make_shaky_clip(T=60, amp=0.0)

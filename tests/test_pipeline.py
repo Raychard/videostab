@@ -13,17 +13,7 @@ from videostab.pipeline import Stabilizer
 from videostab.utils.video_io import VideoReader
 
 
-def _path_roughness(frames):
-    """估计帧间平移路径的二阶差分能量(抖动强度)."""
-    grays = [cv2.cvtColor(f, cv2.COLOR_BGR2GRAY) for f in frames]
-    path = [np.zeros(2)]
-    for g0, g1 in zip(grays[:-1], grays[1:]):
-        sm = estimate_sparse_motion(g0, g1)
-        step = (np.median(sm.motions, axis=0) if len(sm.motions)
-                else np.zeros(2))
-        path.append(path[-1] + step)
-    p = np.array(path)
-    return float(np.abs(p[2:] - 2 * p[1:-1] + p[:-2]).mean())
+from videostab.eval import path_roughness as _path_roughness  # noqa: E402
 
 
 def test_end_to_end_reduces_jitter(tmp_path):

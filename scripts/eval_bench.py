@@ -29,7 +29,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from videostab.config import PipelineConfig  # noqa: E402
-from videostab.eval.metrics import evaluate  # noqa: E402
+from videostab.eval.metrics import evaluate, path_roughness  # noqa: E402
 from videostab.pipeline import Stabilizer  # noqa: E402
 from videostab.utils.video_io import VideoReader  # noqa: E402
 
@@ -39,16 +39,7 @@ CONFIGS = {"classic": (0, 0), "refine": (1, 0), "smooth": (0, 1),
            "full": (1, 1)}
 
 
-def path_roughness(frames) -> float:
-    """输出视频的帧间平移路径二阶差分(绝对残余抖动). 主指标."""
-    g = [cv2.cvtColor(f, cv2.COLOR_BGR2GRAY).astype(np.float32)
-         for f in frames]
-    p = [np.zeros(2)]
-    for a, b in zip(g[:-1], g[1:]):
-        (dx, dy), _ = cv2.phaseCorrelate(a, b)
-        p.append(p[-1] + [dx, dy])
-    p = np.array(p)
-    return float(np.abs(p[2:] - 2 * p[1:-1] + p[:-2]).mean())
+
 
 
 def make_cfg(name, flow, args, det="orb_gftt"):
@@ -154,7 +145,6 @@ def main():
                                   str(vid), str(dst))
                     out = list(VideoReader(str(dst)))
                     rep.update(evaluate(orig, out))
-                    rep["rough"] = path_roughness(out)
                     results[key0][key] = rep
                 except Exception as e:
                     print(f"  {vid.name} [{key}] 失败: {e}")

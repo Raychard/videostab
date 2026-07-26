@@ -65,15 +65,22 @@ def distortion_value(orig_frames, stab_frames, _hs: list = None) -> float:
 
 
 def evaluate(orig_frames, stab_frames) -> dict:
-    """一次性计算 C/D/S(+输入稳定度), 单应只提取一遍."""
+    """一次性计算 C/D/S + rough, 单应与路径各只算一遍.
+
+    rough(绝对残余抖动)是主指标; stability 测的是低频能量*占比*, 强平滑下
+    输出越接近静止越被估计噪声主导, 仅作参考.
+    """
     orig = list(orig_frames)
     stab = list(stab_frames)
     hs = _cross_homographies(orig, stab)
+    p_in, p_out = camera_path(orig), camera_path(stab)
     return {
         "cropping": cropping_ratio(orig, stab, _hs=hs),
         "distortion": distortion_value(orig, stab, _hs=hs),
-        "stability": stability_score(stab),
-        "stability_input": stability_score(orig),
+        "stability": stability_score(stab, _path=p_out),
+        "stability_input": stability_score(orig, _path=p_in),
+        "rough": path_roughness(stab, _path=p_out),
+        "input_rough": path_roughness(orig, _path=p_in),
     }
 
 
@@ -86,15 +93,36 @@ def _lowfreq_ratio(sig: np.ndarray) -> float:
     return float(spec[1:7].sum() / total)
 
 
-def stability_score(stab_frames) -> float:
-    """稳定视频自身帧间路径(平移 x/y + 旋转)的低频能量占比."""
-    grays = _to_grays(stab_frames)
-    tx, ty, rot = [0.0], [0.0], [0.0]
+def camera_path(frames) -> np.ndarray:
+    """累积帧间路径 (T,3) = [tx, ty, rot]. 基于特征跟踪 + RANSAC 单应.
+
+    **不要用 cv2.phaseCorrelate 做这件事**: 它假设纯平移, 在大位移
+    (>40px/帧) 叠加裁剪缩放(1/(1-crop)≈1.14x) 时会锁错相关峰, 给出
+    非物理的路径跳变(实测某帧二阶差分达 158px, 而实际校正仅 5px).
+    该失效只在大运动素材上出现, 曾导致 NUS QuickRotation 整类被误判为
+    "算法失效"(相位相关测得恶化 5.2x, 特征跟踪测得实为改善).
+    """
+    grays = _to_grays(frames)
+    path = [np.zeros(3)]
     for g0, g1 in zip(grays[:-1], grays[1:]):
         H = _pair_homography(g0, g1)
         if H is None:
             H = np.eye(3)
-        tx.append(tx[-1] + H[0, 2])
-        ty.append(ty[-1] + H[1, 2])
-        rot.append(rot[-1] + np.arctan2(H[1, 0], H[0, 0]))
-    return float(np.mean([_lowfreq_ratio(np.array(p)) for p in (tx, ty, rot)]))
+        path.append(path[-1] + np.array(
+            [H[0, 2], H[1, 2], np.arctan2(H[1, 0], H[0, 0])]))
+    return np.array(path)
+
+
+def path_roughness(frames, _path=None) -> float:
+    """路径平移分量的二阶差分均值(px) —— 绝对残余抖动, 越小越好."""
+    p = _path if _path is not None else camera_path(frames)
+    t = p[:, :2]
+    if len(t) < 3:
+        return 0.0
+    return float(np.abs(t[2:] - 2 * t[1:-1] + t[:-2]).mean())
+
+
+def stability_score(stab_frames, _path=None) -> float:
+    """稳定视频自身帧间路径(平移 x/y + 旋转)的低频能量占比."""
+    p = _path if _path is not None else camera_path(stab_frames)
+    return float(np.mean([_lowfreq_ratio(p[:, i]) for i in range(3)]))
