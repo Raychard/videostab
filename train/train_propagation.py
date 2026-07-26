@@ -26,13 +26,18 @@ def main():
     p.add_argument("--bs", type=int, default=32)
     p.add_argument("--lr", type=float, default=2e-4)
     p.add_argument("--k-neighbors", type=int, default=32)
+    p.add_argument("--no-conf", action="store_true",
+                   help="消融: 关闭关键点置信度加权(损失与网络输入均置1)")
+    p.add_argument("--workers", type=int, default=4,
+                   help="DataLoader worker 数; 0=主进程(缓存全量常驻最快)")
     p.add_argument("--device", default="cuda" if torch.cuda.is_available()
                    else "cpu")
     args = p.parse_args()
 
     ds = PropagationDataset(args.cache)
-    dl = DataLoader(ds, batch_size=args.bs, shuffle=True, num_workers=2,
-                    drop_last=True)
+    dl = DataLoader(ds, batch_size=args.bs, shuffle=True,
+                    num_workers=args.workers, drop_last=True,
+                    persistent_workers=args.workers > 0)
     model = ResidualRefineNet(k_neighbors=args.k_neighbors).to(args.device)
     opt = torch.optim.Adam(model.parameters(), lr=args.lr)
     sched = torch.optim.lr_scheduler.OneCycleLR(
@@ -52,7 +57,8 @@ def main():
             shape_hw = batch["shape_hw"].to(dev)
             B, _, GH, GW = grid_init.shape
 
-            conf = batch["conf"].to(dev)
+            conf = (torch.ones_like(batch["conf"]).to(dev) if args.no_conf
+                    else batch["conf"].to(dev))
             verts = grid_vertex_batch(shape_hw, (GH, GW))
             delta = model(verts, kp, motion - kp_init, mask, conf)  # (B,V,2)
             pred = grid_init + delta.transpose(1, 2).reshape(

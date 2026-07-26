@@ -14,7 +14,10 @@ from torch.utils.data import Dataset
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-_CACHE_MAX_FILES = 8
+# 必须能装下整个缓存目录: shuffle=True 会随机访问所有文件, 容量不足会导致
+# 几乎每个样本都缓存未命中并重新解压整个 npz(实测 23 个文件配 8 的容量时,
+# 训练慢到 GPU 利用率仅 12%). 单个视频解压后约 8MB, 全量常驻仅数百 MB.
+_CACHE_MAX_FILES = 256
 
 
 class _NpzCache:
