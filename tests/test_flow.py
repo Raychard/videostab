@@ -15,7 +15,8 @@ def _shifted_pair(dx=3, dy=-2, seed=0):
 def test_lk_recovers_translation():
     g0, g1 = _shifted_pair(3, -2)
     pts = detect_keypoints(g0)
-    motions, valid = track_lk(g0, g1, pts)
+    motions, valid, fb_err = track_lk(g0, g1, pts)
+    assert (fb_err[valid] < 1.0).all()   # 有效点的前后向误差应低于阈值
     assert valid.sum() > 30
     med = np.median(motions[valid], axis=0)
     # 相机右下移 -> 内容左上移: 特征运动 = -位移

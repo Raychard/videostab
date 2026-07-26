@@ -9,6 +9,8 @@ class MotionConfig:
     cap_per_cell: int = 8             # 每格保留的最大关键点数
     lk_win: int = 21                  # LK 光流窗口
     fb_thresh: float = 1.0            # 前后向一致性阈值(px)
+    conf_scale: float = 0.5           # 置信度换算 exp(-fb_err/scale) 的尺度
+    detectors: str = "orb_gftt"       # 关键点组合: orb_gftt | orb_aliked
     ransac_thresh: float = 2.0        # 前景剔除 RANSAC 重投影阈值(px)
 
 

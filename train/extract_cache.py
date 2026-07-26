@@ -31,7 +31,7 @@ def extract(video: Path, out_dir: Path, cfg: PipelineConfig):
     """无效帧对与转场均记为 segment 断点, 供路径窗口采样避开;
     静默丢弃会造成时间轴畸变(缺帧被当作相邻帧)."""
     reader = VideoReader(str(video))
-    kps, mots, masks, inits, grids, segs = [], [], [], [], [], []
+    kps, mots, masks, inits, grids, segs, confs = [], [], [], [], [], [], []
     prev, prev_hist, shape_hw = None, None, None
     seg_id = 0
     for frame in reader:
@@ -53,6 +53,7 @@ def extract(video: Path, out_dir: Path, cfg: PipelineConfig):
                     kps.append(_pad(sm.pts, MAX_KP))
                     mots.append(_pad(sm.motions, MAX_KP))
                     inits.append(_pad(kp_init, MAX_KP))
+                    confs.append(_pad(sm.conf, MAX_KP))
                     mask = np.zeros(MAX_KP, bool)
                     mask[: min(n, MAX_KP)] = True
                     masks.append(mask)
@@ -67,7 +68,7 @@ def extract(video: Path, out_dir: Path, cfg: PipelineConfig):
     np.savez_compressed(
         out_dir / f"{video.stem}.npz",
         kp=np.stack(kps), motion=np.stack(mots), kp_init=np.stack(inits),
-        mask=np.stack(masks), grid_init=np.stack(grids),
+        conf=np.stack(confs), mask=np.stack(masks), grid_init=np.stack(grids),
         segment=np.array(segs, np.int64), shape_hw=np.array(shape_hw))
     print(f"  -> {video.stem}.npz ({len(grids)} 对, "
           f"{seg_id + 1} 段)")

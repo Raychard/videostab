@@ -68,6 +68,10 @@ class PropagationDataset(Dataset):
             "kp": torch.from_numpy(d["kp"][t]),
             "motion": torch.from_numpy(d["motion"][t]),
             "kp_init": torch.from_numpy(d["kp_init"][t]),
+            # 旧缓存无 conf 字段时退化为全 1(等价于不加权)
+            "conf": torch.from_numpy(
+                d["conf"][t] if "conf" in d
+                else np.ones(d["kp"].shape[1], np.float32)),
             "mask": torch.from_numpy(d["mask"][t]),
             "shape_hw": torch.tensor(tuple(d["shape_hw"])),
         }

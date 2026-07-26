@@ -51,11 +51,12 @@ def path_roughness(frames) -> float:
     return float(np.abs(p[2:] - 2 * p[1:-1] + p[:-2]).mean())
 
 
-def make_cfg(name, flow, args):
+def make_cfg(name, flow, args, det="orb_gftt"):
     use_r, use_s = CONFIGS[name]
     c = PipelineConfig(device=args.device, proxy_height=args.proxy_height,
                        flow=flow)
     c.smoothing.crop_ratio = args.crop
+    c.motion.detectors = det
     if use_r:
         c.refine_weights = args.refine_weights
     if use_s:
@@ -68,10 +69,10 @@ def make_cfg(name, flow, args):
 _STAB_CACHE = {}
 
 
-def get_stabilizer(name, flow, args):
-    key = (name, flow)
+def get_stabilizer(name, flow, args, det="orb_gftt"):
+    key = (name, flow, det)
     if key not in _STAB_CACHE:
-        _STAB_CACHE[key] = Stabilizer(make_cfg(name, flow, args))
+        _STAB_CACHE[key] = Stabilizer(make_cfg(name, flow, args, det))
     return _STAB_CACHE[key]
 
 
@@ -96,6 +97,9 @@ def main():
                    choices=list(CONFIGS))
     p.add_argument("--flow", nargs="*", default=["lk"], choices=["lk", "raft"],
                    help="关键点跟踪方式; 给多个则逐一对比(前端是否为瓶颈)")
+    p.add_argument("--detectors", nargs="*", default=["orb_gftt"],
+                   choices=["orb_gftt", "orb_aliked"],
+                   help="关键点检测器组合; 给多个则逐一对比")
     p.add_argument("--limit", type=int, default=0,
                    help="每类别最多评测多少段(0=全部)")
     p.add_argument("--crop", type=float, default=0.12)
@@ -113,8 +117,12 @@ def main():
         sys.exit(f"未在 {root} 找到类别子目录; 先跑 scripts/prepare_nus.py")
     work = Path(args.work) if args.work else root / "_stab_out"
     work.mkdir(parents=True, exist_ok=True)
-    # 待评组合: 配置 x 光流. 键名 "配置@光流"
-    variants = [(c, f, f"{c}@{f}") for f in args.flow for c in args.configs]
+    # 待评组合: 配置 x 光流 x 检测器. 键名 "配置@光流+检测器"
+    # (单一检测器时省略后缀, 保持与既有结果文件兼容)
+    multi_det = len(args.detectors) > 1 or args.detectors[0] != "orb_gftt"
+    variants = [(c, f, d, f"{c}@{f}" + (f"+{d}" if multi_det else ""))
+                for d in args.detectors for f in args.flow
+                for c in args.configs]
 
     # 断点续跑: 已有结果直接复用
     out_path = Path(args.out)
@@ -137,12 +145,12 @@ def main():
                 continue
             r_in = path_roughness(orig)
             results.setdefault(key0, {})["input_rough"] = r_in
-            for name, flow, key in variants:
+            for name, flow, det, key in variants:
                 if key in results[key0]:
                     continue                       # 已算过
-                dst = work / f"{cat.name}_{vid.stem}_{name}_{flow}.avi"
+                dst = work / f"{cat.name}_{vid.stem}_{name}_{flow}_{det}.avi"
                 try:
-                    rep = run_one(get_stabilizer(name, flow, args),
+                    rep = run_one(get_stabilizer(name, flow, args, det),
                                   str(vid), str(dst))
                     out = list(VideoReader(str(dst)))
                     rep.update(evaluate(orig, out))
@@ -154,7 +162,7 @@ def main():
                     dst.unlink(missing_ok=True)
             out_path.write_text(json.dumps(results, indent=1,
                                            ensure_ascii=False))
-            got = results[key0].get(variants[0][2], {})
+            got = results[key0].get(variants[0][3], {})
             print(f"  {vid.name:28} in={r_in:.3f} "
                   f"rough={fmt(got.get('rough'))} "
                   f"L1/L2={fmt(got.get('l1_ratio'),2)}/"
@@ -192,16 +200,16 @@ def main():
                if "input_rough" in results[k]]
         print(f"{cat.name:14}{'(输入)':13}{'':>7}{'':>8}{'':>7}"
               f"{np.mean(ins):8.4f}")
-        for _, _, key in variants:
+        for *_, key in variants:
             row(keys, key, key)
         print("-" * 80)
 
     allk = list(results)
     print(f"{'全部':14}")
-    for _, _, key in variants:
+    for *_, key in variants:
         row(allk, key, key)
     print()
-    for _, _, key in variants:
+    for *_, key in variants:
         spf = agg(allk, key, "sec_per_frame")
         if spf:
             print(f"吞吐 {key:16} {spf*1000:6.0f} ms/帧 @{args.device}")

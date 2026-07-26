@@ -146,7 +146,7 @@ class Stabilizer:
             return g, GuardLevel.L1_CONSERVATIVE, dbg
         if self.refine_net is not None:
             grid = refine_grid(self.refine_net, grid, sm.pts, sm.motions,
-                               kp_init, gray0.shape, cfg.device)
+                               kp_init, gray0.shape, cfg.device, sm.conf)
         return grid.astype(np.float32), level, pack(
             grid, info["K"], info["grid_err"])
 

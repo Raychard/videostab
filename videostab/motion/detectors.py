@@ -28,7 +28,70 @@ def _detect_gftt(gray: np.ndarray, n: int) -> np.ndarray:
     return np.hstack([pts.astype(np.float32), resp])
 
 
+class _AlikedDetector:
+    """ALIKED (kornia) 学习式检测器. 懒加载, 首次调用才建模型.
+
+    NLNL 用 SIFT+ORB+SuperPoint+ALIKE 四检测器协同; 这里提供 ALIKED
+    作为学习式一员, 与 ORB 组成"学习式 + 传统兜底"的组合.
+    """
+
+    def __init__(self, device: str = "cuda", top_k: int = 512):
+        self.device = device
+        self.top_k = top_k
+        self._model = None
+
+    def _lazy(self):
+        if self._model is None:
+            import torch
+            from kornia.feature import ALIKED
+            dev = self.device if __import__("torch").cuda.is_available() \
+                else "cpu"
+            self._model = ALIKED(detection_threshold=0.0,
+                                 max_num_keypoints=self.top_k).to(dev).eval()
+            self._dev = dev
+            self._torch = torch
+        return self._model
+
+    def __call__(self, gray: np.ndarray, n: int) -> np.ndarray:
+        model = self._lazy()
+        torch = self._torch
+        t = torch.from_numpy(gray).float()[None, None] / 255.0
+        t = t.repeat(1, 3, 1, 1).to(self._dev)
+        with torch.no_grad():
+            feats = model(t)[0]          # ALIKEDFeatures
+        kp = feats.keypoints.cpu().numpy()
+        sc = feats.keypoint_scores.cpu().numpy()
+        if len(kp) == 0:
+            return np.empty((0, 3), np.float32)
+        return np.hstack([kp.astype(np.float32),
+                          sc.reshape(-1, 1)]).astype(np.float32)
+
+
+_ALIKED = _AlikedDetector()
+
+# 检测器组合. 通过 set_detectors() 切换, 便于做消融对比.
 DETECTORS = (_detect_orb, _detect_gftt)
+
+
+_COMBOS = {
+    "orb_gftt": (_detect_orb, _detect_gftt),
+    "orb_aliked": (_detect_orb, _ALIKED),
+    # 单检测器组合: 用于隔离对比(混合会因秩归一化而均等代表, 掩盖差异)
+    "gftt": (_detect_gftt,),
+    "aliked": (_ALIKED,),
+    "orb": (_detect_orb,),
+    "gftt_aliked": (_detect_gftt, _ALIKED),
+    "orb_gftt_aliked": (_detect_orb, _detect_gftt, _ALIKED),
+}
+
+
+def set_detectors(name: str):
+    """切换检测器组合. 可选: orb_gftt(默认) | orb_aliked | gftt | aliked | orb."""
+    global DETECTORS
+    if name not in _COMBOS:
+        raise ValueError(f"未知检测器组合: {name}")
+    DETECTORS = _COMBOS[name]
+    return DETECTORS
 
 
 def _rank_normalize(pts: np.ndarray) -> np.ndarray:
@@ -64,7 +127,8 @@ def _uniformize(pts: np.ndarray, shape_hw: tuple, cfg: MotionConfig) -> np.ndarr
 def detect_keypoints(gray: np.ndarray, cfg: MotionConfig = None) -> np.ndarray:
     """双检测器协同 + 去重 + 空间均匀化. 返回 (N,2) float32."""
     cfg = cfg or MotionConfig()
-    all_pts = [_rank_normalize(d(gray, cfg.max_keypoints)) for d in DETECTORS]
+    dets = set_detectors(cfg.detectors) if cfg.detectors else DETECTORS
+    all_pts = [_rank_normalize(d(gray, cfg.max_keypoints)) for d in dets]
     pts = np.vstack([p for p in all_pts if len(p)]) if any(
         len(p) for p in all_pts) else np.empty((0, 3), np.float32)
     if len(pts) == 0:

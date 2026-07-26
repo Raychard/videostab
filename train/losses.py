@@ -73,7 +73,7 @@ def shape_preservation(motion: torch.Tensor, shape_hw) -> torch.Tensor:
 
 
 def vertex_neighborhood_l1(pred_grid, verts, pts, motions, mask,
-                           k_neighbors: int = 32):
+                           k_neighbors: int = 32, conf=None):
     """DUT L_vm: ‖n_ik − m_ij‖₁·O_ij —— **顶点中心**的邻域一致性.
 
     对每个网格顶点, 取其最近 k 个关键点, 用 L1 比较顶点自身运动与这些
@@ -95,12 +95,14 @@ def vertex_neighborhood_l1(pred_grid, verts, pts, motions, mask,
     bi = torch.arange(B, device=pts.device).view(B, 1, 1)
     nb_mot = motions[bi, idx]                               # (B,V,k,2)
     nb_ok = mask[bi, idx].unsqueeze(-1).float()             # (B,V,k,1)
+    if conf is not None:                                    # 置信度加权
+        nb_ok = nb_ok * conf[bi, idx].unsqueeze(-1)
     diff = charbonnier(vert_motion.unsqueeze(2) - nb_mot)   # (B,V,k,2)
     return (diff * nb_ok).sum() / nb_ok.sum().clamp(min=1) / 2
 
 
 def propagation_loss(pred_grid, verts, pts, motions, mask, shape_hw,
-                     kp_field=None, k_neighbors: int = 32,
+                     kp_field=None, k_neighbors: int = 32, conf=None,
                      lam=(10.0, 40.0, 400.0)):
     """DUT L_MR = λ_m·L_vm + λ_v·L_kp + λ_s·L_sp.
 
@@ -112,7 +114,11 @@ def propagation_loss(pred_grid, verts, pts, motions, mask, shape_hw,
     导致网络用网格规整度换关键点拟合精度(R90 非矩形度实测升高 64~293%).
     """
     lam_m, lam_v, lam_s = lam
-    m = mask.unsqueeze(-1).float()
+    # 置信度加权: 跟踪不确定的观测不应被精确拟合. 实测传播网把 kp_err
+    # 压到 0.12px 的同时, 网格非矩形度(=畸变)升高 64~293% —— 它在拟合
+    # 跟踪噪声. 分级权重让网络天然轻视不可靠观测.
+    w = mask.float() if conf is None else mask.float() * conf
+    m = w.unsqueeze(-1)
     denom = m.sum().clamp(min=1)
     sampled = kp_field if kp_field is not None else sample_field(
         pred_grid, pts, shape_hw)
@@ -121,12 +127,14 @@ def propagation_loss(pred_grid, verts, pts, motions, mask, shape_hw,
     l_kp = (charbonnier(sampled - motions).pow(2) * m).sum() / denom
     # L_vm: 顶点中心的邻域一致性, L1 -> 邻域中位数, 抗离群点
     l_vm = vertex_neighborhood_l1(pred_grid, verts, pts, motions, mask,
-                                  k_neighbors)
+                                  k_neighbors, conf)
     # L_sp: R90 保形
     l_sp = shape_preservation(pred_grid, shape_hw)
 
     total = lam_m * l_vm + lam_v * l_kp + lam_s * l_sp
-    data_err = (charbonnier(sampled - motions) * m).sum() / denom
+    # 日志用的 kp_err 保持**不加权**, 以便跨版本可比
+    mm = mask.unsqueeze(-1).float()
+    data_err = (charbonnier(sampled - motions) * mm).sum() / mm.sum().clamp(min=1)
     return total, data_err
 
 

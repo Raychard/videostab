@@ -17,6 +17,7 @@ class SparseMotion:
     n_detected: int = 0    # 检测到的关键点数
     n_tracked: int = 0     # 跟踪成功(过前后向校验)数
     inlier_ratio: float = 0.0  # RANSAC 背景内点率
+    conf: np.ndarray = None    # (N,) 追踪置信度 ∈(0,1], 由前后向误差换算
     signals: dict = field(default_factory=dict)
     # 仅 keep_debug=True 时填充, 供可视化展示前景剔除效果:
     rejected_pts: np.ndarray = None      # (M,2) 被剔除的点(前景/误跟踪)
@@ -65,13 +66,17 @@ def estimate_sparse_motion(gray0: np.ndarray, gray1: np.ndarray,
     cfg = cfg or MotionConfig()
     pts = detect_keypoints(gray0, cfg)
     if tracker is None:
-        motions, valid = track_lk(gray0, gray1, pts, cfg.lk_win, cfg.fb_thresh)
+        motions, valid, fb_err = track_lk(gray0, gray1, pts, cfg.lk_win,
+                                          cfg.fb_thresh)
     else:
-        motions, valid = tracker(gray0, gray1, pts, cfg.fb_thresh)
+        motions, valid, fb_err = tracker(gray0, gray1, pts, cfg.fb_thresh)
     n_det = len(pts)
-    pts, motions = pts[valid], motions[valid]
+    pts, motions, fb_err = pts[valid], motions[valid], fb_err[valid]
     inl, ratio = _reject_foreground(pts, motions, cfg.ransac_thresh)
-    sm = SparseMotion(pts=pts[inl], motions=motions[inl],
+    # 分级置信度: 此前 fb_err 只用于二值筛选后即丢弃, 但"勉强通过阈值"与
+    # "完美一致"的观测可靠性差别很大. 保留分级权重可让下游天然轻视噪声观测.
+    conf = np.exp(-fb_err[inl] / cfg.conf_scale).astype(np.float32)
+    sm = SparseMotion(pts=pts[inl], motions=motions[inl], conf=conf,
                       n_detected=n_det, n_tracked=int(valid.sum()),
                       inlier_ratio=ratio)
     sm.signals = {"n_kp": len(sm.pts), "inlier_ratio": ratio,

@@ -52,13 +52,14 @@ def main():
             shape_hw = batch["shape_hw"].to(dev)
             B, _, GH, GW = grid_init.shape
 
+            conf = batch["conf"].to(dev)
             verts = grid_vertex_batch(shape_hw, (GH, GW))
-            delta = model(verts, kp, motion - kp_init, mask)  # (B,V,2)
+            delta = model(verts, kp, motion - kp_init, mask, conf)  # (B,V,2)
             pred = grid_init + delta.transpose(1, 2).reshape(
                 B, 2, GH, GW) * MOTION_NORM
 
             loss, err = propagation_loss(pred, verts, kp, motion, mask,
-                                         shape_hw,
+                                         shape_hw, conf=conf,
                                          k_neighbors=args.k_neighbors)
             opt.zero_grad()
             loss.backward()

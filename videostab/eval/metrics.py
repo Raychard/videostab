@@ -15,7 +15,7 @@ def _pair_homography(gray0: np.ndarray, gray1: np.ndarray):
     if pts is None or len(pts) < 8:
         return None
     pts = pts.reshape(-1, 2).astype(np.float32)
-    motions, valid = track_lk(gray0, gray1, pts, fb_thresh=3.0)
+    motions, valid, _ = track_lk(gray0, gray1, pts, fb_thresh=3.0)
     pts, motions = pts[valid], motions[valid]
     if len(pts) < 8:
         return None

@@ -10,7 +10,8 @@ def track_lk(gray0: np.ndarray, gray1: np.ndarray, pts: np.ndarray,
              win: int = 21, fb_thresh: float = 1.0):
     """LK 前后向跟踪. 返回 (motions (N,2), valid (N,) bool)."""
     if len(pts) == 0:
-        return np.empty((0, 2), np.float32), np.empty((0,), bool)
+        return (np.empty((0, 2), np.float32), np.empty((0,), bool),
+                np.empty((0,), np.float32))
     p0 = pts.reshape(-1, 1, 2).astype(np.float32)
     lk = dict(winSize=(win, win), maxLevel=3,
               criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 30, 0.01))
@@ -22,7 +23,8 @@ def track_lk(gray0: np.ndarray, gray1: np.ndarray, pts: np.ndarray,
     h, w = gray1.shape[:2]
     inside = ((p1[:, 0, 0] >= 0) & (p1[:, 0, 0] < w) &
               (p1[:, 0, 1] >= 0) & (p1[:, 0, 1] < h))
-    return motions.astype(np.float32), valid & inside
+    return (motions.astype(np.float32), valid & inside,
+            fb_err.astype(np.float32))
 
 
 class RaftFlow:
@@ -74,10 +76,12 @@ class RaftFlow:
 
     def track(self, gray0, gray1, pts, fb_thresh: float = 1.0):
         if len(pts) == 0:
-            return np.empty((0, 2), np.float32), np.empty((0,), bool)
+            return (np.empty((0, 2), np.float32), np.empty((0,), bool),
+                    np.empty((0,), np.float32))
         fw, bw = self._dense(gray0, gray1)
         motions = self._sample(fw, pts)
         # 前后向一致性: fw(p) + bw(p + fw(p)) 应接近 0
         fb_err = np.linalg.norm(motions + self._sample(bw, pts + motions),
                                 axis=1)
-        return motions.astype(np.float32), fb_err < fb_thresh
+        return (motions.astype(np.float32), fb_err < fb_thresh,
+                fb_err.astype(np.float32))

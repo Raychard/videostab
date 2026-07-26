@@ -8,6 +8,7 @@
       python scripts/fetch_nus.py --only Parallax Crowd
 """
 import argparse
+import http.client
 import sys
 import time
 import urllib.error
@@ -57,27 +58,39 @@ def fetch(cat, out_dir: Path, chunk: int, retries: int = 8) -> bool:
         return True
     print(f"  {cat}: {size/2**20:.0f} MB, 从 {done/2**20:.0f} MB 续传")
     with open(dst, "ab") as f:
+        stall = 0
         while done < size:
             end = min(done + chunk - 1, size - 1)
+            data = b""
             for i in range(retries):
                 try:
                     with urllib.request.urlopen(_req(url, done, end),
                                                 timeout=60) as r:
                         data = r.read()
-                    if not data:
-                        raise IOError("空响应")
-                    f.write(data)
-                    f.flush()
-                    done += len(data)
-                    pct = done / size * 100
-                    print(f"\r    {pct:5.1f}%  {done/2**20:6.0f}/"
-                          f"{size/2**20:.0f} MB", end="", flush=True)
+                    break
+                except http.client.IncompleteRead as e:
+                    # 服务器常在分块中途断开; 已读到的部分是有效数据,
+                    # 收下并从新偏移继续, 不必整块重来.
+                    data = e.partial
                     break
                 except Exception as e:
                     if i == retries - 1:
                         print(f"\n  {cat}: 块 {done} 失败 ({e})")
                         return False
                     time.sleep(min(2 ** i, 20))
+            if not data:
+                stall += 1
+                if stall > retries:
+                    print(f"\n  {cat}: 在 {done} 处持续无数据, 稍后重跑续传")
+                    return False
+                time.sleep(min(2 ** stall, 20))
+                continue
+            stall = 0
+            f.write(data)
+            f.flush()
+            done += len(data)
+            print(f"\r    {done/size*100:5.1f}%  {done/2**20:6.0f}/"
+                  f"{size/2**20:.0f} MB", end="", flush=True)
     print()
     return True
 

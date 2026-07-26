@@ -28,7 +28,9 @@ class ResidualRefineNet(nn.Module):
         super().__init__()
         self.k = k_neighbors
         self.dist_enc = _mlp1d(2, hidden, hidden)    # 距离向量编码器
-        self.mot_enc = _mlp1d(2, hidden, hidden)     # 残差运动编码器
+        # 运动编码器输入 3 通道: 残差运动(2) + 追踪置信度(1).
+        # 让网络能显式看到"这个观测有多可靠", 而非对所有关键点一视同仁.
+        self.mot_enc = _mlp1d(3, hidden, hidden)
         self.fuse = nn.Sequential(
             nn.Conv1d(2 * hidden, hidden, 1), nn.GELU(),
             nn.Conv1d(hidden, hidden, 1), nn.GELU())
@@ -38,11 +40,14 @@ class ResidualRefineNet(nn.Module):
         nn.init.zeros_(self.dec[-1].weight)  # 零初始化 => 退化到多单应初始化
         nn.init.zeros_(self.dec[-1].bias)
 
-    def forward(self, verts, kp, kp_resid, mask):
+    def forward(self, verts, kp, kp_resid, mask, conf=None):
         """verts (B,V,2) 顶点坐标; kp (B,N,2); kp_resid (B,N,2) 关键点残差
-        运动(观测-初始化); mask (B,N) 有效关键点. 返回 (B,V,2) 顶点残差(归一化)."""
+        运动(观测-初始化); mask (B,N); conf (B,N) 追踪置信度(缺省=1).
+        返回 (B,V,2) 顶点残差(归一化)."""
         B, V, _ = verts.shape
         N = kp.shape[1]
+        if conf is None:
+            conf = torch.ones(B, N, device=kp.device, dtype=kp.dtype)
         k = min(self.k, N)
         # 邻域选择: 每个顶点取最近 k 个有效关键点
         d2 = torch.cdist(verts, kp).pow(2)                     # (B,V,N)
@@ -52,11 +57,12 @@ class ResidualRefineNet(nn.Module):
         nb_kp = kp[bi, idx]                                    # (B,V,k,2)
         nb_mot = kp_resid[bi, idx]
         nb_ok = mask[bi, idx]                                  # (B,V,k)
+        nb_conf = conf[bi, idx].unsqueeze(-1)                  # (B,V,k,1)
 
         dist = (verts.unsqueeze(2) - nb_kp) / DIST_NORM
         feat_d = self.dist_enc(dist.reshape(B * V, k, 2).transpose(1, 2))
-        feat_m = self.mot_enc(
-            (nb_mot / MOTION_NORM).reshape(B * V, k, 2).transpose(1, 2))
+        mot_in = torch.cat([nb_mot / MOTION_NORM, nb_conf], dim=-1)
+        feat_m = self.mot_enc(mot_in.reshape(B * V, k, 3).transpose(1, 2))
         f = self.fuse(torch.cat([feat_d, feat_m], dim=1))      # (B*V,H,k)
 
         logit = self.attn(f)                                   # (B*V,1,k)
@@ -98,7 +104,7 @@ def grid_vertex_batch(shape_hw: torch.Tensor, grid_size) -> torch.Tensor:
 
 @torch.no_grad()
 def refine_grid(model: ResidualRefineNet, grid_init, pts, motions, kp_init,
-                shape_hw, device: str = "cpu"):
+                shape_hw, device: str = "cpu", conf=None):
     """推理: 多单应初始化 + 网络残差 -> 细化网格运动场 (GH,GW,2)."""
     gh, gw = grid_init.shape[:2]
     if len(pts) == 0:
@@ -108,5 +114,7 @@ def refine_grid(model: ResidualRefineNet, grid_init, pts, motions, kp_init,
     resid = torch.from_numpy(
         np.ascontiguousarray(motions - kp_init)).float()[None].to(device)
     mask = torch.ones(1, kp.shape[1], dtype=torch.bool, device=device)
-    out = model(verts, kp, resid, mask)[0].cpu().numpy() * MOTION_NORM
+    c = (None if conf is None else
+         torch.from_numpy(np.ascontiguousarray(conf)).float()[None].to(device))
+    out = model(verts, kp, resid, mask, c)[0].cpu().numpy() * MOTION_NORM
     return grid_init + out.reshape(gh, gw, 2)
