@@ -21,7 +21,7 @@ from .propagation.refine_net import refine_grid
 from .render import crop_and_resize, warp_frame
 from .smoothing import (DynamicKernelNet, accumulate_path,
                         crop_budget_project, gaussian_smooth_path,
-                        smooth_path_nn)
+                        limit_anisotropy, smooth_path_nn)
 from .utils.video_io import VideoReader, VideoWriter, mux_audio, to_proxy
 
 import cv2
@@ -163,6 +163,9 @@ class Stabilizer:
             P = gaussian_smooth_path(C, cfg)
         s = strength_curve(levels, self.cfg.guard)
         B = crop_budget_project(C, P, shape_hw, cfg.crop_ratio)
+        if cfg.anisotropy_cap_ratio > 0:
+            B = limit_anisotropy(B, shape_hw, cfg.anisotropy_cap_ratio,
+                                 cfg.crop_ratio)
         if self._dbg is not None and self._dbg.save_summary:
             self._dbg_shots.append(
                 {"range": shot_range, "C": C, "P": P, "strength": s})

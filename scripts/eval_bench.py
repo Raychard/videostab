@@ -47,6 +47,8 @@ def make_cfg(name, flow, args, det="orb_gftt"):
     c = PipelineConfig(device=args.device, proxy_height=args.proxy_height,
                        flow=flow)
     c.smoothing.crop_ratio = args.crop
+    if args.anisotropy_cap is not None:
+        c.smoothing.anisotropy_cap_ratio = args.anisotropy_cap
     c.motion.detectors = det
     if use_r:
         c.refine_weights = args.refine_weights
@@ -94,6 +96,9 @@ def main():
     p.add_argument("--limit", type=int, default=0,
                    help="每类别最多评测多少段(0=全部)")
     p.add_argument("--crop", type=float, default=0.12)
+    p.add_argument("--anisotropy-cap", type=float, default=None,
+                   help="覆盖 SmoothingConfig.anisotropy_cap_ratio; "
+                        "0=关闭各向异性封顶(对照旧行为)")
     p.add_argument("--proxy-height", type=int, default=480)
     p.add_argument("--refine-weights", default="weights/refine.pt")
     p.add_argument("--smoother-weights", default="weights/smoother.pt")

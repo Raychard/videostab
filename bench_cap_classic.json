@@ -1,0 +1,2882 @@
+{
+ "Crowd/0.avi": {
+  "input_rough": 1.447834325899835,
+  "classic@lk": {
+   "frames": 601,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1216666666666666,
+   "k_ge2_ratio": 0.11666666666666667,
+   "sec_per_frame": 0.02458753363661679,
+   "cropping": 0.8796941799062857,
+   "distortion": 0.9802503252369775,
+   "stability": 0.9607371412036331,
+   "stability_input": 0.9604529569660539,
+   "rough": 0.7469909709563741,
+   "input_rough": 1.447834325899835
+  }
+ },
+ "Crowd/1.avi": {
+  "input_rough": 0.9824592671105508,
+  "classic@lk": {
+   "frames": 557,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1564748201438848,
+   "k_ge2_ratio": 0.13309352517985612,
+   "sec_per_frame": 0.017166836257468863,
+   "cropping": 0.8807707720392215,
+   "distortion": 0.9740932460078688,
+   "stability": 0.9207234490124501,
+   "stability_input": 0.9034212764479993,
+   "rough": 0.3846665183051342,
+   "input_rough": 0.9824592671105508
+  }
+ },
+ "Crowd/10.avi": {
+  "input_rough": 1.4660929187585836,
+  "classic@lk": {
+   "frames": 1119,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.4347048300536673,
+   "k_ge2_ratio": 0.35867620751341683,
+   "sec_per_frame": 0.012161436200248439,
+   "cropping": 0.8806976115506383,
+   "distortion": 0.9610714725408082,
+   "stability": 0.8897795247910402,
+   "stability_input": 0.8701813883532122,
+   "rough": 1.0214179236711787,
+   "input_rough": 1.4660929187585836
+  }
+ },
+ "Crowd/11.avi": {
+  "input_rough": 0.9596828986225636,
+  "classic@lk": {
+   "frames": 592,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 31.94082260131836,
+   "audio": "none",
+   "k_mean": 1.0642978003384094,
+   "k_ge2_ratio": 0.06260575296108291,
+   "sec_per_frame": 0.01652805507183075,
+   "cropping": 0.8788704261869758,
+   "distortion": 0.9730736391488869,
+   "stability": 0.8722809255256978,
+   "stability_input": 0.6743178478210569,
+   "rough": 0.3368100854245991,
+   "input_rough": 0.9596828986225636
+  }
+ },
+ "Crowd/12.avi": {
+  "input_rough": 1.3051809772023832,
+  "classic@lk": {
+   "frames": 1215,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 37.4587287902832,
+   "audio": "none",
+   "k_mean": 1.444810543657331,
+   "k_ge2_ratio": 0.35831960461285006,
+   "sec_per_frame": 0.014340904416370785,
+   "cropping": 0.8790890275900256,
+   "distortion": 0.9703734628674546,
+   "stability": 0.9173984349540794,
+   "stability_input": 0.9090615863831717,
+   "rough": 0.6383689702116074,
+   "input_rough": 1.3051809772023832
+  }
+ },
+ "Crowd/13.avi": {
+  "input_rough": 1.531775993735818,
+  "classic@lk": {
+   "frames": 1408,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.619047619047619,
+   "k_ge2_ratio": 0.48187633262260127,
+   "sec_per_frame": 0.013393863527612253,
+   "cropping": 0.8784364762235927,
+   "distortion": 0.9505370806878085,
+   "stability": 0.8548667257278288,
+   "stability_input": 0.8428343108032924,
+   "rough": 1.2358436902950127,
+   "input_rough": 1.531775993735818
+  }
+ },
+ "Crowd/14.avi": {
+  "input_rough": 1.3514858669786056,
+  "classic@lk": {
+   "frames": 2870,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.4043220634367375,
+   "k_ge2_ratio": 0.33914255838271173,
+   "sec_per_frame": 0.015459853182270967,
+   "cropping": 0.8799336485581961,
+   "distortion": 0.9659255758544586,
+   "stability": 0.9214309029398167,
+   "stability_input": 0.9148182231221315,
+   "rough": 0.8064545028794978,
+   "input_rough": 1.3514858669786056
+  }
+ },
+ "Crowd/15.avi": {
+  "input_rough": 1.2365662806661009,
+  "classic@lk": {
+   "frames": 711,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3126760563380282,
+   "k_ge2_ratio": 0.2661971830985915,
+   "sec_per_frame": 0.016365723267889223,
+   "cropping": 0.8795995899470869,
+   "distortion": 0.9770662560231889,
+   "stability": 0.8708346185467591,
+   "stability_input": 0.8746212075925826,
+   "rough": 0.612534317121443,
+   "input_rough": 1.2365662806661009
+  }
+ },
+ "Crowd/16.avi": {
+  "input_rough": 1.250647836249093,
+  "classic@lk": {
+   "frames": 951,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3810526315789473,
+   "k_ge2_ratio": 0.3505263157894737,
+   "sec_per_frame": 0.015098962372660512,
+   "cropping": 0.8797782898867078,
+   "distortion": 0.968642479522615,
+   "stability": 0.8858381532163131,
+   "stability_input": 0.8507934489020758,
+   "rough": 0.5728736829483643,
+   "input_rough": 1.250647836249093
+  }
+ },
+ "Crowd/17.avi": {
+  "input_rough": 0.9650705946417076,
+  "classic@lk": {
+   "frames": 687,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1253644314868805,
+   "k_ge2_ratio": 0.12244897959183673,
+   "sec_per_frame": 0.013802171968129698,
+   "cropping": 0.8789860453608798,
+   "distortion": 0.9668312692928362,
+   "stability": 0.9178814258803626,
+   "stability_input": 0.854915045847962,
+   "rough": 0.4411814173658941,
+   "input_rough": 0.9650705946417076
+  }
+ },
+ "Crowd/18.avi": {
+  "input_rough": 1.43368678218481,
+  "classic@lk": {
+   "frames": 1455,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2922971114167814,
+   "k_ge2_ratio": 0.24965612104539203,
+   "sec_per_frame": 0.013713572852799982,
+   "cropping": 0.8789473467849062,
+   "distortion": 0.967230498306694,
+   "stability": 0.8461598103507951,
+   "stability_input": 0.8074859180879045,
+   "rough": 0.977267867091318,
+   "input_rough": 1.43368678218481
+  }
+ },
+ "Crowd/19.avi": {
+  "input_rough": 1.0810915259193288,
+  "classic@lk": {
+   "frames": 951,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1778947368421053,
+   "k_ge2_ratio": 0.15157894736842106,
+   "sec_per_frame": 0.014922047263064219,
+   "cropping": 0.8798071421738537,
+   "distortion": 0.9642303106026685,
+   "stability": 0.9456536075672624,
+   "stability_input": 0.9095196302774275,
+   "rough": 0.42324295660678274,
+   "input_rough": 1.0810915259193288
+  }
+ },
+ "Crowd/2.avi": {
+  "input_rough": 1.273647153991354,
+  "classic@lk": {
+   "frames": 1575,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.4847522236340533,
+   "k_ge2_ratio": 0.3818297331639136,
+   "sec_per_frame": 0.01466806547982352,
+   "cropping": 0.8802273507053022,
+   "distortion": 0.9689217095951824,
+   "stability": 0.8299994132260667,
+   "stability_input": 0.8046663318633672,
+   "rough": 0.628267203905406,
+   "input_rough": 1.273647153991354
+  }
+ },
+ "Crowd/20.avi": {
+  "input_rough": 1.1097007457643,
+  "classic@lk": {
+   "frames": 999,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1933867735470942,
+   "k_ge2_ratio": 0.17535070140280562,
+   "sec_per_frame": 0.01411347393994336,
+   "cropping": 0.8776798149505682,
+   "distortion": 0.9730401905344168,
+   "stability": 0.8761938924114726,
+   "stability_input": 0.836828953593782,
+   "rough": 0.530009517734425,
+   "input_rough": 1.1097007457643
+  }
+ },
+ "Crowd/21.avi": {
+  "input_rough": 1.0054490516081696,
+  "classic@lk": {
+   "frames": 303,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0827814569536425,
+   "k_ge2_ratio": 0.07947019867549669,
+   "sec_per_frame": 0.016406084444656625,
+   "cropping": 0.8796215387785746,
+   "distortion": 0.9736953207818155,
+   "stability": 0.9322081319607015,
+   "stability_input": 0.922251630785991,
+   "rough": 0.5348301185476093,
+   "input_rough": 1.0054490516081696
+  }
+ },
+ "Crowd/22.avi": {
+  "input_rough": 1.1936583461159562,
+  "classic@lk": {
+   "frames": 375,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2540106951871657,
+   "k_ge2_ratio": 0.21657754010695188,
+   "sec_per_frame": 0.012642594655354817,
+   "cropping": 0.8798263772598243,
+   "distortion": 0.9692379177955378,
+   "stability": 0.9730017010028017,
+   "stability_input": 0.9586707280196519,
+   "rough": 0.48581046455014526,
+   "input_rough": 1.1936583461159562
+  }
+ },
+ "Crowd/3.avi": {
+  "input_rough": 1.6992291980193692,
+  "classic@lk": {
+   "frames": 975,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.606776180698152,
+   "k_ge2_ratio": 0.4887063655030801,
+   "sec_per_frame": 0.015456273983686398,
+   "cropping": 0.8782011540291143,
+   "distortion": 0.9703561690920569,
+   "stability": 0.9443871985768837,
+   "stability_input": 0.9444316598145764,
+   "rough": 1.3055663587280562,
+   "input_rough": 1.6992291980193692
+  }
+ },
+ "Crowd/4.avi": {
+  "input_rough": 1.0397987614271231,
+  "classic@lk": {
+   "frames": 543,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 34.77786636352539,
+   "audio": "none",
+   "k_mean": 1.055350553505535,
+   "k_ge2_ratio": 0.05350553505535055,
+   "sec_per_frame": 0.01569542305245584,
+   "cropping": 0.8785837329371882,
+   "distortion": 0.9712230621923558,
+   "stability": 0.9277559169791797,
+   "stability_input": 0.8427918800773117,
+   "rough": 0.4361815746546242,
+   "input_rough": 1.0397987614271231
+  }
+ },
+ "Crowd/5.avi": {
+  "input_rough": 1.031092417209917,
+  "classic@lk": {
+   "frames": 759,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.200527704485488,
+   "k_ge2_ratio": 0.18601583113456466,
+   "sec_per_frame": 0.013638922976567968,
+   "cropping": 0.8785273156033807,
+   "distortion": 0.9715601319413361,
+   "stability": 0.930138725353007,
+   "stability_input": 0.9152454698479063,
+   "rough": 0.46041183161992766,
+   "input_rough": 1.031092417209917
+  }
+ },
+ "Crowd/6.avi": {
+  "input_rough": 1.0052018299598142,
+  "classic@lk": {
+   "frames": 711,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2352112676056337,
+   "k_ge2_ratio": 0.20422535211267606,
+   "sec_per_frame": 0.01623722236032392,
+   "cropping": 0.8791918736652113,
+   "distortion": 0.9764121724526956,
+   "stability": 0.9200603878950672,
+   "stability_input": 0.8813002590828236,
+   "rough": 0.37168701085584355,
+   "input_rough": 1.0052018299598142
+  }
+ },
+ "Crowd/7.avi": {
+  "input_rough": 1.101617283765427,
+  "classic@lk": {
+   "frames": 1095,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.4213893967093236,
+   "k_ge2_ratio": 0.35283363802559414,
+   "sec_per_frame": 0.015850065179067115,
+   "cropping": 0.8774763594148176,
+   "distortion": 0.9714594517038538,
+   "stability": 0.8596785892017622,
+   "stability_input": 0.8726966325176893,
+   "rough": 0.44189711663874504,
+   "input_rough": 1.101617283765427
+  }
+ },
+ "Crowd/8.avi": {
+  "input_rough": 1.0023866338240068,
+  "classic@lk": {
+   "frames": 903,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2638580931263859,
+   "k_ge2_ratio": 0.24833702882483372,
+   "sec_per_frame": 0.015532239066934005,
+   "cropping": 0.8795202576220328,
+   "distortion": 0.9771492304568528,
+   "stability": 0.8200027010589896,
+   "stability_input": 0.7241183075983404,
+   "rough": 0.34613526449390297,
+   "input_rough": 1.0023866338240068
+  }
+ },
+ "Crowd/9.avi": {
+  "input_rough": 1.3354152697690438,
+  "classic@lk": {
+   "frames": 807,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2642679900744418,
+   "k_ge2_ratio": 0.24441687344913152,
+   "sec_per_frame": 0.01700025656557142,
+   "cropping": 0.8780061927633234,
+   "distortion": 0.9728339621535846,
+   "stability": 0.9221506939829561,
+   "stability_input": 0.8859068523286545,
+   "rough": 0.5445813423414908,
+   "input_rough": 1.3354152697690438
+  }
+ },
+ "Parallax/0.avi": {
+  "input_rough": 1.5485421616149513,
+  "classic@lk": {
+   "frames": 772,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3592736705577173,
+   "k_ge2_ratio": 0.3086900129701686,
+   "sec_per_frame": 0.012247832945591428,
+   "cropping": 0.8791338538876581,
+   "distortion": 0.9785201422465332,
+   "stability": 0.9931027561243919,
+   "stability_input": 0.9914930892748538,
+   "rough": 0.37557371830391706,
+   "input_rough": 1.5485421616149513
+  }
+ },
+ "Parallax/1.avi": {
+  "input_rough": 0.7197728014325839,
+  "classic@lk": {
+   "frames": 402,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 32.49360656738281,
+   "audio": "none",
+   "k_mean": 1.5960099750623442,
+   "k_ge2_ratio": 0.40648379052369077,
+   "sec_per_frame": 0.01805620525606829,
+   "cropping": 0.8823173340760471,
+   "distortion": 0.9761538533222384,
+   "stability": 0.9679396404896766,
+   "stability_input": 0.933419436867868,
+   "rough": 0.5451238450164142,
+   "input_rough": 0.7197728014325839
+  }
+ },
+ "Parallax/10.avi": {
+  "input_rough": 0.8625113443681042,
+  "classic@lk": {
+   "frames": 1335,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.8388305847076463,
+   "k_ge2_ratio": 0.6229385307346327,
+   "sec_per_frame": 0.016926747225643544,
+   "cropping": 0.878677514476019,
+   "distortion": 0.9738202812148747,
+   "stability": 0.8280109441387427,
+   "stability_input": 0.8132670316083219,
+   "rough": 0.6747410093257245,
+   "input_rough": 0.8625113443681042
+  }
+ },
+ "Parallax/11.avi": {
+  "input_rough": 0.7456161752028023,
+  "classic@lk": {
+   "frames": 902,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 24.957881927490234,
+   "audio": "none",
+   "k_mean": 1.809100998890122,
+   "k_ge2_ratio": 0.7336293007769146,
+   "sec_per_frame": 0.011866622119150775,
+   "cropping": 0.8803331736709084,
+   "distortion": 0.9678534146260391,
+   "stability": 0.9676657404238171,
+   "stability_input": 0.9634800052229152,
+   "rough": 0.688622254598744,
+   "input_rough": 0.7456161752028023
+  }
+ },
+ "Parallax/12.avi": {
+  "input_rough": 4.662737535264005,
+  "classic@lk": {
+   "frames": 470,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 28.799999237060547,
+   "audio": "none",
+   "k_mean": 1.2601279317697227,
+   "k_ge2_ratio": 0.232409381663113,
+   "sec_per_frame": 0.01593990681019235,
+   "cropping": 0.8791008793526996,
+   "distortion": 0.9385607869887019,
+   "stability": 0.9498768166862194,
+   "stability_input": 0.9491060905077177,
+   "rough": 1.2555641676424805,
+   "input_rough": 4.662737535264005
+  }
+ },
+ "Parallax/13.avi": {
+  "input_rough": 4.524539192498136,
+  "classic@lk": {
+   "frames": 691,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 28.799999237060547,
+   "audio": "none",
+   "k_mean": 1.2231884057971014,
+   "k_ge2_ratio": 0.20144927536231885,
+   "sec_per_frame": 0.012805312138735472,
+   "cropping": 0.8805720753431063,
+   "distortion": 0.9707068241083644,
+   "stability": 0.7778564398786131,
+   "stability_input": 0.7322833795762933,
+   "rough": 1.2776448196462398,
+   "input_rough": 4.524539192498136
+  }
+ },
+ "Parallax/14.avi": {
+  "input_rough": 0.6545564703147146,
+  "classic@lk": {
+   "frames": 1166,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 37.131526947021484,
+   "audio": "none",
+   "k_mean": 1.345922746781116,
+   "k_ge2_ratio": 0.24120171673819743,
+   "sec_per_frame": 0.01617551320208489,
+   "cropping": 0.8808456964461151,
+   "distortion": 0.9746518624081203,
+   "stability": 0.8870071104067553,
+   "stability_input": 0.8828237461242286,
+   "rough": 0.4230509376421277,
+   "input_rough": 0.6545564703147146
+  }
+ },
+ "Parallax/15.avi": {
+  "input_rough": 1.6839024876759914,
+  "classic@lk": {
+   "frames": 952,
+   "shots": 1,
+   "l1_ratio": 0.0010504201680672268,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.5568421052631578,
+   "k_ge2_ratio": 0.41789473684210526,
+   "sec_per_frame": 0.01625384302700267,
+   "cropping": 0.8776883651384285,
+   "distortion": 0.9659718513865072,
+   "stability": 0.9440961460032251,
+   "stability_input": 0.9427095719895385,
+   "rough": 1.4556476471550033,
+   "input_rough": 1.6839024876759914
+  }
+ },
+ "Parallax/16.avi": {
+  "input_rough": 3.2181755058116837,
+  "classic@lk": {
+   "frames": 324,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 28.799999237060547,
+   "audio": "none",
+   "k_mean": 1.609907120743034,
+   "k_ge2_ratio": 0.5232198142414861,
+   "sec_per_frame": 0.01271323068642322,
+   "cropping": 0.8780716011490081,
+   "distortion": 0.9733155505072251,
+   "stability": 0.9703171658325688,
+   "stability_input": 0.9538118556310335,
+   "rough": 0.9978973316918721,
+   "input_rough": 3.2181755058116837
+  }
+ },
+ "Parallax/17.avi": {
+  "input_rough": 3.5958682929281958,
+  "classic@lk": {
+   "frames": 520,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 28.799999237060547,
+   "audio": "none",
+   "k_mean": 1.275529865125241,
+   "k_ge2_ratio": 0.24470134874759153,
+   "sec_per_frame": 0.016543121062792265,
+   "cropping": 0.8776797931197345,
+   "distortion": 0.9740115223407465,
+   "stability": 0.8587118301628894,
+   "stability_input": 0.87004191005505,
+   "rough": 1.0987871053129794,
+   "input_rough": 3.5958682929281958
+  }
+ },
+ "Parallax/2.avi": {
+  "input_rough": 3.5841489631970247,
+  "classic@lk": {
+   "frames": 170,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 23.331754684448242,
+   "audio": "none",
+   "k_mean": 1.9289940828402368,
+   "k_ge2_ratio": 0.6804733727810651,
+   "sec_per_frame": 0.01605983060948989,
+   "cropping": 0.8788761369371728,
+   "distortion": 0.9739426606599835,
+   "stability": 0.9163896264604219,
+   "stability_input": 0.9127269330998468,
+   "rough": 2.9073914208436378,
+   "input_rough": 3.5841489631970247
+  }
+ },
+ "Parallax/3.avi": {
+  "input_rough": 3.6371495043094226,
+  "classic@lk": {
+   "frames": 140,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.007142857142857143,
+   "max_correction_px": 21.600000381469727,
+   "audio": "none",
+   "k_mean": 1.1956521739130435,
+   "k_ge2_ratio": 0.17391304347826086,
+   "sec_per_frame": 0.026464266436440603,
+   "cropping": 0.8840637324997316,
+   "distortion": 0.9780180585978285,
+   "stability": 0.9131581250091183,
+   "stability_input": 0.8850852501324137,
+   "rough": 1.8797185475643925,
+   "input_rough": 3.6371495043094226
+  }
+ },
+ "Parallax/4.avi": {
+  "input_rough": 1.02127861579049,
+  "classic@lk": {
+   "frames": 525,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 2.131679389312977,
+   "k_ge2_ratio": 0.75,
+   "sec_per_frame": 0.017279160817464192,
+   "cropping": 0.8796882069695875,
+   "distortion": 0.9705987518078281,
+   "stability": 0.9792759783380606,
+   "stability_input": 0.9587884718697072,
+   "rough": 1.0845677209325266,
+   "input_rough": 1.02127861579049
+  }
+ },
+ "Parallax/5.avi": {
+  "input_rough": 3.3538397851428905,
+  "classic@lk": {
+   "frames": 381,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 28.73910140991211,
+   "audio": "none",
+   "k_mean": 1.2052631578947368,
+   "k_ge2_ratio": 0.19210526315789472,
+   "sec_per_frame": 0.01562828028921693,
+   "cropping": 0.880184344161996,
+   "distortion": 0.9727607146707506,
+   "stability": 0.888955838192565,
+   "stability_input": 0.8734381162553269,
+   "rough": 0.7435721571520931,
+   "input_rough": 3.3538397851428905
+  }
+ },
+ "Parallax/6.avi": {
+  "input_rough": 0.9504950555539495,
+  "classic@lk": {
+   "frames": 250,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 32.88090896606445,
+   "audio": "none",
+   "k_mean": 1.8072289156626506,
+   "k_ge2_ratio": 0.6465863453815262,
+   "sec_per_frame": 0.01609758472442627,
+   "cropping": 0.8797477138174365,
+   "distortion": 0.9772150364353994,
+   "stability": 0.8518893866231653,
+   "stability_input": 0.8700439820197966,
+   "rough": 0.7581581872557508,
+   "input_rough": 0.9504950555539495
+  }
+ },
+ "Parallax/7.avi": {
+  "input_rough": 4.498258068800464,
+  "classic@lk": {
+   "frames": 526,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 28.799999237060547,
+   "audio": "none",
+   "k_mean": 1.3904761904761904,
+   "k_ge2_ratio": 0.32,
+   "sec_per_frame": 0.013176630205074645,
+   "cropping": 0.8783694984496965,
+   "distortion": 0.9682527091560311,
+   "stability": 0.9570573250626021,
+   "stability_input": 0.9527551024470146,
+   "rough": 1.8541009793496905,
+   "input_rough": 4.498258068800464
+  }
+ },
+ "Parallax/8.avi": {
+  "input_rough": 3.852898471302415,
+  "classic@lk": {
+   "frames": 674,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 28.799999237060547,
+   "audio": "none",
+   "k_mean": 1.2184249628528974,
+   "k_ge2_ratio": 0.1976225854383358,
+   "sec_per_frame": 0.01538005533133487,
+   "cropping": 0.8814402372158731,
+   "distortion": 0.9547850200452489,
+   "stability": 0.9554239722671415,
+   "stability_input": 0.9520349349712173,
+   "rough": 1.3557201625229136,
+   "input_rough": 3.852898471302415
+  }
+ },
+ "Parallax/9.avi": {
+  "input_rough": 1.1726899019229426,
+  "classic@lk": {
+   "frames": 639,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.8573667711598747,
+   "k_ge2_ratio": 0.64576802507837,
+   "sec_per_frame": 0.017868375181219014,
+   "cropping": 0.8800828116239883,
+   "distortion": 0.9658615467367798,
+   "stability": 0.9345115819838018,
+   "stability_input": 0.8883365943969057,
+   "rough": 1.2260397552756763,
+   "input_rough": 1.1726899019229426
+  }
+ },
+ "QuickRotation/0.avi": {
+  "input_rough": 0.7940038069175966,
+  "classic@lk": {
+   "frames": 545,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2261029411764706,
+   "k_ge2_ratio": 0.19669117647058823,
+   "sec_per_frame": 0.014395032672707093,
+   "cropping": 0.8789137869098163,
+   "distortion": 0.9742624735649659,
+   "stability": 0.9722367802469147,
+   "stability_input": 0.9710007550387357,
+   "rough": 0.42734148906913405,
+   "input_rough": 0.7940038069175966
+  }
+ },
+ "QuickRotation/1.avi": {
+  "input_rough": 0.8561306306543542,
+  "classic@lk": {
+   "frames": 329,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2195121951219512,
+   "k_ge2_ratio": 0.19817073170731708,
+   "sec_per_frame": 0.0162673264651313,
+   "cropping": 0.8797090056890701,
+   "distortion": 0.9783532203245117,
+   "stability": 0.9948003374130344,
+   "stability_input": 0.9948388562924723,
+   "rough": 0.471801591916892,
+   "input_rough": 0.8561306306543542
+  }
+ },
+ "QuickRotation/10.avi": {
+  "input_rough": 1.9753536771442142,
+  "classic@lk": {
+   "frames": 303,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3642384105960266,
+   "k_ge2_ratio": 0.2814569536423841,
+   "sec_per_frame": 0.015360987225774884,
+   "cropping": 0.8818080883527931,
+   "distortion": 0.9722446030190252,
+   "stability": 0.9428526628339945,
+   "stability_input": 0.9441400905365894,
+   "rough": 1.5130571370969486,
+   "input_rough": 1.9753536771442142
+  }
+ },
+ "QuickRotation/11.avi": {
+  "input_rough": 0.7042406758285307,
+  "classic@lk": {
+   "frames": 497,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0725806451612903,
+   "k_ge2_ratio": 0.06653225806451613,
+   "sec_per_frame": 0.016846651522446448,
+   "cropping": 0.8792752610513304,
+   "distortion": 0.9759378271202306,
+   "stability": 0.9858414484419686,
+   "stability_input": 0.9837850660194346,
+   "rough": 0.37055628176684113,
+   "input_rough": 0.7042406758285307
+  }
+ },
+ "QuickRotation/12.avi": {
+  "input_rough": 0.7241356128961688,
+  "classic@lk": {
+   "frames": 425,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 31.01712989807129,
+   "audio": "none",
+   "k_mean": 1.096698113207547,
+   "k_ge2_ratio": 0.09198113207547169,
+   "sec_per_frame": 0.015651576659258676,
+   "cropping": 0.8800292192573612,
+   "distortion": 0.9789545621854768,
+   "stability": 0.9810513584013911,
+   "stability_input": 0.9567353231688043,
+   "rough": 0.3544367815989257,
+   "input_rough": 0.7241356128961688
+  }
+ },
+ "QuickRotation/13.avi": {
+  "input_rough": 0.9175090474515362,
+  "classic@lk": {
+   "frames": 641,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.121875,
+   "k_ge2_ratio": 0.1140625,
+   "sec_per_frame": 0.016845520498600094,
+   "cropping": 0.8780128597642564,
+   "distortion": 0.977049284829537,
+   "stability": 0.9777000740121897,
+   "stability_input": 0.9617932005527745,
+   "rough": 0.3085723988615323,
+   "input_rough": 0.9175090474515362
+  }
+ },
+ "QuickRotation/14.avi": {
+  "input_rough": 0.6728341076347198,
+  "classic@lk": {
+   "frames": 1169,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0856164383561644,
+   "k_ge2_ratio": 0.08304794520547945,
+   "sec_per_frame": 0.015477537598948482,
+   "cropping": 0.8788770252418351,
+   "distortion": 0.977528523060531,
+   "stability": 0.9632868772901046,
+   "stability_input": 0.9642173951479419,
+   "rough": 0.23917162111639145,
+   "input_rough": 0.6728341076347198
+  }
+ },
+ "QuickRotation/15.avi": {
+  "input_rough": 0.785017060370594,
+  "classic@lk": {
+   "frames": 593,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 37.215457916259766,
+   "audio": "none",
+   "k_mean": 1.275337837837838,
+   "k_ge2_ratio": 0.2516891891891892,
+   "sec_per_frame": 0.01283035149662732,
+   "cropping": 0.8788784687411142,
+   "distortion": 0.8283695678433031,
+   "stability": 0.9791981285257108,
+   "stability_input": 0.9675343612605181,
+   "rough": 0.29760650536876754,
+   "input_rough": 0.785017060370594
+  }
+ },
+ "QuickRotation/16.avi": {
+  "input_rough": 0.5841560218543842,
+  "classic@lk": {
+   "frames": 545,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1121323529411764,
+   "k_ge2_ratio": 0.09926470588235294,
+   "sec_per_frame": 0.014959335327148438,
+   "cropping": 0.8800394742957823,
+   "distortion": 0.9733076726319778,
+   "stability": 0.9913312713082841,
+   "stability_input": 0.9907147368944019,
+   "rough": 0.43114485593929053,
+   "input_rough": 0.5841560218543842
+  }
+ },
+ "QuickRotation/17.avi": {
+  "input_rough": 1.8850691976075578,
+  "classic@lk": {
+   "frames": 352,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.207977207977208,
+   "k_ge2_ratio": 0.18518518518518517,
+   "sec_per_frame": 0.016190202398733658,
+   "cropping": 0.8817399595890213,
+   "distortion": 0.9747523342496089,
+   "stability": 0.9823861159369643,
+   "stability_input": 0.9801552247430886,
+   "rough": 1.641883736204969,
+   "input_rough": 1.8850691976075578
+  }
+ },
+ "QuickRotation/18.avi": {
+  "input_rough": 1.7127711285220402,
+  "classic@lk": {
+   "frames": 216,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0883720930232559,
+   "k_ge2_ratio": 0.07906976744186046,
+   "sec_per_frame": 0.01613708226769059,
+   "cropping": 0.8811843853806807,
+   "distortion": 0.9780897942953793,
+   "stability": 0.9907802490306977,
+   "stability_input": 0.987354667459791,
+   "rough": 1.0153381322995143,
+   "input_rough": 1.7127711285220402
+  }
+ },
+ "QuickRotation/19.avi": {
+  "input_rough": 0.663218516791299,
+  "classic@lk": {
+   "frames": 423,
+   "shots": 1,
+   "l1_ratio": 0.002364066193853428,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.152019002375297,
+   "k_ge2_ratio": 0.13539192399049882,
+   "sec_per_frame": 0.01615069211233874,
+   "cropping": 0.8780483777356011,
+   "distortion": 0.9559862036982271,
+   "stability": 0.9270790995086436,
+   "stability_input": 0.9202360653051089,
+   "rough": 0.47193564402492766,
+   "input_rough": 0.663218516791299
+  }
+ },
+ "QuickRotation/2.avi": {
+  "input_rough": 1.302959431301503,
+  "classic@lk": {
+   "frames": 426,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.24,
+   "k_ge2_ratio": 0.21176470588235294,
+   "sec_per_frame": 0.015649038861055328,
+   "cropping": 0.8795003581844854,
+   "distortion": 0.9504914409438086,
+   "stability": 0.9851692944107507,
+   "stability_input": 0.9838333446481621,
+   "rough": 0.642654839122496,
+   "input_rough": 1.302959431301503
+  }
+ },
+ "QuickRotation/20.avi": {
+  "input_rough": 1.0623175303717174,
+  "classic@lk": {
+   "frames": 687,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2682215743440233,
+   "k_ge2_ratio": 0.24489795918367346,
+   "sec_per_frame": 0.01506695476681905,
+   "cropping": 0.8809357364828811,
+   "distortion": 0.9727610222840469,
+   "stability": 0.9594529572103463,
+   "stability_input": 0.9551229220188432,
+   "rough": 0.6442711090111982,
+   "input_rough": 1.0623175303717174
+  }
+ },
+ "QuickRotation/21.avi": {
+  "input_rough": 0.9880279823775817,
+  "classic@lk": {
+   "frames": 327,
+   "shots": 1,
+   "l1_ratio": 0.0030581039755351682,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1476923076923078,
+   "k_ge2_ratio": 0.13846153846153847,
+   "sec_per_frame": 0.016012853803255508,
+   "cropping": 0.8804893078941829,
+   "distortion": 0.9802140411258048,
+   "stability": 0.9932911490796847,
+   "stability_input": 0.9942157541229575,
+   "rough": 0.8052703071932038,
+   "input_rough": 0.9880279823775817
+  }
+ },
+ "QuickRotation/22.avi": {
+  "input_rough": 1.0240957360400058,
+  "classic@lk": {
+   "frames": 495,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0384615384615385,
+   "k_ge2_ratio": 0.038461538461538464,
+   "sec_per_frame": 0.013497958520446161,
+   "cropping": 0.8795579877575952,
+   "distortion": 0.9607726267200957,
+   "stability": 0.9419666371183322,
+   "stability_input": 0.9437120628184008,
+   "rough": 0.7066511865327698,
+   "input_rough": 1.0240957360400058
+  }
+ },
+ "QuickRotation/23.avi": {
+  "input_rough": 0.8192298049154114,
+  "classic@lk": {
+   "frames": 303,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0596026490066226,
+   "k_ge2_ratio": 0.052980132450331126,
+   "sec_per_frame": 0.016136699777231752,
+   "cropping": 0.8764317883403392,
+   "distortion": 0.9746820833474269,
+   "stability": 0.998139495990262,
+   "stability_input": 0.9978861041666045,
+   "rough": 0.6135794046641557,
+   "input_rough": 0.8192298049154114
+  }
+ },
+ "QuickRotation/24.avi": {
+  "input_rough": 0.834954358457818,
+  "classic@lk": {
+   "frames": 399,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0804020100502512,
+   "k_ge2_ratio": 0.07537688442211055,
+   "sec_per_frame": 0.01521202914398117,
+   "cropping": 0.8783230901355685,
+   "distortion": 0.9722533437907123,
+   "stability": 0.9278361680598427,
+   "stability_input": 0.9343443828104793,
+   "rough": 0.6590032143131174,
+   "input_rough": 0.834954358457818
+  }
+ },
+ "QuickRotation/25.avi": {
+  "input_rough": 1.337422683025267,
+  "classic@lk": {
+   "frames": 351,
+   "shots": 1,
+   "l1_ratio": 0.06552706552706553,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.107033639143731,
+   "k_ge2_ratio": 0.0856269113149847,
+   "sec_per_frame": 0.013463014890665342,
+   "cropping": 0.8802763837897953,
+   "distortion": 0.9609484665804788,
+   "stability": 0.9664147810931171,
+   "stability_input": 0.9618756875734129,
+   "rough": 1.1985175425229995,
+   "input_rough": 1.337422683025267
+  }
+ },
+ "QuickRotation/26.avi": {
+  "input_rough": 1.725420037172133,
+  "classic@lk": {
+   "frames": 400,
+   "shots": 1,
+   "l1_ratio": 0.02,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.391304347826087,
+   "k_ge2_ratio": 0.35038363171355497,
+   "sec_per_frame": 0.017050021290779115,
+   "cropping": 0.8772873909664375,
+   "distortion": 0.9668836682997889,
+   "stability": 0.9219331457847871,
+   "stability_input": 0.9257391385270757,
+   "rough": 2.0411444161902224,
+   "input_rough": 1.725420037172133
+  }
+ },
+ "QuickRotation/27.avi": {
+  "input_rough": 1.644149764551777,
+  "classic@lk": {
+   "frames": 375,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.4839572192513368,
+   "k_ge2_ratio": 0.4090909090909091,
+   "sec_per_frame": 0.01680397605895996,
+   "cropping": 0.8776393908763871,
+   "distortion": 0.9737632436453405,
+   "stability": 0.9721839504990336,
+   "stability_input": 0.9659240106122282,
+   "rough": 1.1361679917062297,
+   "input_rough": 1.644149764551777
+  }
+ },
+ "QuickRotation/28.avi": {
+  "input_rough": 1.1747965839065961,
+  "classic@lk": {
+   "frames": 399,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1381909547738693,
+   "k_ge2_ratio": 0.12060301507537688,
+   "sec_per_frame": 0.013559108389947647,
+   "cropping": 0.87752564365328,
+   "distortion": 0.9720241920924445,
+   "stability": 0.96654498279802,
+   "stability_input": 0.9636483949658894,
+   "rough": 0.9088677455205584,
+   "input_rough": 1.1747965839065961
+  }
+ },
+ "QuickRotation/3.avi": {
+  "input_rough": 0.6721694726090568,
+  "classic@lk": {
+   "frames": 497,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1310483870967742,
+   "k_ge2_ratio": 0.12096774193548387,
+   "sec_per_frame": 0.011875977218750737,
+   "cropping": 0.8784150788795415,
+   "distortion": 0.9788115167255943,
+   "stability": 0.9886651519808307,
+   "stability_input": 0.9818056170620704,
+   "rough": 0.3491870160768474,
+   "input_rough": 0.6721694726090568
+  }
+ },
+ "QuickRotation/4.avi": {
+  "input_rough": 1.1276453194567584,
+  "classic@lk": {
+   "frames": 257,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0390625,
+   "k_ge2_ratio": 0.0390625,
+   "sec_per_frame": 0.013837801343272168,
+   "cropping": 0.8794278839256391,
+   "distortion": 0.9733970901838921,
+   "stability": 0.989741960264344,
+   "stability_input": 0.988545795520777,
+   "rough": 0.7507884352767172,
+   "input_rough": 1.1276453194567584
+  }
+ },
+ "QuickRotation/5.avi": {
+  "input_rough": 1.336448845195468,
+  "classic@lk": {
+   "frames": 353,
+   "shots": 1,
+   "l1_ratio": 0.0084985835694051,
+   "l2_ratio": 0.0,
+   "max_correction_px": 34.217159271240234,
+   "audio": "none",
+   "k_mean": 1.0916905444126075,
+   "k_ge2_ratio": 0.0830945558739255,
+   "sec_per_frame": 0.017220978020946298,
+   "cropping": 0.8803168473024473,
+   "distortion": 0.9635282733071641,
+   "stability": 0.9260923813827252,
+   "stability_input": 0.9098349777972108,
+   "rough": 0.8539196020936131,
+   "input_rough": 1.336448845195468
+  }
+ },
+ "QuickRotation/6.avi": {
+  "input_rough": 2.1353337218842636,
+  "classic@lk": {
+   "frames": 448,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.225950782997763,
+   "k_ge2_ratio": 0.21029082774049218,
+   "sec_per_frame": 0.012987618467637472,
+   "cropping": 0.8789201799035544,
+   "distortion": 0.9727243323249338,
+   "stability": 0.9251731192265759,
+   "stability_input": 0.9098819104422861,
+   "rough": 1.2032120113814397,
+   "input_rough": 2.1353337218842636
+  }
+ },
+ "QuickRotation/7.avi": {
+  "input_rough": 1.1380335209342909,
+  "classic@lk": {
+   "frames": 305,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3289473684210527,
+   "k_ge2_ratio": 0.28289473684210525,
+   "sec_per_frame": 0.01675775715562164,
+   "cropping": 0.8784678419041078,
+   "distortion": 0.9819666889233029,
+   "stability": 0.9845260212702435,
+   "stability_input": 0.9864418833175869,
+   "rough": 0.5653182744790475,
+   "input_rough": 1.1380335209342909
+  }
+ },
+ "QuickRotation/8.avi": {
+  "input_rough": 1.6047036423902203,
+  "classic@lk": {
+   "frames": 377,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2287234042553192,
+   "k_ge2_ratio": 0.2047872340425532,
+   "sec_per_frame": 0.017806453477166376,
+   "cropping": 0.8775201654914098,
+   "distortion": 0.9758434170170849,
+   "stability": 0.9226690587005987,
+   "stability_input": 0.9208910077019049,
+   "rough": 0.8861175291976496,
+   "input_rough": 1.6047036423902203
+  }
+ },
+ "QuickRotation/9.avi": {
+  "input_rough": 1.3508390249728133,
+  "classic@lk": {
+   "frames": 327,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0858895705521472,
+   "k_ge2_ratio": 0.08588957055214724,
+   "sec_per_frame": 0.011896540994673329,
+   "cropping": 0.8795111626593688,
+   "distortion": 0.9661473083400204,
+   "stability": 0.9868462749418786,
+   "stability_input": 0.9870024028723886,
+   "rough": 0.8829960633220802,
+   "input_rough": 1.3508390249728133
+  }
+ },
+ "Regular/0.avi": {
+  "input_rough": 1.5884867807225929,
+  "classic@lk": {
+   "frames": 247,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 24.033164978027344,
+   "audio": "none",
+   "k_mean": 1.008130081300813,
+   "k_ge2_ratio": 0.008130081300813009,
+   "sec_per_frame": 0.018930353133784616,
+   "cropping": 0.8808897520917348,
+   "distortion": 0.9815493350962683,
+   "stability": 0.9419038392899499,
+   "stability_input": 0.8624064636124346,
+   "rough": 0.15487093960148324,
+   "input_rough": 1.5884867807225929
+  }
+ },
+ "Regular/1.avi": {
+  "input_rough": 1.4815660418664827,
+  "classic@lk": {
+   "frames": 496,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 24.496570587158203,
+   "audio": "none",
+   "k_mean": 1.105050505050505,
+   "k_ge2_ratio": 0.09090909090909091,
+   "sec_per_frame": 0.013860237694555713,
+   "cropping": 0.8785327224658126,
+   "distortion": 0.9761676055115568,
+   "stability": 0.9226314468582691,
+   "stability_input": 0.8599430024151252,
+   "rough": 0.16594926847597027,
+   "input_rough": 1.4815660418664827
+  }
+ },
+ "Regular/10.avi": {
+  "input_rough": 1.2611144201743685,
+  "classic@lk": {
+   "frames": 402,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 34.205604553222656,
+   "audio": "none",
+   "k_mean": 1.0523690773067331,
+   "k_ge2_ratio": 0.05236907730673317,
+   "sec_per_frame": 0.017592033936609675,
+   "cropping": 0.8799924459684973,
+   "distortion": 0.9793453179566194,
+   "stability": 0.8878918249745121,
+   "stability_input": 0.5189948295641228,
+   "rough": 0.271166943470429,
+   "input_rough": 1.2611144201743685
+  }
+ },
+ "Regular/11.avi": {
+  "input_rough": 1.9386240931201595,
+  "classic@lk": {
+   "frames": 433,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 21.600000381469727,
+   "audio": "none",
+   "k_mean": 1.5046296296296295,
+   "k_ge2_ratio": 0.4444444444444444,
+   "sec_per_frame": 0.016236269997118802,
+   "cropping": 0.8788820333991992,
+   "distortion": 0.9826006532558879,
+   "stability": 0.8822924509150937,
+   "stability_input": 0.7514732798517864,
+   "rough": 0.24107770070509962,
+   "input_rough": 1.9386240931201595
+  }
+ },
+ "Regular/12.avi": {
+  "input_rough": 1.9419653356863007,
+  "classic@lk": {
+   "frames": 493,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 26.036643981933594,
+   "audio": "none",
+   "k_mean": 1.4024390243902438,
+   "k_ge2_ratio": 0.37398373983739835,
+   "sec_per_frame": 0.017261038445555897,
+   "cropping": 0.8806785506423838,
+   "distortion": 0.9798188749758473,
+   "stability": 0.9344151910185161,
+   "stability_input": 0.567307929572448,
+   "rough": 0.21118207928336472,
+   "input_rough": 1.9419653356863007
+  }
+ },
+ "Regular/13.avi": {
+  "input_rough": 1.016483663957137,
+  "classic@lk": {
+   "frames": 507,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 26.648530960083008,
+   "audio": "none",
+   "k_mean": 1.3774703557312253,
+   "k_ge2_ratio": 0.32608695652173914,
+   "sec_per_frame": 0.013585209611369779,
+   "cropping": 0.8810065227841959,
+   "distortion": 0.9826480795597661,
+   "stability": 0.9415601819955647,
+   "stability_input": 0.7286590445239334,
+   "rough": 0.12320650899839755,
+   "input_rough": 1.016483663957137
+  }
+ },
+ "Regular/14.avi": {
+  "input_rough": 0.7632285981508741,
+  "classic@lk": {
+   "frames": 298,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 21.86050033569336,
+   "audio": "none",
+   "k_mean": 2.04040404040404,
+   "k_ge2_ratio": 0.7878787878787878,
+   "sec_per_frame": 0.021508903311403007,
+   "cropping": 0.879323867146607,
+   "distortion": 0.9845545172762239,
+   "stability": 0.9603212042118664,
+   "stability_input": 0.7388851355315023,
+   "rough": 0.3183044589065435,
+   "input_rough": 0.7632285981508741
+  }
+ },
+ "Regular/15.avi": {
+  "input_rough": 2.343483165382192,
+  "classic@lk": {
+   "frames": 477,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 22.680219650268555,
+   "audio": "none",
+   "k_mean": 1.5861344537815125,
+   "k_ge2_ratio": 0.5189075630252101,
+   "sec_per_frame": 0.013833112936599699,
+   "cropping": 0.8802217883355956,
+   "distortion": 0.980872846050134,
+   "stability": 0.9540529561956049,
+   "stability_input": 0.8966346742302029,
+   "rough": 0.24935655962197997,
+   "input_rough": 2.343483165382192
+  }
+ },
+ "Regular/16.avi": {
+  "input_rough": 2.4997373095134527,
+  "classic@lk": {
+   "frames": 628,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 30.04222297668457,
+   "audio": "none",
+   "k_mean": 1.2472089314194577,
+   "k_ge2_ratio": 0.23285486443381181,
+   "sec_per_frame": 0.0188044552590437,
+   "cropping": 0.8804544575273611,
+   "distortion": 0.9805852442078623,
+   "stability": 0.8524232469800476,
+   "stability_input": 0.831048144241254,
+   "rough": 0.3124579822698769,
+   "input_rough": 2.4997373095134527
+  }
+ },
+ "Regular/17.avi": {
+  "input_rough": 1.0968777620106056,
+  "classic@lk": {
+   "frames": 480,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0563674321503131,
+   "k_ge2_ratio": 0.054279749478079335,
+   "sec_per_frame": 0.013399627804756165,
+   "cropping": 0.8790602274900852,
+   "distortion": 0.9802724773390397,
+   "stability": 0.9594653076923637,
+   "stability_input": 0.9583007682424562,
+   "rough": 0.44759951172011303,
+   "input_rough": 1.0968777620106056
+  }
+ },
+ "Regular/18.avi": {
+  "input_rough": 2.9599783323457753,
+  "classic@lk": {
+   "frames": 250,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 37.546836853027344,
+   "audio": "none",
+   "k_mean": 1.1004016064257027,
+   "k_ge2_ratio": 0.09236947791164658,
+   "sec_per_frame": 0.015895683288574217,
+   "cropping": 0.8790931917375404,
+   "distortion": 0.9789804522159491,
+   "stability": 0.9455761921196122,
+   "stability_input": 0.8618133895605283,
+   "rough": 0.7226043158550458,
+   "input_rough": 2.9599783323457753
+  }
+ },
+ "Regular/19.avi": {
+  "input_rough": 0.8304352675341232,
+  "classic@lk": {
+   "frames": 616,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 24.092266082763672,
+   "audio": "none",
+   "k_mean": 1.383739837398374,
+   "k_ge2_ratio": 0.33658536585365856,
+   "sec_per_frame": 0.014711236798918092,
+   "cropping": 0.8794693986294606,
+   "distortion": 0.9801727791939402,
+   "stability": 0.8976304986979545,
+   "stability_input": 0.8295447851366782,
+   "rough": 0.17766332573741794,
+   "input_rough": 0.8304352675341232
+  }
+ },
+ "Regular/2.avi": {
+  "input_rough": 2.757988655302763,
+  "classic@lk": {
+   "frames": 447,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 31.417829513549805,
+   "audio": "none",
+   "k_mean": 1.2735426008968609,
+   "k_ge2_ratio": 0.242152466367713,
+   "sec_per_frame": 0.017239530081183584,
+   "cropping": 0.8790861307266077,
+   "distortion": 0.9825038626919077,
+   "stability": 0.9669634717209133,
+   "stability_input": 0.7499799107909988,
+   "rough": 0.2912417172359689,
+   "input_rough": 2.757988655302763
+  }
+ },
+ "Regular/20.avi": {
+  "input_rough": 0.6383724970944313,
+  "classic@lk": {
+   "frames": 879,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.20035934448242,
+   "audio": "none",
+   "k_mean": 1.3542141230068336,
+   "k_ge2_ratio": 0.3132118451025057,
+   "sec_per_frame": 0.0125546148883876,
+   "cropping": 0.8781086660459394,
+   "distortion": 0.9715993205841335,
+   "stability": 0.9255281010787365,
+   "stability_input": 0.905705574120797,
+   "rough": 0.2229820275234469,
+   "input_rough": 0.6383724970944313
+  }
+ },
+ "Regular/21.avi": {
+  "input_rough": 0.9682170943862699,
+  "classic@lk": {
+   "frames": 878,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3500570125427593,
+   "k_ge2_ratio": 0.29646522234891676,
+   "sec_per_frame": 0.013680490654530449,
+   "cropping": 0.8793007255594846,
+   "distortion": 0.9782216488851558,
+   "stability": 0.9335154212364838,
+   "stability_input": 0.9076936127606877,
+   "rough": 0.2604396457265457,
+   "input_rough": 0.9682170943862699
+  }
+ },
+ "Regular/22.avi": {
+  "input_rough": 0.879189375160794,
+  "classic@lk": {
+   "frames": 880,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.129692832764505,
+   "k_ge2_ratio": 0.11831626848691695,
+   "sec_per_frame": 0.013148939067667181,
+   "cropping": 0.8782129909077894,
+   "distortion": 0.964633900479305,
+   "stability": 0.932813306390865,
+   "stability_input": 0.9069522234318058,
+   "rough": 0.3296782446029835,
+   "input_rough": 0.879189375160794
+  }
+ },
+ "Regular/3.avi": {
+  "input_rough": 0.8373566653855068,
+  "classic@lk": {
+   "frames": 572,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 21.28125762939453,
+   "audio": "none",
+   "k_mean": 1.073555166374781,
+   "k_ge2_ratio": 0.07180385288966724,
+   "sec_per_frame": 0.014518806150743177,
+   "cropping": 0.8804817828507372,
+   "distortion": 0.9763042872178943,
+   "stability": 0.9109266981380588,
+   "stability_input": 0.8454432661977341,
+   "rough": 0.15226984037447786,
+   "input_rough": 0.8373566653855068
+  }
+ },
+ "Regular/4.avi": {
+  "input_rough": 1.1366085474067253,
+  "classic@lk": {
+   "frames": 399,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 22.568437576293945,
+   "audio": "none",
+   "k_mean": 1.1683417085427135,
+   "k_ge2_ratio": 0.15577889447236182,
+   "sec_per_frame": 0.01351085701084376,
+   "cropping": 0.8800800016196539,
+   "distortion": 0.982841951732935,
+   "stability": 0.9238676713509518,
+   "stability_input": 0.8727913535410728,
+   "rough": 0.12973716309270272,
+   "input_rough": 1.1366085474067253
+  }
+ },
+ "Regular/5.avi": {
+  "input_rough": 1.046939180316136,
+  "classic@lk": {
+   "frames": 597,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 30.646432876586914,
+   "audio": "none",
+   "k_mean": 1.2701342281879195,
+   "k_ge2_ratio": 0.23993288590604026,
+   "sec_per_frame": 0.019419947261586662,
+   "cropping": 0.8802335995127942,
+   "distortion": 0.9825583709665573,
+   "stability": 0.9341011837722438,
+   "stability_input": 0.8095238655076175,
+   "rough": 0.1713335434195158,
+   "input_rough": 1.046939180316136
+  }
+ },
+ "Regular/6.avi": {
+  "input_rough": 2.5104037180558874,
+  "classic@lk": {
+   "frames": 432,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 37.249298095703125,
+   "audio": "none",
+   "k_mean": 1.0464037122969838,
+   "k_ge2_ratio": 0.04408352668213457,
+   "sec_per_frame": 0.018078602022594877,
+   "cropping": 0.8793155356799116,
+   "distortion": 0.9791986297342512,
+   "stability": 0.7868525342112868,
+   "stability_input": 0.6500567645725941,
+   "rough": 0.3711624300790016,
+   "input_rough": 2.5104037180558874
+  }
+ },
+ "Regular/7.avi": {
+  "input_rough": 1.1595743380456551,
+  "classic@lk": {
+   "frames": 387,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 25.785812377929688,
+   "audio": "none",
+   "k_mean": 1.4689119170984455,
+   "k_ge2_ratio": 0.38860103626943004,
+   "sec_per_frame": 0.019580903903458468,
+   "cropping": 0.8787779755354072,
+   "distortion": 0.9841407303084683,
+   "stability": 0.9556584509791874,
+   "stability_input": 0.8867823615070711,
+   "rough": 0.18933562569170181,
+   "input_rough": 1.1595743380456551
+  }
+ },
+ "Regular/8.avi": {
+  "input_rough": 1.9949162970803684,
+  "classic@lk": {
+   "frames": 432,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 20.26798439025879,
+   "audio": "none",
+   "k_mean": 1.3921113689095128,
+   "k_ge2_ratio": 0.34106728538283065,
+   "sec_per_frame": 0.015831097960472107,
+   "cropping": 0.8793521952131022,
+   "distortion": 0.9802911732043288,
+   "stability": 0.8938832700441085,
+   "stability_input": 0.7261298439931814,
+   "rough": 0.16761777012586535,
+   "input_rough": 1.9949162970803684
+  }
+ },
+ "Regular/9.avi": {
+  "input_rough": 0.8185499299125284,
+  "classic@lk": {
+   "frames": 997,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 32.458343505859375,
+   "audio": "none",
+   "k_mean": 1.3815261044176708,
+   "k_ge2_ratio": 0.3353413654618474,
+   "sec_per_frame": 0.01946520135778123,
+   "cropping": 0.8799190062151223,
+   "distortion": 0.9777779783355021,
+   "stability": 0.9178768359674274,
+   "stability_input": 0.916155680108612,
+   "rough": 0.2851018579284586,
+   "input_rough": 0.8185499299125284
+  }
+ },
+ "Running/0.avi": {
+  "input_rough": 3.467045465699112,
+  "classic@lk": {
+   "frames": 447,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1860986547085202,
+   "k_ge2_ratio": 0.17040358744394618,
+   "sec_per_frame": 0.016589988798103077,
+   "cropping": 0.8789478590626925,
+   "distortion": 0.960258077034926,
+   "stability": 0.798715630216209,
+   "stability_input": 0.8115008722539695,
+   "rough": 1.4690880490076423,
+   "input_rough": 3.467045465699112
+  }
+ },
+ "Running/1.avi": {
+  "input_rough": 3.4652075385846834,
+  "classic@lk": {
+   "frames": 472,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.443736730360934,
+   "k_ge2_ratio": 0.3821656050955414,
+   "sec_per_frame": 0.012284504660105302,
+   "cropping": 0.8781895097411505,
+   "distortion": 0.975533316643472,
+   "stability": 0.9028266521714458,
+   "stability_input": 0.8672037301692925,
+   "rough": 1.465476884766168,
+   "input_rough": 3.4652075385846834
+  }
+ },
+ "Running/10.avi": {
+  "input_rough": 2.593419630247522,
+  "classic@lk": {
+   "frames": 639,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.384012539184953,
+   "k_ge2_ratio": 0.3401253918495298,
+   "sec_per_frame": 0.017082425163758568,
+   "cropping": 0.8794291279128812,
+   "distortion": 0.9716071067659318,
+   "stability": 0.8663116682848946,
+   "stability_input": 0.8231877545841161,
+   "rough": 1.0093056012708004,
+   "input_rough": 2.593419630247522
+  }
+ },
+ "Running/11.avi": {
+  "input_rough": 2.913434910239563,
+  "classic@lk": {
+   "frames": 423,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3744075829383886,
+   "k_ge2_ratio": 0.3246445497630332,
+   "sec_per_frame": 0.013308292303243145,
+   "cropping": 0.8788734151655144,
+   "distortion": 0.9721448115670595,
+   "stability": 0.9050459858645176,
+   "stability_input": 0.9050993673486151,
+   "rough": 1.1574767185783843,
+   "input_rough": 2.913434910239563
+  }
+ },
+ "Running/12.avi": {
+  "input_rough": 2.603624017680477,
+  "classic@lk": {
+   "frames": 375,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.393048128342246,
+   "k_ge2_ratio": 0.32085561497326204,
+   "sec_per_frame": 0.017982250849405926,
+   "cropping": 0.8768140368750349,
+   "distortion": 0.9732973283245081,
+   "stability": 0.9487705996364758,
+   "stability_input": 0.9069643933604788,
+   "rough": 1.1119723633051442,
+   "input_rough": 2.603624017680477
+  }
+ },
+ "Running/13.avi": {
+  "input_rough": 2.6159685762810057,
+  "classic@lk": {
+   "frames": 304,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.363036303630363,
+   "k_ge2_ratio": 0.3069306930693069,
+   "sec_per_frame": 0.013747005870467737,
+   "cropping": 0.8812670472281923,
+   "distortion": 0.967189775634615,
+   "stability": 0.920731192175928,
+   "stability_input": 0.8788851703731262,
+   "rough": 1.0654009252384935,
+   "input_rough": 2.6159685762810057
+  }
+ },
+ "Running/14.avi": {
+  "input_rough": 2.925547628865066,
+  "classic@lk": {
+   "frames": 568,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.168128967285156,
+   "audio": "none",
+   "k_mean": 1.3315696649029982,
+   "k_ge2_ratio": 0.2945326278659612,
+   "sec_per_frame": 0.01391252875328064,
+   "cropping": 0.8791394034198616,
+   "distortion": 0.9597070207891422,
+   "stability": 0.9189625127371933,
+   "stability_input": 0.898760603995623,
+   "rough": 1.679682991935925,
+   "input_rough": 2.925547628865066
+  }
+ },
+ "Running/15.avi": {
+  "input_rough": 2.6591846235875654,
+  "classic@lk": {
+   "frames": 351,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1485714285714286,
+   "k_ge2_ratio": 0.12857142857142856,
+   "sec_per_frame": 0.015568874500415943,
+   "cropping": 0.8769475610914369,
+   "distortion": 0.9707020910060652,
+   "stability": 0.7996192725712316,
+   "stability_input": 0.7580659586251294,
+   "rough": 1.0189890813292608,
+   "input_rough": 2.6591846235875654
+  }
+ },
+ "Running/16.avi": {
+  "input_rough": 2.438987742552107,
+  "classic@lk": {
+   "frames": 375,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.625668449197861,
+   "k_ge2_ratio": 0.5294117647058824,
+   "sec_per_frame": 0.0156570987701416,
+   "cropping": 0.8784595243691836,
+   "distortion": 0.9762485165560454,
+   "stability": 0.8766259683606353,
+   "stability_input": 0.8409003036127259,
+   "rough": 0.792576317736323,
+   "input_rough": 2.438987742552107
+  }
+ },
+ "Running/17.avi": {
+  "input_rough": 2.228989319798082,
+  "classic@lk": {
+   "frames": 542,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2273567467652495,
+   "k_ge2_ratio": 0.20517560073937152,
+   "sec_per_frame": 0.016912320443185053,
+   "cropping": 0.8785222958747065,
+   "distortion": 0.9712383690438319,
+   "stability": 0.9356126100317926,
+   "stability_input": 0.9089578253468747,
+   "rough": 0.8679506993545691,
+   "input_rough": 2.228989319798082
+  }
+ },
+ "Running/18.avi": {
+  "input_rough": 3.205040669385472,
+  "classic@lk": {
+   "frames": 471,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.397872340425532,
+   "k_ge2_ratio": 0.3574468085106383,
+   "sec_per_frame": 0.016236652487655608,
+   "cropping": 0.8770277133504688,
+   "distortion": 0.960589752505735,
+   "stability": 0.9173801349417477,
+   "stability_input": 0.9081407659714767,
+   "rough": 1.3345530275326778,
+   "input_rough": 3.205040669385472
+  }
+ },
+ "Running/19.avi": {
+  "input_rough": 2.4099577948685225,
+  "classic@lk": {
+   "frames": 448,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.4026845637583893,
+   "k_ge2_ratio": 0.3378076062639821,
+   "sec_per_frame": 0.017640707216092517,
+   "cropping": 0.878059928296545,
+   "distortion": 0.9748176460088356,
+   "stability": 0.8761887054032312,
+   "stability_input": 0.8353874571575375,
+   "rough": 0.9648882896119975,
+   "input_rough": 2.4099577948685225
+  }
+ },
+ "Running/2.avi": {
+  "input_rough": 1.958512346573974,
+  "classic@lk": {
+   "frames": 399,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1658291457286432,
+   "k_ge2_ratio": 0.1507537688442211,
+   "sec_per_frame": 0.013862372639782745,
+   "cropping": 0.8785252282122233,
+   "distortion": 0.9607745712975574,
+   "stability": 0.7814605551114994,
+   "stability_input": 0.6462934531857029,
+   "rough": 0.7209498499518358,
+   "input_rough": 1.958512346573974
+  }
+ },
+ "Running/20.avi": {
+  "input_rough": 3.1117421697348213,
+  "classic@lk": {
+   "frames": 519,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2084942084942085,
+   "k_ge2_ratio": 0.18725868725868725,
+   "sec_per_frame": 0.01759289087358008,
+   "cropping": 0.8782273056882163,
+   "distortion": 0.9748247634704139,
+   "stability": 0.8712605747017822,
+   "stability_input": 0.8558281898996313,
+   "rough": 1.2545317475566453,
+   "input_rough": 3.1117421697348213
+  }
+ },
+ "Running/21.avi": {
+  "input_rough": 2.222355055867693,
+  "classic@lk": {
+   "frames": 519,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2451737451737452,
+   "k_ge2_ratio": 0.22586872586872586,
+   "sec_per_frame": 0.013290221061780044,
+   "cropping": 0.8785182469973457,
+   "distortion": 0.9705396151104076,
+   "stability": 0.7267664825666017,
+   "stability_input": 0.5859566547631715,
+   "rough": 0.8621642976388332,
+   "input_rough": 2.222355055867693
+  }
+ },
+ "Running/3.avi": {
+  "input_rough": 2.74780246863366,
+  "classic@lk": {
+   "frames": 351,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2742857142857142,
+   "k_ge2_ratio": 0.24571428571428572,
+   "sec_per_frame": 0.01690303022705252,
+   "cropping": 0.8769906527176524,
+   "distortion": 0.9657228417014003,
+   "stability": 0.846124368051656,
+   "stability_input": 0.7648949740585582,
+   "rough": 1.0624908762563205,
+   "input_rough": 2.74780246863366
+  }
+ },
+ "Running/4.avi": {
+  "input_rough": 2.106880374957254,
+  "classic@lk": {
+   "frames": 519,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2915057915057915,
+   "k_ge2_ratio": 0.2644787644787645,
+   "sec_per_frame": 0.015214435856696039,
+   "cropping": 0.8783461714630535,
+   "distortion": 0.9727586405681673,
+   "stability": 0.8895187449164191,
+   "stability_input": 0.878165569525966,
+   "rough": 0.7575866101897317,
+   "input_rough": 2.106880374957254
+  }
+ },
+ "Running/5.avi": {
+  "input_rough": 2.6117645918831234,
+  "classic@lk": {
+   "frames": 327,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.21043014526367,
+   "audio": "none",
+   "k_mean": 1.3067484662576687,
+   "k_ge2_ratio": 0.2668711656441718,
+   "sec_per_frame": 0.018269915828646507,
+   "cropping": 0.8791907699028638,
+   "distortion": 0.9795212939621307,
+   "stability": 0.9103796773025885,
+   "stability_input": 0.8298128310021949,
+   "rough": 0.8640135610857727,
+   "input_rough": 2.6117645918831234
+  }
+ },
+ "Running/6.avi": {
+  "input_rough": 3.3259780570299444,
+  "classic@lk": {
+   "frames": 423,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.471563981042654,
+   "k_ge2_ratio": 0.4265402843601896,
+   "sec_per_frame": 0.01364995514529253,
+   "cropping": 0.8769547739254513,
+   "distortion": 0.9710435792242731,
+   "stability": 0.8040352399703786,
+   "stability_input": 0.7221785817493321,
+   "rough": 1.4120728879750826,
+   "input_rough": 3.3259780570299444
+  }
+ },
+ "Running/7.avi": {
+  "input_rough": 3.208985398453056,
+  "classic@lk": {
+   "frames": 519,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2837837837837838,
+   "k_ge2_ratio": 0.25096525096525096,
+   "sec_per_frame": 0.017045666027620348,
+   "cropping": 0.8780935936584753,
+   "distortion": 0.9760928549533512,
+   "stability": 0.8312402025457936,
+   "stability_input": 0.8303990319753027,
+   "rough": 1.3889286765193756,
+   "input_rough": 3.208985398453056
+  }
+ },
+ "Running/8.avi": {
+  "input_rough": 3.453910100504044,
+  "classic@lk": {
+   "frames": 447,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.7085201793721974,
+   "k_ge2_ratio": 0.5605381165919282,
+   "sec_per_frame": 0.01829960682248109,
+   "cropping": 0.8788650070089139,
+   "distortion": 0.7965312189696401,
+   "stability": 0.9492012768976482,
+   "stability_input": 0.9462292730362574,
+   "rough": 2.1587549152181404,
+   "input_rough": 3.453910100504044
+  }
+ },
+ "Running/9.avi": {
+  "input_rough": 3.5613161597484577,
+  "classic@lk": {
+   "frames": 640,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.3145539906103287,
+   "k_ge2_ratio": 0.28794992175273865,
+   "sec_per_frame": 0.016066379100084304,
+   "cropping": 0.8787320373162221,
+   "distortion": 0.9654264267483267,
+   "stability": 0.9273981982092758,
+   "stability_input": 0.9183441017964102,
+   "rough": 1.6733885625642138,
+   "input_rough": 3.5613161597484577
+  }
+ },
+ "Zooming/0.avi": {
+  "input_rough": 3.370393359926542,
+  "classic@lk": {
+   "frames": 477,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 26.838783264160156,
+   "audio": "none",
+   "k_mean": 1.2752100840336134,
+   "k_ge2_ratio": 0.2415966386554622,
+   "sec_per_frame": 0.011432123883965131,
+   "cropping": 0.8786495165239411,
+   "distortion": 0.9841468509188879,
+   "stability": 0.9232200183001451,
+   "stability_input": 0.9112233349918214,
+   "rough": 0.3249457045359385,
+   "input_rough": 3.370393359926542
+  }
+ },
+ "Zooming/1.avi": {
+  "input_rough": 0.6846651503379044,
+  "classic@lk": {
+   "frames": 432,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 33.2723388671875,
+   "audio": "none",
+   "k_mean": 1.074245939675174,
+   "k_ge2_ratio": 0.06960556844547564,
+   "sec_per_frame": 0.016172477492579707,
+   "cropping": 0.8788803502093795,
+   "distortion": 0.9840083898210861,
+   "stability": 0.9757576674288512,
+   "stability_input": 0.9700357291957675,
+   "rough": 0.07972258903336708,
+   "input_rough": 0.6846651503379044
+  }
+ },
+ "Zooming/10.avi": {
+  "input_rough": 1.411883911282573,
+  "classic@lk": {
+   "frames": 951,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0494736842105263,
+   "k_ge2_ratio": 0.045263157894736845,
+   "sec_per_frame": 0.016555293752066595,
+   "cropping": 0.8769474578019234,
+   "distortion": 0.9179536261158847,
+   "stability": 0.910789684018457,
+   "stability_input": 0.8941273414146439,
+   "rough": 0.5123307963389938,
+   "input_rough": 1.411883911282573
+  }
+ },
+ "Zooming/11.avi": {
+  "input_rough": 0.7191631738414193,
+  "classic@lk": {
+   "frames": 448,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0760626398210291,
+   "k_ge2_ratio": 0.06487695749440715,
+   "sec_per_frame": 0.014102473855018616,
+   "cropping": 0.878500047980283,
+   "distortion": 0.9810017605983337,
+   "stability": 0.877080568927051,
+   "stability_input": 0.8476448064807179,
+   "rough": 0.18958552365195616,
+   "input_rough": 0.7191631738414193
+  }
+ },
+ "Zooming/12.avi": {
+  "input_rough": 1.7784642173954097,
+  "classic@lk": {
+   "frames": 472,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 34.126956939697266,
+   "audio": "none",
+   "k_mean": 1.3524416135881103,
+   "k_ge2_ratio": 0.3057324840764331,
+   "sec_per_frame": 0.016748631909742195,
+   "cropping": 0.877972968050855,
+   "distortion": 0.9811423179263993,
+   "stability": 0.926471788008785,
+   "stability_input": 0.8909349428122587,
+   "rough": 0.37351973591262816,
+   "input_rough": 1.7784642173954097
+  }
+ },
+ "Zooming/13.avi": {
+  "input_rough": 1.2906860869692858,
+  "classic@lk": {
+   "frames": 447,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2802690582959642,
+   "k_ge2_ratio": 0.24663677130044842,
+   "sec_per_frame": 0.016004280222609007,
+   "cropping": 0.8728306015588027,
+   "distortion": 0.8629031746405921,
+   "stability": 0.9751639489712413,
+   "stability_input": 0.9736752669739975,
+   "rough": 0.48137832098262806,
+   "input_rough": 1.2906860869692858
+  }
+ },
+ "Zooming/14.avi": {
+  "input_rough": 3.2844008386036267,
+  "classic@lk": {
+   "frames": 272,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1402214022140222,
+   "k_ge2_ratio": 0.14022140221402213,
+   "sec_per_frame": 0.01642298172501957,
+   "cropping": 0.8715057052697135,
+   "distortion": 0.838607430064184,
+   "stability": 0.9583611835149362,
+   "stability_input": 0.9046336347562178,
+   "rough": 1.0891519741748799,
+   "input_rough": 3.2844008386036267
+  }
+ },
+ "Zooming/15.avi": {
+  "input_rough": 2.9495417777184243,
+  "classic@lk": {
+   "frames": 343,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.152046783625731,
+   "k_ge2_ratio": 0.14327485380116958,
+   "sec_per_frame": 0.017025520780691254,
+   "cropping": 0.8697926861092062,
+   "distortion": 0.9681889057852722,
+   "stability": 0.9518562917336495,
+   "stability_input": 0.9492579390498217,
+   "rough": 1.190697207492822,
+   "input_rough": 2.9495417777184243
+  }
+ },
+ "Zooming/16.avi": {
+  "input_rough": 3.7088783659812194,
+  "classic@lk": {
+   "frames": 428,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.306791569086651,
+   "k_ge2_ratio": 0.2810304449648712,
+   "sec_per_frame": 0.016189271601561073,
+   "cropping": 0.8645104963559681,
+   "distortion": 0.8972939542078308,
+   "stability": 0.9288462026533658,
+   "stability_input": 0.9263095912022368,
+   "rough": 2.453739679695302,
+   "input_rough": 3.7088783659812194
+  }
+ },
+ "Zooming/17.avi": {
+  "input_rough": 2.296308310007832,
+  "classic@lk": {
+   "frames": 687,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.271137026239067,
+   "k_ge2_ratio": 0.2478134110787172,
+   "sec_per_frame": 0.015076966958969094,
+   "cropping": 0.8707983759370242,
+   "distortion": 0.930520103591571,
+   "stability": 0.9066973706823118,
+   "stability_input": 0.8703242994963823,
+   "rough": 0.9557578125263676,
+   "input_rough": 2.296308310007832
+  }
+ },
+ "Zooming/18.avi": {
+  "input_rough": 5.4244681292136345,
+  "classic@lk": {
+   "frames": 297,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2466216216216217,
+   "k_ge2_ratio": 0.23648648648648649,
+   "sec_per_frame": 0.016296943028767902,
+   "cropping": 0.8704816805379059,
+   "distortion": 0.9460760664582943,
+   "stability": 0.9495874273940963,
+   "stability_input": 0.9432876496345638,
+   "rough": 1.7152199789293847,
+   "input_rough": 5.4244681292136345
+  }
+ },
+ "Zooming/19.avi": {
+  "input_rough": 1.0438634235227364,
+  "classic@lk": {
+   "frames": 376,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.192,
+   "k_ge2_ratio": 0.17066666666666666,
+   "sec_per_frame": 0.017952185996035312,
+   "cropping": 0.8731763228220768,
+   "distortion": 0.9747945992150462,
+   "stability": 0.9741985611802916,
+   "stability_input": 0.9723415075092254,
+   "rough": 0.4158376785398071,
+   "input_rough": 1.0438634235227364
+  }
+ },
+ "Zooming/2.avi": {
+  "input_rough": 1.5206605516801182,
+  "classic@lk": {
+   "frames": 417,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 23.585296630859375,
+   "audio": "none",
+   "k_mean": 1.0552884615384615,
+   "k_ge2_ratio": 0.055288461538461536,
+   "sec_per_frame": 0.013066769217987426,
+   "cropping": 0.8773705552002148,
+   "distortion": 0.9655093062850965,
+   "stability": 0.9340049745631633,
+   "stability_input": 0.9183788161765688,
+   "rough": 0.21450408060799334,
+   "input_rough": 1.5206605516801182
+  }
+ },
+ "Zooming/20.avi": {
+  "input_rough": 4.551544125695535,
+  "classic@lk": {
+   "frames": 260,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2316602316602316,
+   "k_ge2_ratio": 0.20463320463320464,
+   "sec_per_frame": 0.01792586950155405,
+   "cropping": 0.8628110323685578,
+   "distortion": 0.9493509294011225,
+   "stability": 0.9717015541951678,
+   "stability_input": 0.9581412716177554,
+   "rough": 1.6175736610018028,
+   "input_rough": 4.551544125695535
+  }
+ },
+ "Zooming/21.avi": {
+  "input_rough": 1.2149616244511863,
+  "classic@lk": {
+   "frames": 520,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2909441233140655,
+   "k_ge2_ratio": 0.27360308285163776,
+   "sec_per_frame": 0.014384000117962177,
+   "cropping": 0.8751529547970605,
+   "distortion": 0.9572608875347612,
+   "stability": 0.9688643548244139,
+   "stability_input": 0.9596882472370921,
+   "rough": 0.478747827084024,
+   "input_rough": 1.2149616244511863
+  }
+ },
+ "Zooming/22.avi": {
+  "input_rough": 1.5504684748424928,
+  "classic@lk": {
+   "frames": 640,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2785602503912363,
+   "k_ge2_ratio": 0.2222222222222222,
+   "sec_per_frame": 0.015085487440228463,
+   "cropping": 0.8751453859696401,
+   "distortion": 0.9593177632603895,
+   "stability": 0.973453427293563,
+   "stability_input": 0.9709016999780967,
+   "rough": 0.7832589468060557,
+   "input_rough": 1.5504684748424928
+  }
+ },
+ "Zooming/23.avi": {
+  "input_rough": 2.7371195125413013,
+  "classic@lk": {
+   "frames": 440,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1184510250569477,
+   "k_ge2_ratio": 0.10250569476082004,
+   "sec_per_frame": 0.013634756478396329,
+   "cropping": 0.8645603153019302,
+   "distortion": 0.8498506329259531,
+   "stability": 0.9507446972211153,
+   "stability_input": 0.9326350606925776,
+   "rough": 1.141143900804333,
+   "input_rough": 2.7371195125413013
+  }
+ },
+ "Zooming/24.avi": {
+  "input_rough": 1.8589126317426006,
+  "classic@lk": {
+   "frames": 520,
+   "shots": 1,
+   "l1_ratio": 0.026923076923076925,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1247524752475249,
+   "k_ge2_ratio": 0.11485148514851486,
+   "sec_per_frame": 0.014359531952784612,
+   "cropping": 0.8772757931451151,
+   "distortion": 0.9374007629473605,
+   "stability": 0.9463357337879515,
+   "stability_input": 0.9446307433183324,
+   "rough": 0.6219861442355002,
+   "input_rough": 1.8589126317426006
+  }
+ },
+ "Zooming/25.avi": {
+  "input_rough": 1.7172301811075616,
+  "classic@lk": {
+   "frames": 495,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2408906882591093,
+   "k_ge2_ratio": 0.19635627530364372,
+   "sec_per_frame": 0.00993957712192728,
+   "cropping": 0.8754689355944695,
+   "distortion": 0.9603364756501664,
+   "stability": 0.9688603156303693,
+   "stability_input": 0.9762953454502018,
+   "rough": 0.5610669518877079,
+   "input_rough": 1.7172301811075616
+  }
+ },
+ "Zooming/26.avi": {
+  "input_rough": 0.9318251652180715,
+  "classic@lk": {
+   "frames": 1095,
+   "shots": 1,
+   "l1_ratio": 0.0009132420091324201,
+   "l2_ratio": 0.0018264840182648401,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2190650779101742,
+   "k_ge2_ratio": 0.19890009165902842,
+   "sec_per_frame": 0.014745102407725435,
+   "cropping": 0.8760501862085417,
+   "distortion": 0.9444922151917037,
+   "stability": 0.9352885789635086,
+   "stability_input": 0.9253928333562569,
+   "rough": 0.7037311445120927,
+   "input_rough": 0.9318251652180715
+  }
+ },
+ "Zooming/27.avi": {
+  "input_rough": 1.5663321884665735,
+  "classic@lk": {
+   "frames": 471,
+   "shots": 1,
+   "l1_ratio": 0.0870488322717622,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.2354312354312353,
+   "k_ge2_ratio": 0.21212121212121213,
+   "sec_per_frame": 0.012008589544114033,
+   "cropping": 0.8714451087945445,
+   "distortion": 0.819395085568744,
+   "stability": 0.9631064206197362,
+   "stability_input": 0.9589337668633684,
+   "rough": 0.7184017687715165,
+   "input_rough": 1.5663321884665735
+  }
+ },
+ "Zooming/29.avi": {
+  "input_rough": 0.7848571893318178,
+  "classic@lk": {
+   "frames": 639,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1222570532915361,
+   "k_ge2_ratio": 0.10658307210031348,
+   "sec_per_frame": 0.01587145205394763,
+   "cropping": 0.8712745473397171,
+   "distortion": 0.9491355558801321,
+   "stability": 0.9545318707255085,
+   "stability_input": 0.9382832747363447,
+   "rough": 0.3218385468573043,
+   "input_rough": 0.7848571893318178
+  }
+ },
+ "Zooming/3.avi": {
+  "input_rough": 0.854944445825873,
+  "classic@lk": {
+   "frames": 327,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1625766871165644,
+   "k_ge2_ratio": 0.1441717791411043,
+   "sec_per_frame": 0.014307237181823917,
+   "cropping": 0.8789344930325642,
+   "distortion": 0.9765699210353241,
+   "stability": 0.9334973819679213,
+   "stability_input": 0.9438814928473326,
+   "rough": 0.3225570405893178,
+   "input_rough": 0.854944445825873
+  }
+ },
+ "Zooming/4.avi": {
+  "input_rough": 0.5153210806631715,
+  "classic@lk": {
+   "frames": 664,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.292609351432881,
+   "k_ge2_ratio": 0.2594268476621418,
+   "sec_per_frame": 0.01652921107878168,
+   "cropping": 0.8780430101891701,
+   "distortion": 0.9712478597971429,
+   "stability": 0.9678510810161223,
+   "stability_input": 0.9400859405206341,
+   "rough": 0.13252385854142085,
+   "input_rough": 0.5153210806631715
+  }
+ },
+ "Zooming/5.avi": {
+  "input_rough": 1.519285279653591,
+  "classic@lk": {
+   "frames": 832,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.1732851985559567,
+   "k_ge2_ratio": 0.15403128760529483,
+   "sec_per_frame": 0.011698774993419647,
+   "cropping": 0.8773542858026347,
+   "distortion": 0.9427076123516681,
+   "stability": 0.9685646885199405,
+   "stability_input": 0.9629519082954093,
+   "rough": 0.5386905830787962,
+   "input_rough": 1.519285279653591
+  }
+ },
+ "Zooming/6.avi": {
+  "input_rough": 1.199310752312955,
+  "classic@lk": {
+   "frames": 329,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 29.025650024414062,
+   "audio": "none",
+   "k_mean": 1.1219512195121952,
+   "k_ge2_ratio": 0.11585365853658537,
+   "sec_per_frame": 0.018154871137671197,
+   "cropping": 0.8776214419079597,
+   "distortion": 0.9767827717775722,
+   "stability": 0.9199687541416256,
+   "stability_input": 0.9287628261605366,
+   "rough": 0.46066181079108826,
+   "input_rough": 1.199310752312955
+  }
+ },
+ "Zooming/7.avi": {
+  "input_rough": 1.2795690963968829,
+  "classic@lk": {
+   "frames": 760,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.4268774703557312,
+   "k_ge2_ratio": 0.32938076416337286,
+   "sec_per_frame": 0.015559345797488564,
+   "cropping": 0.87578203992121,
+   "distortion": 0.9721118805745302,
+   "stability": 0.9230371175554039,
+   "stability_input": 0.9099527191305765,
+   "rough": 0.5136281987345906,
+   "input_rough": 1.2795690963968829
+  }
+ },
+ "Zooming/8.avi": {
+  "input_rough": 0.6725256545917417,
+  "classic@lk": {
+   "frames": 616,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 29.235992431640625,
+   "audio": "none",
+   "k_mean": 1.1951219512195121,
+   "k_ge2_ratio": 0.17886178861788618,
+   "sec_per_frame": 0.016395709731362083,
+   "cropping": 0.879599200330669,
+   "distortion": 0.9759285086677405,
+   "stability": 0.9647177945737514,
+   "stability_input": 0.9543743856862238,
+   "rough": 0.2850938813329107,
+   "input_rough": 0.6725256545917417
+  }
+ },
+ "Zooming/9.avi": {
+  "input_rough": 1.2870887928296908,
+  "classic@lk": {
+   "frames": 303,
+   "shots": 1,
+   "l1_ratio": 0.0,
+   "l2_ratio": 0.0,
+   "max_correction_px": 38.400001525878906,
+   "audio": "none",
+   "k_mean": 1.0794701986754967,
+   "k_ge2_ratio": 0.0728476821192053,
+   "sec_per_frame": 0.008125293372881294,
+   "cropping": 0.867705414132436,
+   "distortion": 0.943584013076044,
+   "stability": 0.9541662248354063,
+   "stability_input": 0.9229778294795774,
+   "rough": 0.5624335955099062,
+   "input_rough": 1.2870887928296908
+  }
+ }
+}
