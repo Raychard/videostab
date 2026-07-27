@@ -92,7 +92,7 @@ def similarity_split(B: np.ndarray, shape_hw: tuple):
 
 
 def limit_anisotropy(B: np.ndarray, shape_hw: tuple, cap_ratio: float,
-                     crop_ratio: float) -> np.ndarray:
+                     crop_ratio: float, iters: int = 1) -> np.ndarray:
     """封顶 B 的非相似(各向异性)分量幅值.
 
     为何必要: 相机路径按逐顶点平移累积、并逐顶点独立平滑. 平移主导的
@@ -112,15 +112,27 @@ def limit_anisotropy(B: np.ndarray, shape_hw: tuple, cap_ratio: float,
     效果(NUS 144 段, 默认 5px): distortion 0.8679->0.9033, 117/144 段
     改善(符号检验 z=+7.50); rough 与 stability 均无显著变化. Zooming 类
     是双赢 —— distortion 0.796->0.870 的同时 rough 也从 0.628 降到 0.551.
+
+    关于 iters(默认 1, 即"削一次再钳一次"): 预算钳位是逐顶点分量级的非线性
+    操作, 会把刚压下去的各向异性重新引入 —— 实测封顶设 5px 而残差最差帧
+    达 13.85px, 且**预算越紧越严重**(crop 0.30 时反降到 7.65px), 因为校正
+    需求远超预算盒时, 逐顶点 clip 把不同顶点削去不同的量, 这本身就是剪切.
+    iters>1 走交替投影(两约束集均为凸, 收敛), 残差确有改善(Zooming/16
+    13.85->11.61px), 但**端到端 A/B(36 段)三项指标全落在噪声内**
+    (distortion z=+0.33, rough z=0.00, stability z=+0.67), 故默认保持 1.
+    这是预算硬约束与相似性保持之间的固有张力, 补救式迭代解决不了; 真正的
+    方向是让预算投影本身保持相似结构(对相似分量整体缩放而非逐顶点钳位).
     """
-    fit, res = similarity_split(B, shape_hw)
     cap = cap_ratio * shape_hw[0]
-    n = np.linalg.norm(res, axis=-1, keepdims=True)
-    res = res * np.minimum(1.0, cap / np.maximum(n, 1e-6))  # 保方向, 只削幅值
-    # 重组后可能越界: 裁剪预算是产品承诺, 必须重新钳位
     lim = np.array([crop_ratio / 2 * shape_hw[1],
                     crop_ratio / 2 * shape_hw[0]], np.float32)
-    return np.clip(fit + res, -lim, lim).astype(np.float32)
+    out = B
+    for _ in range(iters):
+        fit, res = similarity_split(out, shape_hw)
+        n = np.linalg.norm(res, axis=-1, keepdims=True)
+        res = res * np.minimum(1.0, cap / np.maximum(n, 1e-6))  # 只削幅值
+        out = np.clip(fit + res, -lim, lim)          # 预算是产品硬承诺
+    return out.astype(np.float32)
 
 
 def crop_budget_project(C: np.ndarray, P: np.ndarray, shape_hw: tuple,
