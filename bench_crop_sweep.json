@@ -1,0 +1,3465 @@
+{
+ "说明": "P4 裁剪预算扫描, NUS 144 段, full+封顶5px, proxy 360",
+ "crop_0.12": {
+  "Regular/0.avi": {
+   "distortion": 0.9621622435735658,
+   "rough": 0.09691204720186775,
+   "stability": 0.9394041697368749,
+   "cropping": 0.8812827042822977,
+   "max_correction_px": 27.369056701660156,
+   "input_rough": 1.5884867807225929
+  },
+  "Regular/10.avi": {
+   "distortion": 0.9632974153671867,
+   "rough": 0.13228746148251116,
+   "stability": 0.8852980298164036,
+   "cropping": 0.8802971417947487,
+   "max_correction_px": 37.70014190673828,
+   "input_rough": 1.2611144201743685
+  },
+  "Regular/12.avi": {
+   "distortion": 0.9638680808027482,
+   "rough": 0.1040095800444284,
+   "stability": 0.9129016545528214,
+   "cropping": 0.8811022625725334,
+   "max_correction_px": 27.36681365966797,
+   "input_rough": 1.9419653356863007
+  },
+  "Regular/14.avi": {
+   "distortion": 0.9416377628127014,
+   "rough": 0.2657003596417868,
+   "stability": 0.9669322808657638,
+   "cropping": 0.8805844569619413,
+   "max_correction_px": 25.304378509521484,
+   "input_rough": 0.7632285981508741
+  },
+  "Regular/16.avi": {
+   "distortion": 0.9637534717322358,
+   "rough": 0.14370056984229307,
+   "stability": 0.8734351643758395,
+   "cropping": 0.8815987495396034,
+   "max_correction_px": 37.348388671875,
+   "input_rough": 2.4997373095134527
+  },
+  "Regular/18.avi": {
+   "distortion": 0.9527622186434642,
+   "rough": 0.3613383985069611,
+   "stability": 0.9568182154621057,
+   "cropping": 0.8795373483463526,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.9599783323457753
+  },
+  "Regular/2.avi": {
+   "distortion": 0.977788700554343,
+   "rough": 0.1659741951455249,
+   "stability": 0.9580636580609944,
+   "cropping": 0.8791068476322,
+   "max_correction_px": 37.57605743408203,
+   "input_rough": 2.757988655302763
+  },
+  "Regular/21.avi": {
+   "distortion": 0.9711079096814519,
+   "rough": 0.14445392809249225,
+   "stability": 0.9233125590111526,
+   "cropping": 0.8798771305860981,
+   "max_correction_px": 35.21929931640625,
+   "input_rough": 0.9682170943862699
+  },
+  "Regular/3.avi": {
+   "distortion": 0.9455847185895181,
+   "rough": 0.12073193981533893,
+   "stability": 0.9110209038220237,
+   "cropping": 0.8803542573631706,
+   "max_correction_px": 22.292675018310547,
+   "input_rough": 0.8373566653855068
+  },
+  "Regular/5.avi": {
+   "distortion": 0.9709513037741212,
+   "rough": 0.08116923724276248,
+   "stability": 0.9441623233202928,
+   "cropping": 0.8805953894278755,
+   "max_correction_px": 32.22020721435547,
+   "input_rough": 1.046939180316136
+  },
+  "Regular/7.avi": {
+   "distortion": 0.974631320733619,
+   "rough": 0.09299128123976906,
+   "stability": 0.9608590977538042,
+   "cropping": 0.8804972263431454,
+   "max_correction_px": 26.51861572265625,
+   "input_rough": 1.1595743380456551
+  },
+  "Regular/9.avi": {
+   "distortion": 0.9625493644843863,
+   "rough": 0.20059318196572384,
+   "stability": 0.9177346303333307,
+   "cropping": 0.8842359347619858,
+   "max_correction_px": 31.4332275390625,
+   "input_rough": 0.8185499299125284
+  },
+  "Crowd/0.avi": {
+   "distortion": 0.9459902388551128,
+   "rough": 0.6070709786295478,
+   "stability": 0.9634272331032051,
+   "cropping": 0.8817367499493707,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.447834325899835
+  },
+  "Crowd/10.avi": {
+   "distortion": 0.7988279904832941,
+   "rough": 0.8237922227464087,
+   "stability": 0.8988868454863589,
+   "cropping": 0.8816910085074166,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.4660929187585836
+  },
+  "Crowd/12.avi": {
+   "distortion": 0.9107927263949754,
+   "rough": 0.44924613337723096,
+   "stability": 0.9217259114345472,
+   "cropping": 0.8815224517154963,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.3051809772023832
+  },
+  "Crowd/14.avi": {
+   "distortion": 0.8764019758203495,
+   "rough": 0.5772050930789712,
+   "stability": 0.917770721793031,
+   "cropping": 0.8828360146647108,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.3514858669786056
+  },
+  "Crowd/16.avi": {
+   "distortion": 0.9074928136676715,
+   "rough": 0.37462024927386145,
+   "stability": 0.8870012809436284,
+   "cropping": 0.8857778698551122,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.250647836249093
+  },
+  "Crowd/18.avi": {
+   "distortion": 0.8751871465131872,
+   "rough": 0.681760898632932,
+   "stability": 0.8492172989050949,
+   "cropping": 0.8804933614315437,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.43368678218481
+  },
+  "Crowd/2.avi": {
+   "distortion": 0.8828314238827987,
+   "rough": 0.436678760696549,
+   "stability": 0.834775676192551,
+   "cropping": 0.8808433926502173,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.273647153991354
+  },
+  "Crowd/21.avi": {
+   "distortion": 0.8820655197172022,
+   "rough": 0.3341099243502727,
+   "stability": 0.9394083594223966,
+   "cropping": 0.8792481327938348,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.0054490516081696
+  },
+  "Crowd/3.avi": {
+   "distortion": 0.8290563868213702,
+   "rough": 1.0018447479092625,
+   "stability": 0.9415912112087663,
+   "cropping": 0.8797386311174108,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.6992291980193692
+  },
+  "Crowd/5.avi": {
+   "distortion": 0.8907425219146458,
+   "rough": 0.30775468620877267,
+   "stability": 0.9325073150390324,
+   "cropping": 0.8840227650211373,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.031092417209917
+  },
+  "Crowd/7.avi": {
+   "distortion": 0.8905964678898584,
+   "rough": 0.32009773815592213,
+   "stability": 0.8604836063095062,
+   "cropping": 0.882669643757179,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.101617283765427
+  },
+  "Crowd/9.avi": {
+   "distortion": 0.7744507554665045,
+   "rough": 0.30588814847616136,
+   "stability": 0.9246508826007509,
+   "cropping": 0.883935390610153,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.3354152697690438
+  },
+  "Parallax/0.avi": {
+   "distortion": 0.9598600671583771,
+   "rough": 0.196906821707029,
+   "stability": 0.993023358564276,
+   "cropping": 0.8795191409848775,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.5485421616149513
+  },
+  "Parallax/10.avi": {
+   "distortion": 0.9140235125106557,
+   "rough": 0.5090343864832967,
+   "stability": 0.831331168054852,
+   "cropping": 0.8814236595515117,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.8625113443681042
+  },
+  "Parallax/12.avi": {
+   "distortion": 0.9020558281644389,
+   "rough": 0.9620561319809657,
+   "stability": 0.9475976138849059,
+   "cropping": 0.8892148725455528,
+   "max_correction_px": 28.799999237060547,
+   "input_rough": 4.662737535264005
+  },
+  "Parallax/14.avi": {
+   "distortion": 0.9104012587487613,
+   "rough": 0.3255966567954738,
+   "stability": 0.8900091983890762,
+   "cropping": 0.881471895007443,
+   "max_correction_px": 36.392818450927734,
+   "input_rough": 0.6545564703147146
+  },
+  "Parallax/16.avi": {
+   "distortion": 0.9050953839738272,
+   "rough": 0.49260649111643673,
+   "stability": 0.9714517161996343,
+   "cropping": 0.8838487273010786,
+   "max_correction_px": 28.799999237060547,
+   "input_rough": 3.2181755058116837
+  },
+  "Parallax/2.avi": {
+   "distortion": 0.9215948199541422,
+   "rough": 2.1313567557797986,
+   "stability": 0.9186048905227672,
+   "cropping": 0.8889308581837945,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.5841489631970247
+  },
+  "Parallax/4.avi": {
+   "distortion": 0.8755428440038286,
+   "rough": 0.8311045939946515,
+   "stability": 0.9754042625121753,
+   "cropping": 0.883977612371609,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.02127861579049
+  },
+  "Parallax/6.avi": {
+   "distortion": 0.945162195152906,
+   "rough": 0.6399789428083856,
+   "stability": 0.895714392418197,
+   "cropping": 0.8798713375930665,
+   "max_correction_px": 38.1222038269043,
+   "input_rough": 0.9504950555539495
+  },
+  "Parallax/8.avi": {
+   "distortion": 0.9010893961488348,
+   "rough": 0.9300199753066042,
+   "stability": 0.9532731962414324,
+   "cropping": 0.8879654816812961,
+   "max_correction_px": 28.799999237060547,
+   "input_rough": 3.852898471302415
+  },
+  "Zooming/0.avi": {
+   "distortion": 0.9571870258193423,
+   "rough": 0.17405163507128898,
+   "stability": 0.9246203188712326,
+   "cropping": 0.8821083754775977,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.370393359926542
+  },
+  "Zooming/10.avi": {
+   "distortion": 0.8698813778703552,
+   "rough": 0.2973087596109879,
+   "stability": 0.8978255821212334,
+   "cropping": 0.8849848959450296,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.411883911282573
+  },
+  "Zooming/12.avi": {
+   "distortion": 0.9526787268769732,
+   "rough": 0.19593356091473074,
+   "stability": 0.9234411492992627,
+   "cropping": 0.8809548059809786,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.7784642173954097
+  },
+  "Zooming/14.avi": {
+   "distortion": 0.649969036261276,
+   "rough": 0.7621449394958838,
+   "stability": 0.9794276025583014,
+   "cropping": 0.8711435014717793,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.2844008386036267
+  },
+  "Zooming/16.avi": {
+   "distortion": 0.6232045535907673,
+   "rough": 2.993410112656756,
+   "stability": 0.9203215062551647,
+   "cropping": 0.8773627056716543,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.7088783659812194
+  },
+  "Zooming/18.avi": {
+   "distortion": 0.8530952576188258,
+   "rough": 1.5276354640836456,
+   "stability": 0.9365696769029704,
+   "cropping": 0.8861305252311493,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 5.4244681292136345
+  },
+  "Zooming/2.avi": {
+   "distortion": 0.9668498258543592,
+   "rough": 0.12341116128872508,
+   "stability": 0.9288840972039627,
+   "cropping": 0.8836386737690366,
+   "max_correction_px": 26.56658935546875,
+   "input_rough": 1.5206605516801182
+  },
+  "Zooming/21.avi": {
+   "distortion": 0.8699281419816851,
+   "rough": 0.28032967625932403,
+   "stability": 0.9661385794986428,
+   "cropping": 0.8913316750056273,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.2149616244511863
+  },
+  "Zooming/23.avi": {
+   "distortion": 0.7981588210797654,
+   "rough": 1.088918867692186,
+   "stability": 0.9035163916198542,
+   "cropping": 0.8678841392210294,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.7371195125413013
+  },
+  "Zooming/25.avi": {
+   "distortion": 0.8443756206497012,
+   "rough": 0.3831151151295378,
+   "stability": 0.9697289512369894,
+   "cropping": 0.8675870845721654,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.7172301811075616
+  },
+  "Zooming/27.avi": {
+   "distortion": 0.8168244154719496,
+   "rough": 0.5968364213429795,
+   "stability": 0.9708547501165093,
+   "cropping": 0.8825307447860536,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.5663321884665735
+  },
+  "Zooming/3.avi": {
+   "distortion": 0.9164124536956337,
+   "rough": 0.18698917441396615,
+   "stability": 0.9659785415711495,
+   "cropping": 0.8879009852513244,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.854944445825873
+  },
+  "Zooming/5.avi": {
+   "distortion": 0.8394156055813133,
+   "rough": 0.41204569193076906,
+   "stability": 0.9619773169647697,
+   "cropping": 0.8822333022565682,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.519285279653591
+  },
+  "Zooming/7.avi": {
+   "distortion": 0.8676080606607739,
+   "rough": 0.3414865160469411,
+   "stability": 0.9285803259400884,
+   "cropping": 0.8807673617329969,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.2795690963968829
+  },
+  "Zooming/9.avi": {
+   "distortion": 0.84280140062819,
+   "rough": 0.3741965380635553,
+   "stability": 0.9558708608984409,
+   "cropping": 0.8814641031301294,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.2870887928296908
+  },
+  "Running/0.avi": {
+   "distortion": 0.8891547694411738,
+   "rough": 1.0903288400957596,
+   "stability": 0.8462165110504722,
+   "cropping": 0.8813549187684196,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.467045465699112
+  },
+  "Running/10.avi": {
+   "distortion": 0.9076818075683475,
+   "rough": 0.6878040524030878,
+   "stability": 0.8875085539111464,
+   "cropping": 0.879857486712305,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.593419630247522
+  },
+  "Running/12.avi": {
+   "distortion": 0.918905198036377,
+   "rough": 0.880839021134079,
+   "stability": 0.9594413800637556,
+   "cropping": 0.875835235309015,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.603624017680477
+  },
+  "Running/14.avi": {
+   "distortion": 0.874648861319012,
+   "rough": 1.3584644784598043,
+   "stability": 0.9224483410465331,
+   "cropping": 0.8818076914526135,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.925547628865066
+  },
+  "Running/16.avi": {
+   "distortion": 0.9323592598204457,
+   "rough": 0.44351955072479105,
+   "stability": 0.8963700623964111,
+   "cropping": 0.8793004610667609,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.438987742552107
+  },
+  "Running/18.avi": {
+   "distortion": 0.8900214490433238,
+   "rough": 1.0999767165429506,
+   "stability": 0.92458592021031,
+   "cropping": 0.8835537459236181,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.205040669385472
+  },
+  "Running/2.avi": {
+   "distortion": 0.913537427759836,
+   "rough": 0.5234271808657838,
+   "stability": 0.8138727313190692,
+   "cropping": 0.8831216633018589,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.958512346573974
+  },
+  "Running/21.avi": {
+   "distortion": 0.8990196714759507,
+   "rough": 0.5577482906783763,
+   "stability": 0.7757339569349911,
+   "cropping": 0.880826117459579,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.222355055867693
+  },
+  "Running/4.avi": {
+   "distortion": 0.9215283732149183,
+   "rough": 0.5385931832861393,
+   "stability": 0.9005193032272295,
+   "cropping": 0.8826251356379737,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.106880374957254
+  },
+  "Running/6.avi": {
+   "distortion": 0.9082379712869509,
+   "rough": 1.0263436378225863,
+   "stability": 0.8410879967324889,
+   "cropping": 0.8783485022825839,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.3259780570299444
+  },
+  "Running/8.avi": {
+   "distortion": 0.7477742979278579,
+   "rough": 1.9224134770185233,
+   "stability": 0.9475573019094798,
+   "cropping": 0.8842063840036091,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.453910100504044
+  },
+  "QuickRotation/0.avi": {
+   "distortion": 0.9354371730397392,
+   "rough": 0.3796068226403839,
+   "stability": 0.9706895176916381,
+   "cropping": 0.878520978898397,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.7940038069175966
+  },
+  "QuickRotation/10.avi": {
+   "distortion": 0.9200534764239571,
+   "rough": 1.530329189547695,
+   "stability": 0.9407724704770054,
+   "cropping": 0.8793855491137391,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.9753536771442142
+  },
+  "QuickRotation/12.avi": {
+   "distortion": 0.9372862592849724,
+   "rough": 0.23721613610835976,
+   "stability": 0.9823131397397119,
+   "cropping": 0.8826252194837614,
+   "max_correction_px": 29.858501434326172,
+   "input_rough": 0.7241356128961688
+  },
+  "QuickRotation/14.avi": {
+   "distortion": 0.924154054010869,
+   "rough": 0.16819017123967683,
+   "stability": 0.9638905341079461,
+   "cropping": 0.8806618480705433,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.6728341076347198
+  },
+  "QuickRotation/16.avi": {
+   "distortion": 0.9249331964682537,
+   "rough": 0.4850874651824239,
+   "stability": 0.9914604053762623,
+   "cropping": 0.8759202472955949,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.5841560218543842
+  },
+  "QuickRotation/18.avi": {
+   "distortion": 0.9408058732779958,
+   "rough": 1.2382719959734494,
+   "stability": 0.9920287491467489,
+   "cropping": 0.8824109403981869,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.7127711285220402
+  },
+  "QuickRotation/2.avi": {
+   "distortion": 0.9223674886251796,
+   "rough": 0.6283936293701536,
+   "stability": 0.984076025012393,
+   "cropping": 0.8817523411296176,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.302959431301503
+  },
+  "QuickRotation/21.avi": {
+   "distortion": 0.863037907277543,
+   "rough": 0.9149809025074032,
+   "stability": 0.9915650765789374,
+   "cropping": 0.8814720414337598,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.9880279823775817
+  },
+  "QuickRotation/23.avi": {
+   "distortion": 0.914057565902548,
+   "rough": 0.6183505992180781,
+   "stability": 0.997012815002665,
+   "cropping": 0.879817044038219,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.8192298049154114
+  },
+  "QuickRotation/25.avi": {
+   "distortion": 0.876762696477714,
+   "rough": 1.0694918865527587,
+   "stability": 0.9756519129491253,
+   "cropping": 0.8841590314217127,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.337422683025267
+  },
+  "QuickRotation/27.avi": {
+   "distortion": 0.915102880429457,
+   "rough": 1.0489185048703102,
+   "stability": 0.9743247377888675,
+   "cropping": 0.881405641319764,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.644149764551777
+  },
+  "QuickRotation/3.avi": {
+   "distortion": 0.9313622159858026,
+   "rough": 0.23562672476731153,
+   "stability": 0.9889511919771142,
+   "cropping": 0.8807627269760828,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.6721694726090568
+  },
+  "QuickRotation/5.avi": {
+   "distortion": 0.8755424342042895,
+   "rough": 1.0045430992811109,
+   "stability": 0.9145541593187344,
+   "cropping": 0.8793644164911247,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.336448845195468
+  },
+  "QuickRotation/7.avi": {
+   "distortion": 0.9414379407087706,
+   "rough": 0.48259939180179173,
+   "stability": 0.9764923676458709,
+   "cropping": 0.8800718989424803,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.1380335209342909
+  },
+  "QuickRotation/9.avi": {
+   "distortion": 0.9268720292072883,
+   "rough": 0.6894150548451233,
+   "stability": 0.9881240409770141,
+   "cropping": 0.8747970620083027,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.3508390249728133
+  },
+  "Regular/1.avi": {
+   "distortion": 0.9648263530043651,
+   "rough": 0.101755990120366,
+   "stability": 0.9269809580365299,
+   "cropping": 0.8818287033265624,
+   "max_correction_px": 27.501384735107422,
+   "input_rough": 1.4815660418664827
+  },
+  "Regular/11.avi": {
+   "distortion": 0.9721738117973348,
+   "rough": 0.12220062497694198,
+   "stability": 0.8920185898511974,
+   "cropping": 0.8825679286370205,
+   "max_correction_px": 30.94720458984375,
+   "input_rough": 1.9386240931201595
+  },
+  "Regular/13.avi": {
+   "distortion": 0.9767600079074259,
+   "rough": 0.09184836851140808,
+   "stability": 0.9409244095704751,
+   "cropping": 0.8803561389129594,
+   "max_correction_px": 24.774585723876953,
+   "input_rough": 1.016483663957137
+  },
+  "Regular/15.avi": {
+   "distortion": 0.9686874847149103,
+   "rough": 0.13654047704122232,
+   "stability": 0.9571603651751218,
+   "cropping": 0.8814206910149254,
+   "max_correction_px": 25.635910034179688,
+   "input_rough": 2.343483165382192
+  },
+  "Regular/17.avi": {
+   "distortion": 0.8732344086132653,
+   "rough": 0.26786340310305873,
+   "stability": 0.9603664573724623,
+   "cropping": 0.8792420915990099,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.0968777620106056
+  },
+  "Regular/19.avi": {
+   "distortion": 0.9415190545404702,
+   "rough": 0.08007877700032312,
+   "stability": 0.8882472071159889,
+   "cropping": 0.881507642650251,
+   "max_correction_px": 25.93639373779297,
+   "input_rough": 0.8304352675341232
+  },
+  "Regular/20.avi": {
+   "distortion": 0.9452384993180263,
+   "rough": 0.131517590763283,
+   "stability": 0.9284641749325777,
+   "cropping": 0.8800114123821309,
+   "max_correction_px": 38.0018310546875,
+   "input_rough": 0.6383724970944313
+  },
+  "Regular/22.avi": {
+   "distortion": 0.937123162196058,
+   "rough": 0.17627030670988794,
+   "stability": 0.9361139920584591,
+   "cropping": 0.8808852740102907,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.879189375160794
+  },
+  "Regular/4.avi": {
+   "distortion": 0.9805549819781838,
+   "rough": 0.09672172441619825,
+   "stability": 0.9337046941616828,
+   "cropping": 0.8803642707240508,
+   "max_correction_px": 22.04449462890625,
+   "input_rough": 1.1366085474067253
+  },
+  "Regular/6.avi": {
+   "distortion": 0.934730339694999,
+   "rough": 0.20631484899175592,
+   "stability": 0.8451631697366029,
+   "cropping": 0.8819485231996161,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.5104037180558874
+  },
+  "Regular/8.avi": {
+   "distortion": 0.9597104401548971,
+   "rough": 0.10441712190946958,
+   "stability": 0.8880002349167708,
+   "cropping": 0.8809136652048251,
+   "max_correction_px": 20.150619506835938,
+   "input_rough": 1.9949162970803684
+  },
+  "Crowd/1.avi": {
+   "distortion": 0.9295424656848986,
+   "rough": 0.2515088666984513,
+   "stability": 0.92167444308093,
+   "cropping": 0.8823753421484571,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.9824592671105508
+  },
+  "Crowd/11.avi": {
+   "distortion": 0.9285659945585653,
+   "rough": 0.23983526339637695,
+   "stability": 0.8805478859795839,
+   "cropping": 0.8803794727588854,
+   "max_correction_px": 32.88449478149414,
+   "input_rough": 0.9596828986225636
+  },
+  "Crowd/13.avi": {
+   "distortion": 0.8110917454206301,
+   "rough": 0.9683052457938655,
+   "stability": 0.8782624289631848,
+   "cropping": 0.8817221937629811,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.531775993735818
+  },
+  "Crowd/15.avi": {
+   "distortion": 0.8585477984617432,
+   "rough": 0.45405053960767305,
+   "stability": 0.8617392422006308,
+   "cropping": 0.8843230067844813,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.2365662806661009
+  },
+  "Crowd/17.avi": {
+   "distortion": 0.9130764137417435,
+   "rough": 0.28237076091867613,
+   "stability": 0.918345700923017,
+   "cropping": 0.880172830477331,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.9650705946417076
+  },
+  "Crowd/19.avi": {
+   "distortion": 0.9320523610488899,
+   "rough": 0.28401660909706195,
+   "stability": 0.9491276321849756,
+   "cropping": 0.8822272535847417,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.0810915259193288
+  },
+  "Crowd/20.avi": {
+   "distortion": 0.9340664676474588,
+   "rough": 0.3417919015428013,
+   "stability": 0.8911068265944898,
+   "cropping": 0.8781759923386647,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.1097007457643
+  },
+  "Crowd/22.avi": {
+   "distortion": 0.9214785314474329,
+   "rough": 0.2662142534745554,
+   "stability": 0.9781535071596043,
+   "cropping": 0.8818355292828904,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.1936583461159562
+  },
+  "Crowd/4.avi": {
+   "distortion": 0.9129052519288094,
+   "rough": 0.24984133747235698,
+   "stability": 0.9367744636724536,
+   "cropping": 0.882108015741742,
+   "max_correction_px": 32.33473205566406,
+   "input_rough": 1.0397987614271231
+  },
+  "Crowd/6.avi": {
+   "distortion": 0.9116217207251122,
+   "rough": 0.23173500259661747,
+   "stability": 0.9235044482708238,
+   "cropping": 0.879815892220135,
+   "max_correction_px": 38.399993896484375,
+   "input_rough": 1.0052018299598142
+  },
+  "Crowd/8.avi": {
+   "distortion": 0.9192078856106205,
+   "rough": 0.21068003261390905,
+   "stability": 0.8313639610608933,
+   "cropping": 0.88345166310425,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.0023866338240068
+  },
+  "Parallax/1.avi": {
+   "distortion": 0.919295326013684,
+   "rough": 0.5323927669622599,
+   "stability": 0.9750183402927247,
+   "cropping": 0.8836488041995452,
+   "max_correction_px": 35.642333984375,
+   "input_rough": 0.7197728014325839
+  },
+  "Parallax/11.avi": {
+   "distortion": 0.9058276630814706,
+   "rough": 0.516949028684627,
+   "stability": 0.9655133493720238,
+   "cropping": 0.8827042208774419,
+   "max_correction_px": 30.687015533447266,
+   "input_rough": 0.7456161752028023
+  },
+  "Parallax/13.avi": {
+   "distortion": 0.9070722134166509,
+   "rough": 0.6852833681819163,
+   "stability": 0.8402338293606393,
+   "cropping": 0.8827162329369468,
+   "max_correction_px": 28.799999237060547,
+   "input_rough": 4.524539192498136
+  },
+  "Parallax/15.avi": {
+   "distortion": 0.8141216995418903,
+   "rough": 1.3562566411507209,
+   "stability": 0.9465100412442994,
+   "cropping": 0.8756345371100438,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.6839024876759914
+  },
+  "Parallax/17.avi": {
+   "distortion": 0.8381936311339799,
+   "rough": 0.6855440603638635,
+   "stability": 0.8982789386242563,
+   "cropping": 0.8816992474131741,
+   "max_correction_px": 28.799999237060547,
+   "input_rough": 3.5958682929281958
+  },
+  "Parallax/3.avi": {
+   "distortion": 0.9397547248834365,
+   "rough": 1.4775109848964576,
+   "stability": 0.9078185296813355,
+   "cropping": 0.882711937800566,
+   "max_correction_px": 38.39990234375,
+   "input_rough": 3.6371495043094226
+  },
+  "Parallax/5.avi": {
+   "distortion": 0.9366141586689246,
+   "rough": 0.3460168407856028,
+   "stability": 0.9009240104303345,
+   "cropping": 0.8858463999134284,
+   "max_correction_px": 28.799999237060547,
+   "input_rough": 3.3538397851428905
+  },
+  "Parallax/7.avi": {
+   "distortion": 0.8952381398118748,
+   "rough": 1.097767892514022,
+   "stability": 0.9580128629002352,
+   "cropping": 0.886371510137353,
+   "max_correction_px": 28.799999237060547,
+   "input_rough": 4.498258068800464
+  },
+  "Parallax/9.avi": {
+   "distortion": 0.8698893180588789,
+   "rough": 0.9758818625975902,
+   "stability": 0.9329258446133973,
+   "cropping": 0.8861915081139006,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.1726899019229426
+  },
+  "Zooming/1.avi": {
+   "distortion": 0.9807690549045303,
+   "rough": 0.05882374439487459,
+   "stability": 0.9845974952038201,
+   "cropping": 0.8835897501315689,
+   "max_correction_px": 33.48468017578125,
+   "input_rough": 0.6846651503379044
+  },
+  "Zooming/11.avi": {
+   "distortion": 0.9708636980784535,
+   "rough": 0.10630327139384517,
+   "stability": 0.9262614608645653,
+   "cropping": 0.8825185934015474,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.7191631738414193
+  },
+  "Zooming/13.avi": {
+   "distortion": 0.8096965330513695,
+   "rough": 0.33405620153842014,
+   "stability": 0.9714060279296252,
+   "cropping": 0.8777239179951833,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.2906860869692858
+  },
+  "Zooming/15.avi": {
+   "distortion": 0.8679512330023837,
+   "rough": 0.9806839860136337,
+   "stability": 0.9406593170830154,
+   "cropping": 0.8750321174237307,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.9495417777184243
+  },
+  "Zooming/17.avi": {
+   "distortion": 0.8703386342378201,
+   "rough": 0.7010900645274114,
+   "stability": 0.955722939018429,
+   "cropping": 0.8645556039017678,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.296308310007832
+  },
+  "Zooming/19.avi": {
+   "distortion": 0.8803033261169431,
+   "rough": 0.3046155802485316,
+   "stability": 0.982175547612175,
+   "cropping": 0.8961683455026918,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.0438634235227364
+  },
+  "Zooming/20.avi": {
+   "distortion": 0.8110050313783306,
+   "rough": 1.286746877207926,
+   "stability": 0.9243877939346493,
+   "cropping": 0.8666602694573905,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 4.551544125695535
+  },
+  "Zooming/22.avi": {
+   "distortion": 0.883881302635554,
+   "rough": 0.5621825527833193,
+   "stability": 0.9751408482383807,
+   "cropping": 0.8799388457569496,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.5504684748424928
+  },
+  "Zooming/24.avi": {
+   "distortion": 0.905005971689808,
+   "rough": 0.47164624032389657,
+   "stability": 0.9482686751090519,
+   "cropping": 0.8837881742426188,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.8589126317426006
+  },
+  "Zooming/26.avi": {
+   "distortion": 0.8816443914672984,
+   "rough": 0.5852953025338997,
+   "stability": 0.936310344043988,
+   "cropping": 0.8863205049260172,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.9318251652180715
+  },
+  "Zooming/29.avi": {
+   "distortion": 0.8928112685991995,
+   "rough": 0.1979087271057733,
+   "stability": 0.9557682295243417,
+   "cropping": 0.8786189610382501,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.7848571893318178
+  },
+  "Zooming/4.avi": {
+   "distortion": 0.9023402938812702,
+   "rough": 0.08811869324757307,
+   "stability": 0.9646439918361723,
+   "cropping": 0.8814070270765955,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.5153210806631715
+  },
+  "Zooming/6.avi": {
+   "distortion": 0.9254520188259269,
+   "rough": 0.3438014464266091,
+   "stability": 0.9484216999143779,
+   "cropping": 0.8811566977047331,
+   "max_correction_px": 34.72035217285156,
+   "input_rough": 1.199310752312955
+  },
+  "Zooming/8.avi": {
+   "distortion": 0.9647963397186994,
+   "rough": 0.22545888099286462,
+   "stability": 0.9612127835592986,
+   "cropping": 0.8835950452057707,
+   "max_correction_px": 34.865882873535156,
+   "input_rough": 0.6725256545917417
+  },
+  "Running/1.avi": {
+   "distortion": 0.9182590541435658,
+   "rough": 1.146415657251907,
+   "stability": 0.9155794754893773,
+   "cropping": 0.8797801217855855,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.4652075385846834
+  },
+  "Running/11.avi": {
+   "distortion": 0.9012955220638832,
+   "rough": 0.8470458128272004,
+   "stability": 0.908702876307154,
+   "cropping": 0.8782226306715775,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.913434910239563
+  },
+  "Running/13.avi": {
+   "distortion": 0.9046067239977555,
+   "rough": 0.7523978600883167,
+   "stability": 0.9418451366907732,
+   "cropping": 0.8791595686713415,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.6159685762810057
+  },
+  "Running/15.avi": {
+   "distortion": 0.9208634030768257,
+   "rough": 0.607634916444236,
+   "stability": 0.8214561452757415,
+   "cropping": 0.8792641913176793,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.6591846235875654
+  },
+  "Running/17.avi": {
+   "distortion": 0.9249987740441457,
+   "rough": 0.6131674787802135,
+   "stability": 0.9283543457763294,
+   "cropping": 0.8809219780638454,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.228989319798082
+  },
+  "Running/19.avi": {
+   "distortion": 0.9234942052479823,
+   "rough": 0.6268681891168382,
+   "stability": 0.8928731513220537,
+   "cropping": 0.8824870184237277,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.4099577948685225
+  },
+  "Running/20.avi": {
+   "distortion": 0.8794050206616726,
+   "rough": 0.8701922179508577,
+   "stability": 0.8847569063599341,
+   "cropping": 0.8794512859359987,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.1117421697348213
+  },
+  "Running/3.avi": {
+   "distortion": 0.9114938736877138,
+   "rough": 0.6825010869108963,
+   "stability": 0.8640699563494495,
+   "cropping": 0.8799984789851522,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.74780246863366
+  },
+  "Running/5.avi": {
+   "distortion": 0.9123160870672085,
+   "rough": 0.6103818654170808,
+   "stability": 0.9114327389276382,
+   "cropping": 0.8841195232283652,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.6117645918831234
+  },
+  "Running/7.avi": {
+   "distortion": 0.8854293603759478,
+   "rough": 0.991700332280847,
+   "stability": 0.825175237688678,
+   "cropping": 0.8806950201594107,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.208985398453056
+  },
+  "Running/9.avi": {
+   "distortion": 0.8736982083252822,
+   "rough": 1.1440013212933149,
+   "stability": 0.9308807861779043,
+   "cropping": 0.88040227876927,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 3.5613161597484577
+  },
+  "QuickRotation/1.avi": {
+   "distortion": 0.9288535436612051,
+   "rough": 0.40755287857209915,
+   "stability": 0.9938477278149292,
+   "cropping": 0.8814128899029399,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.8561306306543542
+  },
+  "QuickRotation/11.avi": {
+   "distortion": 0.9439677432651675,
+   "rough": 0.2792776203797943,
+   "stability": 0.9876563338266641,
+   "cropping": 0.8814555457045563,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.7042406758285307
+  },
+  "QuickRotation/13.avi": {
+   "distortion": 0.9335628320973862,
+   "rough": 0.1990031901093614,
+   "stability": 0.9808421916741947,
+   "cropping": 0.879653885270926,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.9175090474515362
+  },
+  "QuickRotation/15.avi": {
+   "distortion": 0.8495183843695535,
+   "rough": 0.18273979231898013,
+   "stability": 0.9841148507220491,
+   "cropping": 0.8814605059140296,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.785017060370594
+  },
+  "QuickRotation/17.avi": {
+   "distortion": 0.8345959799625201,
+   "rough": 1.6941767776661385,
+   "stability": 0.9813557775899621,
+   "cropping": 0.8832081282861123,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.8850691976075578
+  },
+  "QuickRotation/19.avi": {
+   "distortion": 0.893049702761535,
+   "rough": 0.41504709946092,
+   "stability": 0.9341350533536653,
+   "cropping": 0.8805460531687095,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.663218516791299
+  },
+  "QuickRotation/20.avi": {
+   "distortion": 0.8568360337143216,
+   "rough": 0.5427041339617097,
+   "stability": 0.9604639235494976,
+   "cropping": 0.881242201064308,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.0623175303717174
+  },
+  "QuickRotation/22.avi": {
+   "distortion": 0.9282390017097398,
+   "rough": 0.621594502957485,
+   "stability": 0.9415334083969799,
+   "cropping": 0.8772001636476057,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.0240957360400058
+  },
+  "QuickRotation/24.avi": {
+   "distortion": 0.925593192885964,
+   "rough": 0.731210652695047,
+   "stability": 0.9221337792198264,
+   "cropping": 0.8771114109494831,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 0.834954358457818
+  },
+  "QuickRotation/26.avi": {
+   "distortion": 0.8726179894918996,
+   "rough": 1.4720646581828423,
+   "stability": 0.9306684303053464,
+   "cropping": 0.8799665566464328,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.725420037172133
+  },
+  "QuickRotation/28.avi": {
+   "distortion": 0.9259555707181182,
+   "rough": 0.8371394694008711,
+   "stability": 0.9685471139274519,
+   "cropping": 0.8761656712996663,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.1747965839065961
+  },
+  "QuickRotation/4.avi": {
+   "distortion": 0.9425604558610313,
+   "rough": 0.6479387846902488,
+   "stability": 0.9911226209440213,
+   "cropping": 0.8809575592564794,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.1276453194567584
+  },
+  "QuickRotation/6.avi": {
+   "distortion": 0.9091107251420263,
+   "rough": 1.0238315495612385,
+   "stability": 0.9296391515292841,
+   "cropping": 0.8788341521088816,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 2.1353337218842636
+  },
+  "QuickRotation/8.avi": {
+   "distortion": 0.9028170678924496,
+   "rough": 0.7759890631009271,
+   "stability": 0.9238577532824843,
+   "cropping": 0.8750729034443402,
+   "max_correction_px": 38.400001525878906,
+   "input_rough": 1.6047036423902203
+  }
+ },
+ "crop_0.20": {
+  "Regular/0.avi": {
+   "distortion": 0.947090314557038,
+   "rough": 0.12282451766454483,
+   "stability": 0.944173820633892,
+   "cropping": 0.8029126220682755,
+   "max_correction_px": 26.472923278808594,
+   "input_rough": 1.5884867807225929
+  },
+  "Regular/10.avi": {
+   "distortion": 0.9026485969596777,
+   "rough": 0.14108023617855864,
+   "stability": 0.8958592161335263,
+   "cropping": 0.8032786293790173,
+   "max_correction_px": 36.727760314941406,
+   "input_rough": 1.2611144201743685
+  },
+  "Regular/12.avi": {
+   "distortion": 0.9597177945500375,
+   "rough": 0.11126924854018157,
+   "stability": 0.9280903381627534,
+   "cropping": 0.801495828742404,
+   "max_correction_px": 26.804885864257812,
+   "input_rough": 1.9419653356863007
+  },
+  "Regular/14.avi": {
+   "distortion": 0.9609946505549813,
+   "rough": 0.23002713288662038,
+   "stability": 0.9569541896252809,
+   "cropping": 0.7990837701362711,
+   "max_correction_px": 23.669445037841797,
+   "input_rough": 0.7632285981508741
+  },
+  "Regular/16.avi": {
+   "distortion": 0.9625981546181046,
+   "rough": 0.14704610138876667,
+   "stability": 0.8832978112807724,
+   "cropping": 0.801879548747763,
+   "max_correction_px": 36.36358642578125,
+   "input_rough": 2.4997373095134527
+  },
+  "Regular/18.avi": {
+   "distortion": 0.9052010576374365,
+   "rough": 0.37916750133386207,
+   "stability": 0.953367255222847,
+   "cropping": 0.8001875801911937,
+   "max_correction_px": 41.552276611328125,
+   "input_rough": 2.9599783323457753
+  },
+  "Regular/2.avi": {
+   "distortion": 0.97425014025811,
+   "rough": 0.17185732913806553,
+   "stability": 0.946450061474467,
+   "cropping": 0.7991207523913246,
+   "max_correction_px": 35.36907958984375,
+   "input_rough": 2.757988655302763
+  },
+  "Regular/21.avi": {
+   "distortion": 0.7545549190164861,
+   "rough": 0.16280637104954357,
+   "stability": 0.9094449046510849,
+   "cropping": 0.8187114973749884,
+   "max_correction_px": 35.195892333984375,
+   "input_rough": 0.9682170943862699
+  },
+  "Regular/3.avi": {
+   "distortion": 0.9440587302534165,
+   "rough": 0.1441243363712016,
+   "stability": 0.9085475199825758,
+   "cropping": 0.802180118661281,
+   "max_correction_px": 22.113971710205078,
+   "input_rough": 0.8373566653855068
+  },
+  "Regular/5.avi": {
+   "distortion": 0.9639300789141375,
+   "rough": 0.08853746630622136,
+   "stability": 0.9481841940646513,
+   "cropping": 0.8011203801988234,
+   "max_correction_px": 30.966705322265625,
+   "input_rough": 1.046939180316136
+  },
+  "Regular/7.avi": {
+   "distortion": 0.9733718052545157,
+   "rough": 0.10356491928671926,
+   "stability": 0.9604392199855609,
+   "cropping": 0.8008745028169915,
+   "max_correction_px": 26.537639617919922,
+   "input_rough": 1.1595743380456551
+  },
+  "Regular/9.avi": {
+   "distortion": 0.946416294454426,
+   "rough": 0.20589297948246413,
+   "stability": 0.9172140812990103,
+   "cropping": 0.8028757650524354,
+   "max_correction_px": 31.09716796875,
+   "input_rough": 0.8185499299125284
+  },
+  "Crowd/0.avi": {
+   "distortion": 0.9521369853047235,
+   "rough": 0.7123615672007287,
+   "stability": 0.9592320032408882,
+   "cropping": 0.8017545202337032,
+   "max_correction_px": 59.5504150390625,
+   "input_rough": 1.447834325899835
+  },
+  "Crowd/10.avi": {
+   "distortion": 0.7078429240754924,
+   "rough": 0.8233711090516858,
+   "stability": 0.8998074212586095,
+   "cropping": 0.8089019886185523,
+   "max_correction_px": 40.90869140625,
+   "input_rough": 1.4660929187585836
+  },
+  "Crowd/12.avi": {
+   "distortion": 0.8970645933973275,
+   "rough": 0.45107628075876477,
+   "stability": 0.9220762130910786,
+   "cropping": 0.8024844633430225,
+   "max_correction_px": 36.79954528808594,
+   "input_rough": 1.3051809772023832
+  },
+  "Crowd/14.avi": {
+   "distortion": 0.8728657798271493,
+   "rough": 0.5666028549027186,
+   "stability": 0.9242589822675376,
+   "cropping": 0.8041674781195928,
+   "max_correction_px": 42.279762268066406,
+   "input_rough": 1.3514858669786056
+  },
+  "Crowd/16.avi": {
+   "distortion": 0.8933928430269571,
+   "rough": 0.3866649805084915,
+   "stability": 0.8840579640030862,
+   "cropping": 0.8070919741701654,
+   "max_correction_px": 48.6383056640625,
+   "input_rough": 1.250647836249093
+  },
+  "Crowd/18.avi": {
+   "distortion": 0.8823007458236988,
+   "rough": 0.7008652888853982,
+   "stability": 0.8655603093441773,
+   "cropping": 0.8017756103141062,
+   "max_correction_px": 51.832767486572266,
+   "input_rough": 1.43368678218481
+  },
+  "Crowd/2.avi": {
+   "distortion": 0.8440987408913888,
+   "rough": 0.45901942648619537,
+   "stability": 0.82732871534194,
+   "cropping": 0.8037761209761779,
+   "max_correction_px": 50.739566802978516,
+   "input_rough": 1.273647153991354
+  },
+  "Crowd/21.avi": {
+   "distortion": 0.846791465578437,
+   "rough": 0.43315459828477987,
+   "stability": 0.9408487748474635,
+   "cropping": 0.8029411339212937,
+   "max_correction_px": 41.90900421142578,
+   "input_rough": 1.0054490516081696
+  },
+  "Crowd/3.avi": {
+   "distortion": 0.7676204033698908,
+   "rough": 1.0356206601485323,
+   "stability": 0.9442205483428756,
+   "cropping": 0.8008702173318365,
+   "max_correction_px": 42.35097122192383,
+   "input_rough": 1.6992291980193692
+  },
+  "Crowd/5.avi": {
+   "distortion": 0.8762863169151395,
+   "rough": 0.3283704455357983,
+   "stability": 0.9337869999783347,
+   "cropping": 0.8042616802529305,
+   "max_correction_px": 43.44354248046875,
+   "input_rough": 1.031092417209917
+  },
+  "Crowd/7.avi": {
+   "distortion": 0.8814363248471361,
+   "rough": 0.32330649275351164,
+   "stability": 0.8638937130611076,
+   "cropping": 0.8037691733157507,
+   "max_correction_px": 39.14111328125,
+   "input_rough": 1.101617283765427
+  },
+  "Crowd/9.avi": {
+   "distortion": 0.805888454427806,
+   "rough": 0.3105789496110859,
+   "stability": 0.9047820559824798,
+   "cropping": 0.8052966674493214,
+   "max_correction_px": 42.64023971557617,
+   "input_rough": 1.3354152697690438
+  },
+  "Parallax/0.avi": {
+   "distortion": 0.9544160309169967,
+   "rough": 0.2136575126136397,
+   "stability": 0.9918773256293866,
+   "cropping": 0.8001426810834059,
+   "max_correction_px": 48.17671585083008,
+   "input_rough": 1.5485421616149513
+  },
+  "Parallax/10.avi": {
+   "distortion": 0.8520330831189382,
+   "rough": 0.5998349863604336,
+   "stability": 0.7998126470525007,
+   "cropping": 0.803874285505822,
+   "max_correction_px": 49.04823303222656,
+   "input_rough": 0.8625113443681042
+  },
+  "Parallax/12.avi": {
+   "distortion": 0.8581437148302142,
+   "rough": 0.8542494018570671,
+   "stability": 0.9463590029488221,
+   "cropping": 0.8075903744877944,
+   "max_correction_px": 44.115631103515625,
+   "input_rough": 4.662737535264005
+  },
+  "Parallax/14.avi": {
+   "distortion": 0.8540660524952122,
+   "rough": 0.33669637149452303,
+   "stability": 0.8879973815763677,
+   "cropping": 0.8016087178592058,
+   "max_correction_px": 36.453277587890625,
+   "input_rough": 0.6545564703147146
+  },
+  "Parallax/16.avi": {
+   "distortion": 0.9000184338290338,
+   "rough": 0.45892073715518167,
+   "stability": 0.9701281052703635,
+   "cropping": 0.8019470700446878,
+   "max_correction_px": 46.56932067871094,
+   "input_rough": 3.2181755058116837
+  },
+  "Parallax/2.avi": {
+   "distortion": 0.8104487248079576,
+   "rough": 1.9003978492462,
+   "stability": 0.8995431200641258,
+   "cropping": 0.8127706766981881,
+   "max_correction_px": 39.331825256347656,
+   "input_rough": 3.5841489631970247
+  },
+  "Parallax/4.avi": {
+   "distortion": 0.8593576189133457,
+   "rough": 1.0969508234237753,
+   "stability": 0.978533471526462,
+   "cropping": 0.8071505875573132,
+   "max_correction_px": 44.33424377441406,
+   "input_rough": 1.02127861579049
+  },
+  "Parallax/6.avi": {
+   "distortion": 0.8924170731300727,
+   "rough": 0.7911423276671262,
+   "stability": 0.865991464621005,
+   "cropping": 0.7980767308914776,
+   "max_correction_px": 37.28740692138672,
+   "input_rough": 0.9504950555539495
+  },
+  "Parallax/8.avi": {
+   "distortion": 0.8083353768220862,
+   "rough": 0.8992320108858556,
+   "stability": 0.9528546706227257,
+   "cropping": 0.8075182648491509,
+   "max_correction_px": 43.273948669433594,
+   "input_rough": 3.852898471302415
+  },
+  "Zooming/0.avi": {
+   "distortion": 0.9722818597023535,
+   "rough": 0.17921464505619364,
+   "stability": 0.9228027615797645,
+   "cropping": 0.8028947880746552,
+   "max_correction_px": 37.63348388671875,
+   "input_rough": 3.370393359926542
+  },
+  "Zooming/10.avi": {
+   "distortion": 0.6350352627462165,
+   "rough": 0.31170094565662243,
+   "stability": 0.9041673270844744,
+   "cropping": 0.8078805464298202,
+   "max_correction_px": 50.84562683105469,
+   "input_rough": 1.411883911282573
+  },
+  "Zooming/12.avi": {
+   "distortion": 0.9457643003955507,
+   "rough": 0.19320944079087313,
+   "stability": 0.9192965505493392,
+   "cropping": 0.8007346503722478,
+   "max_correction_px": 38.69580841064453,
+   "input_rough": 1.7784642173954097
+  },
+  "Zooming/14.avi": {
+   "distortion": 0.624379946436348,
+   "rough": 0.7292994472539605,
+   "stability": 0.9834440487581709,
+   "cropping": 0.8011214937657384,
+   "max_correction_px": 64.0,
+   "input_rough": 3.2844008386036267
+  },
+  "Zooming/16.avi": {
+   "distortion": 0.15836465809228384,
+   "rough": 2.2969455117088455,
+   "stability": 0.9264158592373333,
+   "cropping": 0.8052912940544158,
+   "max_correction_px": 64.0,
+   "input_rough": 3.7088783659812194
+  },
+  "Zooming/18.avi": {
+   "distortion": 0.1809652944513711,
+   "rough": 1.263125425952197,
+   "stability": 0.9414773223963703,
+   "cropping": 0.8053065774227653,
+   "max_correction_px": 64.0,
+   "input_rough": 5.4244681292136345
+  },
+  "Zooming/2.avi": {
+   "distortion": 0.9262756932606391,
+   "rough": 0.14098386965234772,
+   "stability": 0.9306259121819109,
+   "cropping": 0.8057928143783387,
+   "max_correction_px": 28.24114990234375,
+   "input_rough": 1.5206605516801182
+  },
+  "Zooming/21.avi": {
+   "distortion": 0.6580096416710589,
+   "rough": 0.2667878721111645,
+   "stability": 0.9725487308890909,
+   "cropping": 0.8152905384859425,
+   "max_correction_px": 46.74462890625,
+   "input_rough": 1.2149616244511863
+  },
+  "Zooming/23.avi": {
+   "distortion": 0.4172425428419278,
+   "rough": 0.885783993905185,
+   "stability": 0.9502381026056824,
+   "cropping": 0.7875048896357356,
+   "max_correction_px": 64.0,
+   "input_rough": 2.7371195125413013
+  },
+  "Zooming/25.avi": {
+   "distortion": 0.8319972605251209,
+   "rough": 0.4405216371423853,
+   "stability": 0.9665137986450496,
+   "cropping": 0.808684053378093,
+   "max_correction_px": 50.28076171875,
+   "input_rough": 1.7172301811075616
+  },
+  "Zooming/27.avi": {
+   "distortion": 0.38286686298687533,
+   "rough": 0.62791105115722,
+   "stability": 0.9397139572959016,
+   "cropping": 0.8079573953709763,
+   "max_correction_px": 44.484222412109375,
+   "input_rough": 1.5663321884665735
+  },
+  "Zooming/3.avi": {
+   "distortion": 0.8221492007337784,
+   "rough": 0.1899448774650668,
+   "stability": 0.9765586940817489,
+   "cropping": 0.809720265226106,
+   "max_correction_px": 41.79854202270508,
+   "input_rough": 0.854944445825873
+  },
+  "Zooming/5.avi": {
+   "distortion": 0.8122288548201936,
+   "rough": 0.45565174950665216,
+   "stability": 0.9371665284370047,
+   "cropping": 0.8035902620045131,
+   "max_correction_px": 49.54541015625,
+   "input_rough": 1.519285279653591
+  },
+  "Zooming/7.avi": {
+   "distortion": 0.8044556792356549,
+   "rough": 0.3279962531328954,
+   "stability": 0.9244201411929888,
+   "cropping": 0.80262123713807,
+   "max_correction_px": 64.0,
+   "input_rough": 1.2795690963968829
+  },
+  "Zooming/9.avi": {
+   "distortion": 0.8431349087429798,
+   "rough": 0.35553289287496714,
+   "stability": 0.9623038757183341,
+   "cropping": 0.8054024412716324,
+   "max_correction_px": 49.773048400878906,
+   "input_rough": 1.2870887928296908
+  },
+  "Running/0.avi": {
+   "distortion": 0.8815286299413555,
+   "rough": 0.8452442144177978,
+   "stability": 0.8089700747718224,
+   "cropping": 0.8017849102600649,
+   "max_correction_px": 59.889404296875,
+   "input_rough": 3.467045465699112
+  },
+  "Running/10.avi": {
+   "distortion": 0.9103112913584326,
+   "rough": 0.4579847879678055,
+   "stability": 0.891211458380913,
+   "cropping": 0.7996125973081871,
+   "max_correction_px": 55.11809158325195,
+   "input_rough": 2.593419630247522
+  },
+  "Running/12.avi": {
+   "distortion": 0.8961588389855313,
+   "rough": 0.6208319837793462,
+   "stability": 0.9636906091861451,
+   "cropping": 0.796351428713423,
+   "max_correction_px": 53.53040313720703,
+   "input_rough": 2.603624017680477
+  },
+  "Running/14.avi": {
+   "distortion": 0.8844894700878115,
+   "rough": 1.0175452551733941,
+   "stability": 0.9310608350030284,
+   "cropping": 0.8003260026712488,
+   "max_correction_px": 48.86567687988281,
+   "input_rough": 2.925547628865066
+  },
+  "Running/16.avi": {
+   "distortion": 0.9277163060449719,
+   "rough": 0.3667974180167054,
+   "stability": 0.8750987608741791,
+   "cropping": 0.7999577925397016,
+   "max_correction_px": 49.604034423828125,
+   "input_rough": 2.438987742552107
+  },
+  "Running/18.avi": {
+   "distortion": 0.873319168711709,
+   "rough": 0.7686055143073411,
+   "stability": 0.9267878179999204,
+   "cropping": 0.8023584204302469,
+   "max_correction_px": 55.28076171875,
+   "input_rough": 3.205040669385472
+  },
+  "Running/2.avi": {
+   "distortion": 0.8957453225375516,
+   "rough": 0.33289113720965513,
+   "stability": 0.8347341324074113,
+   "cropping": 0.8014449627436699,
+   "max_correction_px": 56.64516067504883,
+   "input_rough": 1.958512346573974
+  },
+  "Running/21.avi": {
+   "distortion": 0.8989721466146458,
+   "rough": 0.3997838859132938,
+   "stability": 0.7758368477957008,
+   "cropping": 0.7995961646618386,
+   "max_correction_px": 55.206729888916016,
+   "input_rough": 2.222355055867693
+  },
+  "Running/4.avi": {
+   "distortion": 0.8137893556916125,
+   "rough": 0.3655180584108291,
+   "stability": 0.9006058444182848,
+   "cropping": 0.8035137721815903,
+   "max_correction_px": 50.92863845825195,
+   "input_rough": 2.106880374957254
+  },
+  "Running/6.avi": {
+   "distortion": 0.8969614767229422,
+   "rough": 0.6958169751521505,
+   "stability": 0.8495698924376766,
+   "cropping": 0.8005717575251869,
+   "max_correction_px": 64.0,
+   "input_rough": 3.3259780570299444
+  },
+  "Running/8.avi": {
+   "distortion": 0.3451990383418331,
+   "rough": 1.7645883812656162,
+   "stability": 0.9499685012207242,
+   "cropping": 0.8087617315924779,
+   "max_correction_px": 55.5701904296875,
+   "input_rough": 3.453910100504044
+  },
+  "QuickRotation/0.avi": {
+   "distortion": 0.91460857585146,
+   "rough": 0.40166728699258764,
+   "stability": 0.9686790472531711,
+   "cropping": 0.7995693429010858,
+   "max_correction_px": 46.920440673828125,
+   "input_rough": 0.7940038069175966
+  },
+  "QuickRotation/10.avi": {
+   "distortion": 0.9189303392918766,
+   "rough": 1.5664971279609388,
+   "stability": 0.9415081598777707,
+   "cropping": 0.8015591930308419,
+   "max_correction_px": 56.370262145996094,
+   "input_rough": 1.9753536771442142
+  },
+  "QuickRotation/12.avi": {
+   "distortion": 0.8928527408150909,
+   "rough": 0.24493595310185884,
+   "stability": 0.9686064211250369,
+   "cropping": 0.8029307912556056,
+   "max_correction_px": 32.20831298828125,
+   "input_rough": 0.7241356128961688
+  },
+  "QuickRotation/14.avi": {
+   "distortion": 0.9473215276553764,
+   "rough": 0.1775822177292727,
+   "stability": 0.9632192027800773,
+   "cropping": 0.801660184384287,
+   "max_correction_px": 46.924537658691406,
+   "input_rough": 0.6728341076347198
+  },
+  "QuickRotation/16.avi": {
+   "distortion": 0.8488889512394595,
+   "rough": 0.41138019077735993,
+   "stability": 0.9910874257198126,
+   "cropping": 0.797213298950134,
+   "max_correction_px": 39.66675567626953,
+   "input_rough": 0.5841560218543842
+  },
+  "QuickRotation/18.avi": {
+   "distortion": 0.9377495220216008,
+   "rough": 0.9505772847637964,
+   "stability": 0.9849066987215996,
+   "cropping": 0.7996576727801376,
+   "max_correction_px": 49.3538818359375,
+   "input_rough": 1.7127711285220402
+  },
+  "QuickRotation/2.avi": {
+   "distortion": 0.9078317923068534,
+   "rough": 0.6295649403365832,
+   "stability": 0.984198548299962,
+   "cropping": 0.8014773779812553,
+   "max_correction_px": 51.6973876953125,
+   "input_rough": 1.302959431301503
+  },
+  "QuickRotation/21.avi": {
+   "distortion": 0.9107423824982784,
+   "rough": 0.9422368826226427,
+   "stability": 0.988453471659193,
+   "cropping": 0.802538276579052,
+   "max_correction_px": 48.3870849609375,
+   "input_rough": 0.9880279823775817
+  },
+  "QuickRotation/23.avi": {
+   "distortion": 0.8959965349793382,
+   "rough": 0.6355645270335748,
+   "stability": 0.9962729261481277,
+   "cropping": 0.8009712680073445,
+   "max_correction_px": 52.22183609008789,
+   "input_rough": 0.8192298049154114
+  },
+  "QuickRotation/25.avi": {
+   "distortion": 0.7438843960692986,
+   "rough": 1.0765400044223095,
+   "stability": 0.9772949379410996,
+   "cropping": 0.8034484987314855,
+   "max_correction_px": 44.86038589477539,
+   "input_rough": 1.337422683025267
+  },
+  "QuickRotation/27.avi": {
+   "distortion": 0.900224646799176,
+   "rough": 1.0622951429846719,
+   "stability": 0.9710587687662828,
+   "cropping": 0.801922183790055,
+   "max_correction_px": 57.2196159362793,
+   "input_rough": 1.644149764551777
+  },
+  "QuickRotation/3.avi": {
+   "distortion": 0.9257922809855447,
+   "rough": 0.2489914502173207,
+   "stability": 0.9888899825395133,
+   "cropping": 0.8013286279319399,
+   "max_correction_px": 48.978309631347656,
+   "input_rough": 0.6721694726090568
+  },
+  "QuickRotation/5.avi": {
+   "distortion": 0.8008849881372885,
+   "rough": 1.333106307023115,
+   "stability": 0.9085060763478615,
+   "cropping": 0.8044249341232528,
+   "max_correction_px": 42.11801528930664,
+   "input_rough": 1.336448845195468
+  },
+  "QuickRotation/7.avi": {
+   "distortion": 0.9481524503128368,
+   "rough": 0.5061746311199831,
+   "stability": 0.9680878118218059,
+   "cropping": 0.80205679290073,
+   "max_correction_px": 45.340576171875,
+   "input_rough": 1.1380335209342909
+  },
+  "QuickRotation/9.avi": {
+   "distortion": 0.9229293888355257,
+   "rough": 0.6479083344928708,
+   "stability": 0.9837526679585363,
+   "cropping": 0.7969781888289369,
+   "max_correction_px": 57.95584487915039,
+   "input_rough": 1.3508390249728133
+  },
+  "Regular/1.avi": {
+   "distortion": 0.9183580879034737,
+   "rough": 0.11417308643190668,
+   "stability": 0.926696740498416,
+   "cropping": 0.8026423398907415,
+   "max_correction_px": 26.232955932617188,
+   "input_rough": 1.4815660418664827
+  },
+  "Regular/11.avi": {
+   "distortion": 0.914580366403412,
+   "rough": 0.13746889265423903,
+   "stability": 0.9051220026495265,
+   "cropping": 0.8028436045794424,
+   "max_correction_px": 29.63140869140625,
+   "input_rough": 1.9386240931201595
+  },
+  "Regular/13.avi": {
+   "distortion": 0.9741615512173809,
+   "rough": 0.09574152813563687,
+   "stability": 0.9354307925967533,
+   "cropping": 0.8001088854975965,
+   "max_correction_px": 26.381868362426758,
+   "input_rough": 1.016483663957137
+  },
+  "Regular/15.avi": {
+   "distortion": 0.9328179134352791,
+   "rough": 0.13812639654290734,
+   "stability": 0.9586640570464456,
+   "cropping": 0.801698587547458,
+   "max_correction_px": 25.412673950195312,
+   "input_rough": 2.343483165382192
+  },
+  "Regular/17.avi": {
+   "distortion": 0.7697486394564274,
+   "rough": 0.3308943696963513,
+   "stability": 0.9598077579875232,
+   "cropping": 0.800003209647713,
+   "max_correction_px": 40.2646484375,
+   "input_rough": 1.0968777620106056
+  },
+  "Regular/19.avi": {
+   "distortion": 0.9372859885784471,
+   "rough": 0.08197384946229577,
+   "stability": 0.8856623956430264,
+   "cropping": 0.8046190381490236,
+   "max_correction_px": 25.80957794189453,
+   "input_rough": 0.8304352675341232
+  },
+  "Regular/20.avi": {
+   "distortion": 0.932404713042243,
+   "rough": 0.14516027271683024,
+   "stability": 0.929085366524368,
+   "cropping": 0.7996981690366932,
+   "max_correction_px": 37.74856185913086,
+   "input_rough": 0.6383724970944313
+  },
+  "Regular/22.avi": {
+   "distortion": 0.935931525373547,
+   "rough": 0.1871059674849425,
+   "stability": 0.9322297294648142,
+   "cropping": 0.8012904572539039,
+   "max_correction_px": 42.01261520385742,
+   "input_rough": 0.879189375160794
+  },
+  "Regular/4.avi": {
+   "distortion": 0.9552628352160875,
+   "rough": 0.1061506246145164,
+   "stability": 0.9409992268668753,
+   "cropping": 0.8027408541568267,
+   "max_correction_px": 21.62255859375,
+   "input_rough": 1.1366085474067253
+  },
+  "Regular/6.avi": {
+   "distortion": 0.9333445106444309,
+   "rough": 0.20771354881779402,
+   "stability": 0.8936314692861344,
+   "cropping": 0.8015059489718124,
+   "max_correction_px": 40.41009521484375,
+   "input_rough": 2.5104037180558874
+  },
+  "Regular/8.avi": {
+   "distortion": 0.7935193996453561,
+   "rough": 0.12542281341254188,
+   "stability": 0.9045215525411298,
+   "cropping": 0.8016419024920202,
+   "max_correction_px": 19.827301025390625,
+   "input_rough": 1.9949162970803684
+  },
+  "Crowd/1.avi": {
+   "distortion": 0.9001500731262848,
+   "rough": 0.2518747616485443,
+   "stability": 0.918685051526595,
+   "cropping": 0.8039035173386089,
+   "max_correction_px": 52.3441162109375,
+   "input_rough": 0.9824592671105508
+  },
+  "Crowd/11.avi": {
+   "distortion": 0.9075874559817825,
+   "rough": 0.24443670433091383,
+   "stability": 0.8846751663962727,
+   "cropping": 0.7995151721991046,
+   "max_correction_px": 32.71377944946289,
+   "input_rough": 0.9596828986225636
+  },
+  "Crowd/13.avi": {
+   "distortion": 0.7944530703240038,
+   "rough": 1.0117539745295059,
+   "stability": 0.8837280473805512,
+   "cropping": 0.8047619778774219,
+   "max_correction_px": 43.32816696166992,
+   "input_rough": 1.531775993735818
+  },
+  "Crowd/15.avi": {
+   "distortion": 0.8698882259384677,
+   "rough": 0.4748301569474425,
+   "stability": 0.8489807812547996,
+   "cropping": 0.8068990249004014,
+   "max_correction_px": 55.87679672241211,
+   "input_rough": 1.2365662806661009
+  },
+  "Crowd/17.avi": {
+   "distortion": 0.9072747071098829,
+   "rough": 0.28019206093416643,
+   "stability": 0.9032892874321146,
+   "cropping": 0.7999413854983959,
+   "max_correction_px": 50.70398712158203,
+   "input_rough": 0.9650705946417076
+  },
+  "Crowd/19.avi": {
+   "distortion": 0.8820261345706147,
+   "rough": 0.295796520263567,
+   "stability": 0.9485804440676787,
+   "cropping": 0.8026137331512736,
+   "max_correction_px": 45.23644256591797,
+   "input_rough": 1.0810915259193288
+  },
+  "Crowd/20.avi": {
+   "distortion": 0.916397681103961,
+   "rough": 0.3306996624683801,
+   "stability": 0.8804185434595002,
+   "cropping": 0.7985281398526223,
+   "max_correction_px": 49.14983367919922,
+   "input_rough": 1.1097007457643
+  },
+  "Crowd/22.avi": {
+   "distortion": 0.9238230056650402,
+   "rough": 0.28136514076554536,
+   "stability": 0.9754628849546623,
+   "cropping": 0.8033746833832732,
+   "max_correction_px": 47.33168029785156,
+   "input_rough": 1.1936583461159562
+  },
+  "Crowd/4.avi": {
+   "distortion": 0.8916070866436153,
+   "rough": 0.2717062005616346,
+   "stability": 0.9355497581539226,
+   "cropping": 0.8038161280133944,
+   "max_correction_px": 31.365365982055664,
+   "input_rough": 1.0397987614271231
+  },
+  "Crowd/6.avi": {
+   "distortion": 0.8282923732962618,
+   "rough": 0.23798650419222245,
+   "stability": 0.9152572600895751,
+   "cropping": 0.7969455110450363,
+   "max_correction_px": 39.85871505737305,
+   "input_rough": 1.0052018299598142
+  },
+  "Crowd/8.avi": {
+   "distortion": 0.9006786136654092,
+   "rough": 0.20995694515919816,
+   "stability": 0.8477651652306006,
+   "cropping": 0.8043981233892309,
+   "max_correction_px": 45.21457290649414,
+   "input_rough": 1.0023866338240068
+  },
+  "Parallax/1.avi": {
+   "distortion": 0.8358279814510924,
+   "rough": 0.4922975892348563,
+   "stability": 0.9724905359510775,
+   "cropping": 0.8022249207004702,
+   "max_correction_px": 35.25141906738281,
+   "input_rough": 0.7197728014325839
+  },
+  "Parallax/11.avi": {
+   "distortion": 0.8858272036309837,
+   "rough": 0.5425405343434844,
+   "stability": 0.96404011137043,
+   "cropping": 0.802565822798553,
+   "max_correction_px": 30.081125259399414,
+   "input_rough": 0.7456161752028023
+  },
+  "Parallax/13.avi": {
+   "distortion": 0.8462491135795616,
+   "rough": 0.5864961482439588,
+   "stability": 0.8667873505026084,
+   "cropping": 0.8052070681067117,
+   "max_correction_px": 48.0,
+   "input_rough": 4.524539192498136
+  },
+  "Parallax/15.avi": {
+   "distortion": 0.7236103140132164,
+   "rough": 1.396459244995805,
+   "stability": 0.949149791828161,
+   "cropping": 0.7937245912975613,
+   "max_correction_px": 47.677032470703125,
+   "input_rough": 1.6839024876759914
+  },
+  "Parallax/17.avi": {
+   "distortion": 0.820414327278834,
+   "rough": 0.7381042183511699,
+   "stability": 0.8955579536203361,
+   "cropping": 0.8049540369771694,
+   "max_correction_px": 38.01591873168945,
+   "input_rough": 3.5958682929281958
+  },
+  "Parallax/3.avi": {
+   "distortion": 0.922063547384026,
+   "rough": 1.5326212965437798,
+   "stability": 0.9408796923667874,
+   "cropping": 0.8082482079105617,
+   "max_correction_px": 43.96453857421875,
+   "input_rough": 3.6371495043094226
+  },
+  "Parallax/5.avi": {
+   "distortion": 0.9160849163505363,
+   "rough": 0.39400715022762506,
+   "stability": 0.8955075177899389,
+   "cropping": 0.8057515103087549,
+   "max_correction_px": 30.95653533935547,
+   "input_rough": 3.3538397851428905
+  },
+  "Parallax/7.avi": {
+   "distortion": 0.8534747742192403,
+   "rough": 1.170058532502369,
+   "stability": 0.9611864939879675,
+   "cropping": 0.8078847009572259,
+   "max_correction_px": 46.532012939453125,
+   "input_rough": 4.498258068800464
+  },
+  "Parallax/9.avi": {
+   "distortion": 0.8550022474783721,
+   "rough": 1.1277511182525843,
+   "stability": 0.9305559156361697,
+   "cropping": 0.8075224807806248,
+   "max_correction_px": 38.55494689941406,
+   "input_rough": 1.1726899019229426
+  },
+  "Zooming/1.avi": {
+   "distortion": 0.9620872892404727,
+   "rough": 0.0667986839904905,
+   "stability": 0.9830376956235587,
+   "cropping": 0.803876491151018,
+   "max_correction_px": 33.12025451660156,
+   "input_rough": 0.6846651503379044
+  },
+  "Zooming/11.avi": {
+   "distortion": 0.9269938835475123,
+   "rough": 0.12760548190250914,
+   "stability": 0.9348329927606702,
+   "cropping": 0.7993834176642444,
+   "max_correction_px": 38.4261474609375,
+   "input_rough": 0.7191631738414193
+  },
+  "Zooming/13.avi": {
+   "distortion": 0.27233221223462,
+   "rough": 0.3077339032069475,
+   "stability": 0.9728556894464445,
+   "cropping": 0.8033636852440891,
+   "max_correction_px": 50.26385498046875,
+   "input_rough": 1.2906860869692858
+  },
+  "Zooming/15.avi": {
+   "distortion": 0.06714776008516521,
+   "rough": 0.8709371362187113,
+   "stability": 0.9428246278312864,
+   "cropping": 0.799139698264156,
+   "max_correction_px": 64.0,
+   "input_rough": 2.9495417777184243
+  },
+  "Zooming/17.avi": {
+   "distortion": 0.8374227912886859,
+   "rough": 0.6152265879255484,
+   "stability": 0.9448070587185252,
+   "cropping": 0.7936899194035169,
+   "max_correction_px": 51.7572021484375,
+   "input_rough": 2.296308310007832
+  },
+  "Zooming/19.avi": {
+   "distortion": 0.8370516424433082,
+   "rough": 0.26643239173599126,
+   "stability": 0.9821894855897374,
+   "cropping": 0.8210838747973604,
+   "max_correction_px": 50.629798889160156,
+   "input_rough": 1.0438634235227364
+  },
+  "Zooming/20.avi": {
+   "distortion": 0.8038887532529726,
+   "rough": 1.0747952785028236,
+   "stability": 0.9538950853276701,
+   "cropping": 0.7980712037016273,
+   "max_correction_px": 64.0,
+   "input_rough": 4.551544125695535
+  },
+  "Zooming/22.avi": {
+   "distortion": 0.816613477618479,
+   "rough": 0.5207590270161452,
+   "stability": 0.9753953937839747,
+   "cropping": 0.7993226282756116,
+   "max_correction_px": 57.61590576171875,
+   "input_rough": 1.5504684748424928
+  },
+  "Zooming/24.avi": {
+   "distortion": 0.03714218769205191,
+   "rough": 0.44905150616010914,
+   "stability": 0.9473455224185564,
+   "cropping": 0.8039575130690987,
+   "max_correction_px": 47.837158203125,
+   "input_rough": 1.8589126317426006
+  },
+  "Zooming/26.avi": {
+   "distortion": 0.8518173635600487,
+   "rough": 0.6429367592921481,
+   "stability": 0.9088802238092984,
+   "cropping": 0.8101588086954719,
+   "max_correction_px": 57.3653564453125,
+   "input_rough": 0.9318251652180715
+  },
+  "Zooming/29.avi": {
+   "distortion": 0.8746046220235165,
+   "rough": 0.2048937770022818,
+   "stability": 0.9553342098107499,
+   "cropping": 0.8009831555705098,
+   "max_correction_px": 49.85009765625,
+   "input_rough": 0.7848571893318178
+  },
+  "Zooming/4.avi": {
+   "distortion": 0.9231828362888539,
+   "rough": 0.09424613173621679,
+   "stability": 0.9639050138914705,
+   "cropping": 0.8029867576615589,
+   "max_correction_px": 47.08460998535156,
+   "input_rough": 0.5153210806631715
+  },
+  "Zooming/6.avi": {
+   "distortion": 0.937940584052256,
+   "rough": 0.3544221494223094,
+   "stability": 0.9497349924333752,
+   "cropping": 0.8023318598310221,
+   "max_correction_px": 31.041648864746094,
+   "input_rough": 1.199310752312955
+  },
+  "Zooming/8.avi": {
+   "distortion": 0.949366955698846,
+   "rough": 0.26474412591914687,
+   "stability": 0.9650335583714726,
+   "cropping": 0.8034608097336734,
+   "max_correction_px": 35.349517822265625,
+   "input_rough": 0.6725256545917417
+  },
+  "Running/1.avi": {
+   "distortion": 0.8972395851749836,
+   "rough": 0.8197484564745215,
+   "stability": 0.9095779524238408,
+   "cropping": 0.7973035085129965,
+   "max_correction_px": 64.0,
+   "input_rough": 3.4652075385846834
+  },
+  "Running/11.avi": {
+   "distortion": 0.8881074803792098,
+   "rough": 0.5097258302766992,
+   "stability": 0.9040426237748838,
+   "cropping": 0.7992209539377684,
+   "max_correction_px": 46.39590072631836,
+   "input_rough": 2.913434910239563
+  },
+  "Running/13.avi": {
+   "distortion": 0.597697016812533,
+   "rough": 0.6341756368515385,
+   "stability": 0.9404741760603389,
+   "cropping": 0.8016249170276007,
+   "max_correction_px": 55.1259880065918,
+   "input_rough": 2.6159685762810057
+  },
+  "Running/15.avi": {
+   "distortion": 0.910022013386481,
+   "rough": 0.44335663565221417,
+   "stability": 0.8238925868274297,
+   "cropping": 0.799269696691569,
+   "max_correction_px": 44.2607536315918,
+   "input_rough": 2.6591846235875654
+  },
+  "Running/17.avi": {
+   "distortion": 0.9226099874270102,
+   "rough": 0.5189021840384083,
+   "stability": 0.9316269742239393,
+   "cropping": 0.801657698172617,
+   "max_correction_px": 46.02288818359375,
+   "input_rough": 2.228989319798082
+  },
+  "Running/19.avi": {
+   "distortion": 0.9113803311819987,
+   "rough": 0.43062519518891657,
+   "stability": 0.8925809724102806,
+   "cropping": 0.8027137749253449,
+   "max_correction_px": 54.6885986328125,
+   "input_rough": 2.4099577948685225
+  },
+  "Running/20.avi": {
+   "distortion": 0.9027510572967664,
+   "rough": 0.6616411618358659,
+   "stability": 0.8700147962113998,
+   "cropping": 0.8011164130981085,
+   "max_correction_px": 58.45225143432617,
+   "input_rough": 3.1117421697348213
+  },
+  "Running/3.avi": {
+   "distortion": 0.9070925669749447,
+   "rough": 0.483455347255902,
+   "stability": 0.8578814588960308,
+   "cropping": 0.8013642147472795,
+   "max_correction_px": 52.24888610839844,
+   "input_rough": 2.74780246863366
+  },
+  "Running/5.avi": {
+   "distortion": 0.9236876416693212,
+   "rough": 0.48131611139366387,
+   "stability": 0.9043503066914421,
+   "cropping": 0.8034445008417751,
+   "max_correction_px": 44.036556243896484,
+   "input_rough": 2.6117645918831234
+  },
+  "Running/7.avi": {
+   "distortion": 0.897288095596538,
+   "rough": 0.6739764178377925,
+   "stability": 0.8802115622486552,
+   "cropping": 0.7998103167853312,
+   "max_correction_px": 59.961029052734375,
+   "input_rough": 3.208985398453056
+  },
+  "Running/9.avi": {
+   "distortion": 0.8394315395142401,
+   "rough": 0.9344727148551389,
+   "stability": 0.9263302769326676,
+   "cropping": 0.8012470728284413,
+   "max_correction_px": 47.189697265625,
+   "input_rough": 3.5613161597484577
+  },
+  "QuickRotation/1.avi": {
+   "distortion": 0.9054117394117334,
+   "rough": 0.42733241141838885,
+   "stability": 0.9917852736834755,
+   "cropping": 0.8025920171287221,
+   "max_correction_px": 64.0,
+   "input_rough": 0.8561306306543542
+  },
+  "QuickRotation/11.avi": {
+   "distortion": 0.9469680537974932,
+   "rough": 0.29481135595296676,
+   "stability": 0.9870694511206569,
+   "cropping": 0.8027635914083452,
+   "max_correction_px": 45.7698974609375,
+   "input_rough": 0.7042406758285307
+  },
+  "QuickRotation/13.avi": {
+   "distortion": 0.9383367392828382,
+   "rough": 0.20406442520427115,
+   "stability": 0.9830065166840694,
+   "cropping": 0.8006379741981666,
+   "max_correction_px": 51.368438720703125,
+   "input_rough": 0.9175090474515362
+  },
+  "QuickRotation/15.avi": {
+   "distortion": 0.8577507816197563,
+   "rough": 0.1988742580638167,
+   "stability": 0.9850680350759831,
+   "cropping": 0.8011171260741923,
+   "max_correction_px": 39.33894348144531,
+   "input_rough": 0.785017060370594
+  },
+  "QuickRotation/17.avi": {
+   "distortion": 0.8484339453398748,
+   "rough": 1.616095946956777,
+   "stability": 0.9827317972513617,
+   "cropping": 0.8026466281095564,
+   "max_correction_px": 64.0,
+   "input_rough": 1.8850691976075578
+  },
+  "QuickRotation/19.avi": {
+   "distortion": 0.9178370602864057,
+   "rough": 0.4147963508142472,
+   "stability": 0.9295032694722343,
+   "cropping": 0.7996421746457929,
+   "max_correction_px": 48.364501953125,
+   "input_rough": 0.663218516791299
+  },
+  "QuickRotation/20.avi": {
+   "distortion": 0.8696720129408002,
+   "rough": 0.5301895809920719,
+   "stability": 0.9602557635630881,
+   "cropping": 0.8032106218122442,
+   "max_correction_px": 58.09316635131836,
+   "input_rough": 1.0623175303717174
+  },
+  "QuickRotation/22.avi": {
+   "distortion": 0.9228676809022238,
+   "rough": 0.6239389407717734,
+   "stability": 0.9391309828033966,
+   "cropping": 0.7977039332106511,
+   "max_correction_px": 48.23426818847656,
+   "input_rough": 1.0240957360400058
+  },
+  "QuickRotation/24.avi": {
+   "distortion": 0.9304585967917594,
+   "rough": 0.6628636620048765,
+   "stability": 0.9172708880117448,
+   "cropping": 0.7988904851753156,
+   "max_correction_px": 47.359615325927734,
+   "input_rough": 0.834954358457818
+  },
+  "QuickRotation/26.avi": {
+   "distortion": 0.5345642921499973,
+   "rough": 1.9400522024125644,
+   "stability": 0.9344262013322281,
+   "cropping": 0.7969194227195593,
+   "max_correction_px": 62.235740661621094,
+   "input_rough": 1.725420037172133
+  },
+  "QuickRotation/28.avi": {
+   "distortion": 0.8963684660934836,
+   "rough": 0.8908062088158974,
+   "stability": 0.9682829330823938,
+   "cropping": 0.7969240645215494,
+   "max_correction_px": 58.4141960144043,
+   "input_rough": 1.1747965839065961
+  },
+  "QuickRotation/4.avi": {
+   "distortion": 0.9440221463139923,
+   "rough": 0.6494652298124682,
+   "stability": 0.9903038836266713,
+   "cropping": 0.8010586332596941,
+   "max_correction_px": 46.67523193359375,
+   "input_rough": 1.1276453194567584
+  },
+  "QuickRotation/6.avi": {
+   "distortion": 0.8954251188742618,
+   "rough": 1.023529559263825,
+   "stability": 0.9328997596961649,
+   "cropping": 0.7989694730770563,
+   "max_correction_px": 47.28589630126953,
+   "input_rough": 2.1353337218842636
+  },
+  "QuickRotation/8.avi": {
+   "distortion": 0.9053948865126819,
+   "rough": 0.7763708582681639,
+   "stability": 0.9225038303848888,
+   "cropping": 0.7973152101143868,
+   "max_correction_px": 64.0,
+   "input_rough": 1.6047036423902203
+  }
+ },
+ "crop_0.30": {
+  "Regular/0.avi": {
+   "distortion": 0.7087822153188825,
+   "rough": 0.15288429874985965,
+   "stability": 0.9476292350504565,
+   "cropping": 0.7208565120704646,
+   "max_correction_px": 25.727458953857422,
+   "input_rough": 1.5884867807225929
+  },
+  "Regular/10.avi": {
+   "distortion": 0.601276374199256,
+   "rough": 0.1884228807991668,
+   "stability": 0.9005625043040343,
+   "cropping": 0.6633057504470963,
+   "max_correction_px": 36.095848083496094,
+   "input_rough": 1.2611144201743685
+  },
+  "Regular/12.avi": {
+   "distortion": 0.460749882676186,
+   "rough": 0.13211622490111719,
+   "stability": 0.9217633571940705,
+   "cropping": 0.702996726210154,
+   "max_correction_px": 26.281524658203125,
+   "input_rough": 1.9419653356863007
+  },
+  "Regular/14.avi": {
+   "distortion": 0.5782631352708881,
+   "rough": 0.23309760489796644,
+   "stability": 0.9517372052429255,
+   "cropping": 0.7096745147260688,
+   "max_correction_px": 22.421051025390625,
+   "input_rough": 0.7632285981508741
+  },
+  "Regular/16.avi": {
+   "distortion": 0.6970762148160125,
+   "rough": 0.16324850978465116,
+   "stability": 0.8997164592585971,
+   "cropping": 0.7072668886350738,
+   "max_correction_px": 35.302032470703125,
+   "input_rough": 2.4997373095134527
+  },
+  "Regular/18.avi": {
+   "distortion": 0.2749959596289608,
+   "rough": 0.4077505844699346,
+   "stability": 0.9523111410994166,
+   "cropping": 0.7096666148257734,
+   "max_correction_px": 40.369842529296875,
+   "input_rough": 2.9599783323457753
+  },
+  "Regular/2.avi": {
+   "distortion": 0.9120876013821769,
+   "rough": 0.17938695576363353,
+   "stability": 0.9516741604607137,
+   "cropping": 0.6947401992130433,
+   "max_correction_px": 33.35186004638672,
+   "input_rough": 2.757988655302763
+  },
+  "Regular/21.avi": {
+   "distortion": 0.5467127918335665,
+   "rough": 0.20105545395964441,
+   "stability": 0.9085845032578432,
+   "cropping": 0.7543475950886287,
+   "max_correction_px": 35.055877685546875,
+   "input_rough": 0.9682170943862699
+  },
+  "Regular/3.avi": {
+   "distortion": 0.8279480272767549,
+   "rough": 0.1840286271770737,
+   "stability": 0.8850986225372369,
+   "cropping": 0.7023662842302577,
+   "max_correction_px": 21.684715270996094,
+   "input_rough": 0.8373566653855068
+  },
+  "Regular/5.avi": {
+   "distortion": 0.8436549185319172,
+   "rough": 0.10168066249363593,
+   "stability": 0.9562181444361791,
+   "cropping": 0.7032423569479084,
+   "max_correction_px": 30.66736602783203,
+   "input_rough": 1.046939180316136
+  },
+  "Regular/7.avi": {
+   "distortion": 0.9156070010113776,
+   "rough": 0.11967500609467356,
+   "stability": 0.9609095200002012,
+   "cropping": 0.7018999382895637,
+   "max_correction_px": 26.628259658813477,
+   "input_rough": 1.1595743380456551
+  },
+  "Regular/9.avi": {
+   "distortion": 0.5935942569234185,
+   "rough": 0.19680342734907527,
+   "stability": 0.9207257479225602,
+   "cropping": 0.701992125468097,
+   "max_correction_px": 30.5032958984375,
+   "input_rough": 0.8185499299125284
+  },
+  "Crowd/0.avi": {
+   "distortion": 0.46364480841113304,
+   "rough": 0.8591718254733205,
+   "stability": 0.9401573442360905,
+   "cropping": 0.6993705694746675,
+   "max_correction_px": 57.064788818359375,
+   "input_rough": 1.447834325899835
+  },
+  "Crowd/10.avi": {
+   "distortion": 0.4351516667223576,
+   "rough": 0.8307682273226353,
+   "stability": 0.8949062948137502,
+   "cropping": 0.7313893483508271,
+   "max_correction_px": 39.13301467895508,
+   "input_rough": 1.4660929187585836
+  },
+  "Crowd/12.avi": {
+   "distortion": 0.8421100447427617,
+   "rough": 0.45640418860044873,
+   "stability": 0.9236565915000653,
+   "cropping": 0.7052097309923693,
+   "max_correction_px": 35.824886322021484,
+   "input_rough": 1.3051809772023832
+  },
+  "Crowd/14.avi": {
+   "distortion": 0.7246990484925628,
+   "rough": 0.5990526136748079,
+   "stability": 0.9187408947185592,
+   "cropping": 0.7051339448202559,
+   "max_correction_px": 40.95706558227539,
+   "input_rough": 1.3514858669786056
+  },
+  "Crowd/16.avi": {
+   "distortion": 0.8253798760390034,
+   "rough": 0.3538881304628194,
+   "stability": 0.8731877381214166,
+   "cropping": 0.7105020833774657,
+   "max_correction_px": 47.955078125,
+   "input_rough": 1.250647836249093
+  },
+  "Crowd/18.avi": {
+   "distortion": 0.13474638829577087,
+   "rough": 0.8246305888329031,
+   "stability": 0.8654295519524949,
+   "cropping": 0.7084559399646483,
+   "max_correction_px": 46.55747604370117,
+   "input_rough": 1.43368678218481
+  },
+  "Crowd/2.avi": {
+   "distortion": 0.014599591848476779,
+   "rough": 0.5450411604590465,
+   "stability": 0.8222843771097685,
+   "cropping": 0.7112431958808936,
+   "max_correction_px": 47.15478515625,
+   "input_rough": 1.273647153991354
+  },
+  "Crowd/21.avi": {
+   "distortion": 0.7597268692232251,
+   "rough": 0.5300144212302385,
+   "stability": 0.9440401031683763,
+   "cropping": 0.7103329206684578,
+   "max_correction_px": 41.615028381347656,
+   "input_rough": 1.0054490516081696
+  },
+  "Crowd/3.avi": {
+   "distortion": 0.041543534920016036,
+   "rough": 1.2925000472102866,
+   "stability": 0.9504059404229541,
+   "cropping": 0.7025337188117194,
+   "max_correction_px": 40.447044372558594,
+   "input_rough": 1.6992291980193692
+  },
+  "Crowd/5.avi": {
+   "distortion": 0.8360766809594309,
+   "rough": 0.38366408894260906,
+   "stability": 0.9399761922800689,
+   "cropping": 0.7093663369879043,
+   "max_correction_px": 42.20454406738281,
+   "input_rough": 1.031092417209917
+  },
+  "Crowd/7.avi": {
+   "distortion": 0.5228734550415186,
+   "rough": 0.3744826462400616,
+   "stability": 0.8634644074753618,
+   "cropping": 0.7074565120139025,
+   "max_correction_px": 37.7285041809082,
+   "input_rough": 1.101617283765427
+  },
+  "Crowd/9.avi": {
+   "distortion": 0.8252303958651694,
+   "rough": 0.33880976341274405,
+   "stability": 0.8947454858463392,
+   "cropping": 0.7060225655913821,
+   "max_correction_px": 42.190006256103516,
+   "input_rough": 1.3354152697690438
+  },
+  "Parallax/0.avi": {
+   "distortion": 0.8505208519335781,
+   "rough": 0.255770502799263,
+   "stability": 0.9905899640528997,
+   "cropping": 0.6987436779238769,
+   "max_correction_px": 47.67383575439453,
+   "input_rough": 1.5485421616149513
+  },
+  "Parallax/10.avi": {
+   "distortion": 0.028153883146001018,
+   "rough": 0.7510265949418258,
+   "stability": 0.8145191928272822,
+   "cropping": 0.7072332503118035,
+   "max_correction_px": 45.97414779663086,
+   "input_rough": 0.8625113443681042
+  },
+  "Parallax/12.avi": {
+   "distortion": 0.02339991184343277,
+   "rough": 0.9686746314378061,
+   "stability": 0.9469319749553614,
+   "cropping": 0.7039867897001261,
+   "max_correction_px": 44.22882080078125,
+   "input_rough": 4.662737535264005
+  },
+  "Parallax/14.avi": {
+   "distortion": 0.6001272825197858,
+   "rough": 0.41048393763515084,
+   "stability": 0.8900446209883262,
+   "cropping": 0.7034896244316159,
+   "max_correction_px": 35.652923583984375,
+   "input_rough": 0.6545564703147146
+  },
+  "Parallax/16.avi": {
+   "distortion": 0.8905070555645616,
+   "rough": 0.4481071431649124,
+   "stability": 0.9556824871913993,
+   "cropping": 0.6997289038032989,
+   "max_correction_px": 42.032554626464844,
+   "input_rough": 3.2181755058116837
+  },
+  "Parallax/2.avi": {
+   "distortion": 0.19083227362254432,
+   "rough": 2.3459959699520114,
+   "stability": 0.8964775649757136,
+   "cropping": 0.7403955218311923,
+   "max_correction_px": 38.83291244506836,
+   "input_rough": 3.5841489631970247
+  },
+  "Parallax/4.avi": {
+   "distortion": 0.7082170951479135,
+   "rough": 1.1877139613751966,
+   "stability": 0.9701273311002305,
+   "cropping": 0.7140671746523821,
+   "max_correction_px": 43.29247283935547,
+   "input_rough": 1.02127861579049
+  },
+  "Parallax/6.avi": {
+   "distortion": 0.7993551436174009,
+   "rough": 1.0239899014319573,
+   "stability": 0.8850405235841613,
+   "cropping": 0.6976182724909815,
+   "max_correction_px": 37.228546142578125,
+   "input_rough": 0.9504950555539495
+  },
+  "Parallax/8.avi": {
+   "distortion": 0.03503015741133283,
+   "rough": 0.9328792206208443,
+   "stability": 0.950979949932436,
+   "cropping": 0.7271027861351503,
+   "max_correction_px": 43.2900390625,
+   "input_rough": 3.852898471302415
+  },
+  "Zooming/0.avi": {
+   "distortion": 0.7712861019407689,
+   "rough": 0.20720270823221676,
+   "stability": 0.919114624699243,
+   "cropping": 0.7083480124941586,
+   "max_correction_px": 36.371337890625,
+   "input_rough": 3.370393359926542
+  },
+  "Zooming/10.avi": {
+   "distortion": 0.006377908038542434,
+   "rough": 0.3603686605194965,
+   "stability": 0.9043364273775353,
+   "cropping": 0.7136949367592393,
+   "max_correction_px": 49.521060943603516,
+   "input_rough": 1.411883911282573
+  },
+  "Zooming/12.avi": {
+   "distortion": 0.30683760661168125,
+   "rough": 0.21419221369249172,
+   "stability": 0.9179378050160133,
+   "cropping": 0.7035328081969795,
+   "max_correction_px": 37.84846496582031,
+   "input_rough": 1.7784642173954097
+  },
+  "Zooming/14.avi": {
+   "distortion": 0.007578291663797376,
+   "rough": 0.7809359149278786,
+   "stability": 0.9821575999213582,
+   "cropping": 0.6997329284485839,
+   "max_correction_px": 63.29450607299805,
+   "input_rough": 3.2844008386036267
+  },
+  "Zooming/16.avi": {
+   "distortion": 0.04421066950843831,
+   "rough": 3.291789535724497,
+   "stability": 0.9029460322764585,
+   "cropping": 0.7195006961843302,
+   "max_correction_px": 63.066593170166016,
+   "input_rough": 3.7088783659812194
+  },
+  "Zooming/18.avi": {
+   "distortion": 0.0008352521883345784,
+   "rough": 1.4681850204359002,
+   "stability": 0.9364445388780145,
+   "cropping": 0.7270118098986054,
+   "max_correction_px": 69.01307678222656,
+   "input_rough": 5.4244681292136345
+  },
+  "Zooming/2.avi": {
+   "distortion": 0.004921406794736182,
+   "rough": 0.22512969616145587,
+   "stability": 0.9251217002864781,
+   "cropping": 0.6846651455381626,
+   "max_correction_px": 27.39251708984375,
+   "input_rough": 1.5206605516801182
+  },
+  "Zooming/21.avi": {
+   "distortion": 0.017700600008468778,
+   "rough": 0.30808214345565027,
+   "stability": 0.9600013743928085,
+   "cropping": 0.7366548809961752,
+   "max_correction_px": 44.4134521484375,
+   "input_rough": 1.2149616244511863
+  },
+  "Zooming/23.avi": {
+   "distortion": 0.028325299483669894,
+   "rough": 0.9045246262543146,
+   "stability": 0.8957115026235524,
+   "cropping": 0.6970725985212587,
+   "max_correction_px": 69.82270050048828,
+   "input_rough": 2.7371195125413013
+  },
+  "Zooming/25.avi": {
+   "distortion": 0.5721444532810731,
+   "rough": 0.4935426980797653,
+   "stability": 0.9554952480477045,
+   "cropping": 0.706261328658144,
+   "max_correction_px": 47.492431640625,
+   "input_rough": 1.7172301811075616
+  },
+  "Zooming/27.avi": {
+   "distortion": 0.009449393166855344,
+   "rough": 0.6505614874801252,
+   "stability": 0.9537784446590409,
+   "cropping": 0.708611201870993,
+   "max_correction_px": 43.707916259765625,
+   "input_rough": 1.5663321884665735
+  },
+  "Zooming/3.avi": {
+   "distortion": 0.7310961936111013,
+   "rough": 0.1996298774154436,
+   "stability": 0.9815326338688051,
+   "cropping": 0.7128134403615193,
+   "max_correction_px": 40.58274841308594,
+   "input_rough": 0.854944445825873
+  },
+  "Zooming/5.avi": {
+   "distortion": 0.06101232303523545,
+   "rough": 0.48630598214618104,
+   "stability": 0.9683603575835944,
+   "cropping": 0.7055645118503497,
+   "max_correction_px": 48.85205078125,
+   "input_rough": 1.519285279653591
+  },
+  "Zooming/7.avi": {
+   "distortion": 0.6835586554503151,
+   "rough": 0.3496924902470711,
+   "stability": 0.9157738668942588,
+   "cropping": 0.705055696999772,
+   "max_correction_px": 63.408721923828125,
+   "input_rough": 1.2795690963968829
+  },
+  "Zooming/9.avi": {
+   "distortion": 0.6275703858549349,
+   "rough": 0.40757631094453084,
+   "stability": 0.9660375373331433,
+   "cropping": 0.7003183246568055,
+   "max_correction_px": 47.788482666015625,
+   "input_rough": 1.2870887928296908
+  },
+  "Running/0.avi": {
+   "distortion": 0.6529365218185714,
+   "rough": 0.8271399155365977,
+   "stability": 0.8032528216827929,
+   "cropping": 0.7024011775438427,
+   "max_correction_px": 55.445556640625,
+   "input_rough": 3.467045465699112
+  },
+  "Running/10.avi": {
+   "distortion": 0.24629585849351088,
+   "rough": 0.4901926008127841,
+   "stability": 0.8813577067180924,
+   "cropping": 0.7060560788935797,
+   "max_correction_px": 51.957725524902344,
+   "input_rough": 2.593419630247522
+  },
+  "Running/12.avi": {
+   "distortion": 0.8793203878362442,
+   "rough": 0.6890474252382589,
+   "stability": 0.9654300790911744,
+   "cropping": 0.6996899210205153,
+   "max_correction_px": 51.42565155029297,
+   "input_rough": 2.603624017680477
+  },
+  "Running/14.avi": {
+   "distortion": 0.3641089315716682,
+   "rough": 0.9354596304767259,
+   "stability": 0.9204634375532704,
+   "cropping": 0.6040089843530533,
+   "max_correction_px": 47.78862762451172,
+   "input_rough": 2.925547628865066
+  },
+  "Running/16.avi": {
+   "distortion": 0.9018758066340823,
+   "rough": 0.3713717029184568,
+   "stability": 0.8166618719713187,
+   "cropping": 0.7035952847455395,
+   "max_correction_px": 46.0533332824707,
+   "input_rough": 2.438987742552107
+  },
+  "Running/18.avi": {
+   "distortion": 0.047496166523330406,
+   "rough": 0.7292698864176314,
+   "stability": 0.9220256065092268,
+   "cropping": 0.7182366597277512,
+   "max_correction_px": 54.0,
+   "input_rough": 3.205040669385472
+  },
+  "Running/2.avi": {
+   "distortion": 0.8331601184359263,
+   "rough": 0.3660759745010163,
+   "stability": 0.8288901802767953,
+   "cropping": 0.7018000011192562,
+   "max_correction_px": 56.21339416503906,
+   "input_rough": 1.958512346573974
+  },
+  "Running/21.avi": {
+   "distortion": 0.39478199913329237,
+   "rough": 0.4199024831082693,
+   "stability": 0.7799215242130514,
+   "cropping": 0.6982495073151486,
+   "max_correction_px": 52.0757942199707,
+   "input_rough": 2.222355055867693
+  },
+  "Running/4.avi": {
+   "distortion": 0.5953434660602415,
+   "rough": 0.3899912440671788,
+   "stability": 0.8903858065953217,
+   "cropping": 0.696819420257951,
+   "max_correction_px": 48.9039192199707,
+   "input_rough": 2.106880374957254
+  },
+  "Running/6.avi": {
+   "distortion": 0.5656735583793092,
+   "rough": 0.6781479171376426,
+   "stability": 0.8405929716424808,
+   "cropping": 0.7055537793410231,
+   "max_correction_px": 63.75445556640625,
+   "input_rough": 3.3259780570299444
+  },
+  "Running/8.avi": {
+   "distortion": 0.08956895873320005,
+   "rough": 1.7781172336906073,
+   "stability": 0.951042527810801,
+   "cropping": 0.7262997891823204,
+   "max_correction_px": 52.7091064453125,
+   "input_rough": 3.453910100504044
+  },
+  "QuickRotation/0.avi": {
+   "distortion": 0.7424945273741466,
+   "rough": 0.4521396088156757,
+   "stability": 0.9634181686477551,
+   "cropping": 0.6961369958597872,
+   "max_correction_px": 47.29771423339844,
+   "input_rough": 0.7940038069175966
+  },
+  "QuickRotation/10.avi": {
+   "distortion": 0.7576455853450804,
+   "rough": 1.6251976648558826,
+   "stability": 0.9437859542692132,
+   "cropping": 0.701212320218191,
+   "max_correction_px": 54.769283294677734,
+   "input_rough": 1.9753536771442142
+  },
+  "QuickRotation/12.avi": {
+   "distortion": 0.5579829760962022,
+   "rough": 0.35720293579472956,
+   "stability": 0.9632592221706852,
+   "cropping": 0.731985428186068,
+   "max_correction_px": 32.9034423828125,
+   "input_rough": 0.7241356128961688
+  },
+  "QuickRotation/14.avi": {
+   "distortion": 0.5376103495604259,
+   "rough": 0.1915945863024787,
+   "stability": 0.9621121726902194,
+   "cropping": 0.705457210218176,
+   "max_correction_px": 46.67878723144531,
+   "input_rough": 0.6728341076347198
+  },
+  "QuickRotation/16.avi": {
+   "distortion": 0.3469325620907038,
+   "rough": 0.4948602468071943,
+   "stability": 0.9899881474522475,
+   "cropping": 0.6943535275440118,
+   "max_correction_px": 37.758567810058594,
+   "input_rough": 0.5841560218543842
+  },
+  "QuickRotation/18.avi": {
+   "distortion": 0.8798020476435795,
+   "rough": 0.9535139958815687,
+   "stability": 0.9878658839385048,
+   "cropping": 0.7038380606458718,
+   "max_correction_px": 49.58416748046875,
+   "input_rough": 1.7127711285220402
+  },
+  "QuickRotation/2.avi": {
+   "distortion": 0.8201346935033096,
+   "rough": 0.7187346279486078,
+   "stability": 0.9844699734468186,
+   "cropping": 0.7045208615403648,
+   "max_correction_px": 49.262939453125,
+   "input_rough": 1.302959431301503
+  },
+  "QuickRotation/21.avi": {
+   "distortion": 0.1516110626469607,
+   "rough": 0.927577163119175,
+   "stability": 0.9826853793307827,
+   "cropping": 0.7041622258130417,
+   "max_correction_px": 48.77685546875,
+   "input_rough": 0.9880279823775817
+  },
+  "QuickRotation/23.avi": {
+   "distortion": 0.8423116140312519,
+   "rough": 0.6789994496377764,
+   "stability": 0.9956325266740128,
+   "cropping": 0.7037584937310033,
+   "max_correction_px": 51.63669967651367,
+   "input_rough": 0.8192298049154114
+  },
+  "QuickRotation/25.avi": {
+   "distortion": 0.3320373328538169,
+   "rough": 1.0991240943621612,
+   "stability": 0.9674261826189606,
+   "cropping": 0.7035961860810628,
+   "max_correction_px": 43.71644592285156,
+   "input_rough": 1.337422683025267
+  },
+  "QuickRotation/27.avi": {
+   "distortion": 0.639874497677851,
+   "rough": 1.1003084951976847,
+   "stability": 0.9692573715795912,
+   "cropping": 0.7045928663108195,
+   "max_correction_px": 58.09321975708008,
+   "input_rough": 1.644149764551777
+  },
+  "QuickRotation/3.avi": {
+   "distortion": 0.7421660059191074,
+   "rough": 0.2705484858836075,
+   "stability": 0.9878537517966369,
+   "cropping": 0.7052276886138991,
+   "max_correction_px": 47.04071807861328,
+   "input_rough": 0.6721694726090568
+  },
+  "QuickRotation/5.avi": {
+   "distortion": 0.13564168862459908,
+   "rough": 0.8400609744096892,
+   "stability": 0.9371628194590041,
+   "cropping": 0.7174755498434394,
+   "max_correction_px": 50.985267639160156,
+   "input_rough": 1.336448845195468
+  },
+  "QuickRotation/7.avi": {
+   "distortion": 0.8550260492801354,
+   "rough": 0.575226281197564,
+   "stability": 0.9654625355203884,
+   "cropping": 0.7005593568167977,
+   "max_correction_px": 45.29443359375,
+   "input_rough": 1.1380335209342909
+  },
+  "QuickRotation/9.avi": {
+   "distortion": 0.7716601891955932,
+   "rough": 0.7392082092072952,
+   "stability": 0.977031123797181,
+   "cropping": 0.692464350063993,
+   "max_correction_px": 58.49711227416992,
+   "input_rough": 1.3508390249728133
+  },
+  "Regular/1.avi": {
+   "distortion": 0.8729286533719515,
+   "rough": 0.12440097830992637,
+   "stability": 0.9104996365414655,
+   "cropping": 0.7007711295136457,
+   "max_correction_px": 25.55913543701172,
+   "input_rough": 1.4815660418664827
+  },
+  "Regular/11.avi": {
+   "distortion": 0.5426328900245031,
+   "rough": 0.15536817033160966,
+   "stability": 0.9423697334566938,
+   "cropping": 0.6951245132634989,
+   "max_correction_px": 28.646699905395508,
+   "input_rough": 1.9386240931201595
+  },
+  "Regular/13.avi": {
+   "distortion": 0.8076088642906574,
+   "rough": 0.10687368666272797,
+   "stability": 0.9383049516102044,
+   "cropping": 0.6930366642556575,
+   "max_correction_px": 26.477344512939453,
+   "input_rough": 1.016483663957137
+  },
+  "Regular/15.avi": {
+   "distortion": 0.872253018823886,
+   "rough": 0.15285409624964044,
+   "stability": 0.9542593294745959,
+   "cropping": 0.7013517627693954,
+   "max_correction_px": 25.108444213867188,
+   "input_rough": 2.343483165382192
+  },
+  "Regular/17.avi": {
+   "distortion": 0.20103784828685048,
+   "rough": 0.4195159780948117,
+   "stability": 0.9571906002473053,
+   "cropping": 0.7053412365371743,
+   "max_correction_px": 38.8319091796875,
+   "input_rough": 1.0968777620106056
+  },
+  "Regular/19.avi": {
+   "distortion": 0.5900020967055998,
+   "rough": 0.09115776566494731,
+   "stability": 0.8850316717861925,
+   "cropping": 0.7195401199044577,
+   "max_correction_px": 25.510541915893555,
+   "input_rough": 0.8304352675341232
+  },
+  "Regular/20.avi": {
+   "distortion": 0.7978901224176294,
+   "rough": 0.17103158475991356,
+   "stability": 0.9250867751105566,
+   "cropping": 0.6989799742344943,
+   "max_correction_px": 36.76692581176758,
+   "input_rough": 0.6383724970944313
+  },
+  "Regular/22.avi": {
+   "distortion": 0.6706655443481615,
+   "rough": 0.21981196193634148,
+   "stability": 0.9262206905135413,
+   "cropping": 0.6923718479587635,
+   "max_correction_px": 41.523109436035156,
+   "input_rough": 0.879189375160794
+  },
+  "Regular/4.avi": {
+   "distortion": 0.8258681809476394,
+   "rough": 0.11880414603261397,
+   "stability": 0.9420437497517132,
+   "cropping": 0.7032082758584439,
+   "max_correction_px": 21.37445068359375,
+   "input_rough": 1.1366085474067253
+  },
+  "Regular/6.avi": {
+   "distortion": 0.5803127831380765,
+   "rough": 0.25213497332227663,
+   "stability": 0.9033932514964115,
+   "cropping": 0.7075601688505727,
+   "max_correction_px": 38.457489013671875,
+   "input_rough": 2.5104037180558874
+  },
+  "Regular/8.avi": {
+   "distortion": 0.6903979505984422,
+   "rough": 0.1467567427616447,
+   "stability": 0.8937815384430717,
+   "cropping": 0.719102915293731,
+   "max_correction_px": 19.5645751953125,
+   "input_rough": 1.9949162970803684
+  },
+  "Crowd/1.avi": {
+   "distortion": 0.8684189434491341,
+   "rough": 0.28730259225221316,
+   "stability": 0.91499325873423,
+   "cropping": 0.7021522491869324,
+   "max_correction_px": 50.773345947265625,
+   "input_rough": 0.9824592671105508
+  },
+  "Crowd/11.avi": {
+   "distortion": 0.7139733932044582,
+   "rough": 0.2817635651718879,
+   "stability": 0.8905819492755264,
+   "cropping": 0.7006131894133341,
+   "max_correction_px": 31.9862060546875,
+   "input_rough": 0.9596828986225636
+  },
+  "Crowd/13.avi": {
+   "distortion": 0.6279047929073591,
+   "rough": 1.1107912444545112,
+   "stability": 0.8886682347169356,
+   "cropping": 0.705956101607446,
+   "max_correction_px": 41.71639633178711,
+   "input_rough": 1.531775993735818
+  },
+  "Crowd/15.avi": {
+   "distortion": 0.8379196285535112,
+   "rough": 0.5205667263087506,
+   "stability": 0.8526817889747561,
+   "cropping": 0.7069209680188309,
+   "max_correction_px": 56.4442253112793,
+   "input_rough": 1.2365662806661009
+  },
+  "Crowd/17.avi": {
+   "distortion": 0.8402049599480688,
+   "rough": 0.2962879173080261,
+   "stability": 0.8922213784769517,
+   "cropping": 0.70326772262378,
+   "max_correction_px": 49.22029113769531,
+   "input_rough": 0.9650705946417076
+  },
+  "Crowd/19.avi": {
+   "distortion": 0.8047063484449163,
+   "rough": 0.3132656109679554,
+   "stability": 0.9491947672481942,
+   "cropping": 0.7042660788751354,
+   "max_correction_px": 44.860836029052734,
+   "input_rough": 1.0810915259193288
+  },
+  "Crowd/20.avi": {
+   "distortion": 0.7878998624474669,
+   "rough": 0.38038154236335103,
+   "stability": 0.8835833579372321,
+   "cropping": 0.6981286065264886,
+   "max_correction_px": 47.407752990722656,
+   "input_rough": 1.1097007457643
+  },
+  "Crowd/22.avi": {
+   "distortion": 0.644191203122387,
+   "rough": 0.31713099032836317,
+   "stability": 0.9719215513170631,
+   "cropping": 0.7056139333885236,
+   "max_correction_px": 46.630245208740234,
+   "input_rough": 1.1936583461159562
+  },
+  "Crowd/4.avi": {
+   "distortion": 0.6659898129011467,
+   "rough": 0.3115058599147462,
+   "stability": 0.9336786127487015,
+   "cropping": 0.7123878980365735,
+   "max_correction_px": 30.503067016601562,
+   "input_rough": 1.0397987614271231
+  },
+  "Crowd/6.avi": {
+   "distortion": 0.7213526436748108,
+   "rough": 0.2943514757016657,
+   "stability": 0.929332503967997,
+   "cropping": 0.7042178458273192,
+   "max_correction_px": 39.68716812133789,
+   "input_rough": 1.0052018299598142
+  },
+  "Crowd/8.avi": {
+   "distortion": 0.8475146071942875,
+   "rough": 0.21183560774797788,
+   "stability": 0.8672234943570803,
+   "cropping": 0.7070821145469062,
+   "max_correction_px": 43.893310546875,
+   "input_rough": 1.0023866338240068
+  },
+  "Parallax/1.avi": {
+   "distortion": 0.01811394496031399,
+   "rough": 0.5792374282879503,
+   "stability": 0.9793447407311878,
+   "cropping": 0.6756793541703181,
+   "max_correction_px": 34.98786926269531,
+   "input_rough": 0.7197728014325839
+  },
+  "Parallax/11.avi": {
+   "distortion": 0.7431064109449441,
+   "rough": 0.5035638840960948,
+   "stability": 0.959286229865323,
+   "cropping": 0.7049633446864063,
+   "max_correction_px": 29.178319931030273,
+   "input_rough": 0.7456161752028023
+  },
+  "Parallax/13.avi": {
+   "distortion": 0.6186107493457597,
+   "rough": 0.6982735238858799,
+   "stability": 0.8860353298921647,
+   "cropping": 0.7079012843104153,
+   "max_correction_px": 59.6094856262207,
+   "input_rough": 4.524539192498136
+  },
+  "Parallax/15.avi": {
+   "distortion": 0.4526369086531579,
+   "rough": 1.74631905453571,
+   "stability": 0.9533160618498057,
+   "cropping": 0.6917055913235127,
+   "max_correction_px": 46.89997100830078,
+   "input_rough": 1.6839024876759914
+  },
+  "Parallax/17.avi": {
+   "distortion": 0.15873821864217805,
+   "rough": 0.6939415999616378,
+   "stability": 0.9194244791279095,
+   "cropping": 0.7121216467046163,
+   "max_correction_px": 36.8834228515625,
+   "input_rough": 3.5958682929281958
+  },
+  "Parallax/3.avi": {
+   "distortion": 0.13346934500214072,
+   "rough": 1.66707998598495,
+   "stability": 0.9296214935691816,
+   "cropping": 0.7449776672791829,
+   "max_correction_px": 43.67275619506836,
+   "input_rough": 3.6371495043094226
+  },
+  "Parallax/5.avi": {
+   "distortion": 0.8817015278787089,
+   "rough": 0.32813232138995035,
+   "stability": 0.8968283453020597,
+   "cropping": 0.7019178926067544,
+   "max_correction_px": 30.3715763092041,
+   "input_rough": 3.3538397851428905
+  },
+  "Parallax/7.avi": {
+   "distortion": 0.7517645094617375,
+   "rough": 1.4934643645755679,
+   "stability": 0.9617982773111805,
+   "cropping": 0.7071048383038206,
+   "max_correction_px": 45.123802185058594,
+   "input_rough": 4.498258068800464
+  },
+  "Parallax/9.avi": {
+   "distortion": 0.6095065816495921,
+   "rough": 1.222816724843794,
+   "stability": 0.9230541297679563,
+   "cropping": 0.7109716479487795,
+   "max_correction_px": 38.447303771972656,
+   "input_rough": 1.1726899019229426
+  },
+  "Zooming/1.avi": {
+   "distortion": 0.7437822420631597,
+   "rough": 0.0859230499073627,
+   "stability": 0.9814865148356585,
+   "cropping": 0.7048711290534818,
+   "max_correction_px": 32.57366943359375,
+   "input_rough": 0.6846651503379044
+  },
+  "Zooming/11.avi": {
+   "distortion": 0.007003622284855873,
+   "rough": 0.1564418674298082,
+   "stability": 0.9394288622249983,
+   "cropping": 0.7026277005507074,
+   "max_correction_px": 37.362709045410156,
+   "input_rough": 0.7191631738414193
+  },
+  "Zooming/13.avi": {
+   "distortion": 0.020252085419595677,
+   "rough": 0.32847295578328956,
+   "stability": 0.9752584568837047,
+   "cropping": 0.7083198047739604,
+   "max_correction_px": 48.15765380859375,
+   "input_rough": 1.2906860869692858
+  },
+  "Zooming/15.avi": {
+   "distortion": 0.009090652597751376,
+   "rough": 0.9093190126668177,
+   "stability": 0.9415506010964808,
+   "cropping": 0.720406702405101,
+   "max_correction_px": 67.74591064453125,
+   "input_rough": 2.9495417777184243
+  },
+  "Zooming/17.avi": {
+   "distortion": 0.4831437143567181,
+   "rough": 0.6859543912794822,
+   "stability": 0.9368304553940937,
+   "cropping": 0.6999479568796108,
+   "max_correction_px": 48.11669921875,
+   "input_rough": 2.296308310007832
+  },
+  "Zooming/19.avi": {
+   "distortion": 0.36108887340576956,
+   "rough": 0.2932760448877688,
+   "stability": 0.9784007579473792,
+   "cropping": 0.7240214506726577,
+   "max_correction_px": 47.741661071777344,
+   "input_rough": 1.0438634235227364
+  },
+  "Zooming/20.avi": {
+   "distortion": 1.7946468268731923e-05,
+   "rough": 1.262365574676025,
+   "stability": 0.9692471904439643,
+   "cropping": 0.7016690761206079,
+   "max_correction_px": 69.3648681640625,
+   "input_rough": 4.551544125695535
+  },
+  "Zooming/22.avi": {
+   "distortion": 0.055055790412115696,
+   "rough": 0.5813791677381915,
+   "stability": 0.9732922488674252,
+   "cropping": 0.696803307038887,
+   "max_correction_px": 53.63885498046875,
+   "input_rough": 1.5504684748424928
+  },
+  "Zooming/24.avi": {
+   "distortion": 0.0577137185372599,
+   "rough": 0.4676447655210851,
+   "stability": 0.9488730922527667,
+   "cropping": 0.7048136958688387,
+   "max_correction_px": 47.0892333984375,
+   "input_rough": 1.8589126317426006
+  },
+  "Zooming/26.avi": {
+   "distortion": 0.3482139324740742,
+   "rough": 0.913089316304812,
+   "stability": 0.8788860015770542,
+   "cropping": 0.7155955336986556,
+   "max_correction_px": 56.101318359375,
+   "input_rough": 0.9318251652180715
+  },
+  "Zooming/29.avi": {
+   "distortion": 0.13416021403298836,
+   "rough": 0.2183901821220771,
+   "stability": 0.9564917519478969,
+   "cropping": 0.7155650566169438,
+   "max_correction_px": 48.17120361328125,
+   "input_rough": 0.7848571893318178
+  },
+  "Zooming/4.avi": {
+   "distortion": 0.10196048055735359,
+   "rough": 0.11048502635837264,
+   "stability": 0.9626520333566321,
+   "cropping": 0.7007896250730283,
+   "max_correction_px": 45.444671630859375,
+   "input_rough": 0.5153210806631715
+  },
+  "Zooming/6.avi": {
+   "distortion": 0.05810623239712672,
+   "rough": 0.36746739139627904,
+   "stability": 0.9463939153184967,
+   "cropping": 0.700121327813852,
+   "max_correction_px": 29.40752410888672,
+   "input_rough": 1.199310752312955
+  },
+  "Zooming/8.avi": {
+   "distortion": 0.8234474252340639,
+   "rough": 0.3373193926156682,
+   "stability": 0.9666036413401285,
+   "cropping": 0.7001277535574096,
+   "max_correction_px": 35.39393615722656,
+   "input_rough": 0.6725256545917417
+  },
+  "Running/1.avi": {
+   "distortion": 0.4853457249574817,
+   "rough": 0.8885956457376016,
+   "stability": 0.9097202481087464,
+   "cropping": 0.6996909067568047,
+   "max_correction_px": 69.30888366699219,
+   "input_rough": 3.4652075385846834
+  },
+  "Running/11.avi": {
+   "distortion": 0.8556191508215004,
+   "rough": 0.5130974148842794,
+   "stability": 0.8963305099504044,
+   "cropping": 0.7060128990416656,
+   "max_correction_px": 51.3360595703125,
+   "input_rough": 2.913434910239563
+  },
+  "Running/13.avi": {
+   "distortion": 0.2816201614699692,
+   "rough": 0.610125871040363,
+   "stability": 0.9363536633796367,
+   "cropping": 0.682766044253894,
+   "max_correction_px": 53.72368240356445,
+   "input_rough": 2.6159685762810057
+  },
+  "Running/15.avi": {
+   "distortion": 0.8677433566226309,
+   "rough": 0.45939524657991004,
+   "stability": 0.8264857907839405,
+   "cropping": 0.700422825165253,
+   "max_correction_px": 41.53509521484375,
+   "input_rough": 2.6591846235875654
+  },
+  "Running/17.avi": {
+   "distortion": 0.8507201209421694,
+   "rough": 0.5046221436533446,
+   "stability": 0.9166831758353521,
+   "cropping": 0.7020359693663171,
+   "max_correction_px": 45.22024917602539,
+   "input_rough": 2.228989319798082
+  },
+  "Running/19.avi": {
+   "distortion": 0.14763187580300632,
+   "rough": 0.43852051429147837,
+   "stability": 0.8848834091560214,
+   "cropping": 0.708887521965341,
+   "max_correction_px": 53.41942596435547,
+   "input_rough": 2.4099577948685225
+  },
+  "Running/20.avi": {
+   "distortion": 0.6430775011285214,
+   "rough": 0.7110180119012631,
+   "stability": 0.8412583491169942,
+   "cropping": 0.7065184333801336,
+   "max_correction_px": 54.72343826293945,
+   "input_rough": 3.1117421697348213
+  },
+  "Running/3.avi": {
+   "distortion": 0.11737800667139278,
+   "rough": 0.5123269948917899,
+   "stability": 0.8418199936239822,
+   "cropping": 0.6981363707742777,
+   "max_correction_px": 49.00788497924805,
+   "input_rough": 2.74780246863366
+  },
+  "Running/5.avi": {
+   "distortion": 0.8681678314629478,
+   "rough": 0.5037042180392269,
+   "stability": 0.8771840461944155,
+   "cropping": 0.7020216691418166,
+   "max_correction_px": 43.01288986206055,
+   "input_rough": 2.6117645918831234
+  },
+  "Running/7.avi": {
+   "distortion": 0.8384219445463865,
+   "rough": 0.6755868350000376,
+   "stability": 0.8683044241682502,
+   "cropping": 0.7010268603807253,
+   "max_correction_px": 58.427215576171875,
+   "input_rough": 3.208985398453056
+  },
+  "Running/9.avi": {
+   "distortion": 0.02476862643537347,
+   "rough": 0.9305700527192209,
+   "stability": 0.9109470610553815,
+   "cropping": 0.6964980071557326,
+   "max_correction_px": 44.46685791015625,
+   "input_rough": 3.5613161597484577
+  },
+  "QuickRotation/1.avi": {
+   "distortion": 0.8394307122395878,
+   "rough": 0.48743090174577197,
+   "stability": 0.9896503425551423,
+   "cropping": 0.7045704981867568,
+   "max_correction_px": 69.5361328125,
+   "input_rough": 0.8561306306543542
+  },
+  "QuickRotation/11.avi": {
+   "distortion": 0.31174974026517366,
+   "rough": 0.3099934277635149,
+   "stability": 0.9863237129298646,
+   "cropping": 0.7155728349473058,
+   "max_correction_px": 44.0340576171875,
+   "input_rough": 0.7042406758285307
+  },
+  "QuickRotation/13.avi": {
+   "distortion": 0.6010151070150827,
+   "rough": 0.22879572658120315,
+   "stability": 0.9837104562823953,
+   "cropping": 0.702754146063221,
+   "max_correction_px": 50.023193359375,
+   "input_rough": 0.9175090474515362
+  },
+  "QuickRotation/15.avi": {
+   "distortion": 0.5224042302637807,
+   "rough": 0.23713804409731426,
+   "stability": 0.9857834585806909,
+   "cropping": 0.7007075841299909,
+   "max_correction_px": 39.278648376464844,
+   "input_rough": 0.785017060370594
+  },
+  "QuickRotation/17.avi": {
+   "distortion": 0.3006631979806649,
+   "rough": 1.6654208126828007,
+   "stability": 0.9829689577396402,
+   "cropping": 0.6960758702066635,
+   "max_correction_px": 70.85747528076172,
+   "input_rough": 1.8850691976075578
+  },
+  "QuickRotation/19.avi": {
+   "distortion": 0.8838552347720876,
+   "rough": 0.5004355129415652,
+   "stability": 0.9365038627599812,
+   "cropping": 0.7010679221721766,
+   "max_correction_px": 47.8433837890625,
+   "input_rough": 0.663218516791299
+  },
+  "QuickRotation/20.avi": {
+   "distortion": 0.45711686562967224,
+   "rough": 0.533764252139766,
+   "stability": 0.9571249811841803,
+   "cropping": 0.7217557810734955,
+   "max_correction_px": 57.38572692871094,
+   "input_rough": 1.0623175303717174
+  },
+  "QuickRotation/22.avi": {
+   "distortion": 0.7563548077929518,
+   "rough": 0.6745472079070782,
+   "stability": 0.9375708339115101,
+   "cropping": 0.7001427652656776,
+   "max_correction_px": 47.476173400878906,
+   "input_rough": 1.0240957360400058
+  },
+  "QuickRotation/24.avi": {
+   "distortion": 0.8729118399988894,
+   "rough": 0.7353613499402613,
+   "stability": 0.9112326903955775,
+   "cropping": 0.6975600839968971,
+   "max_correction_px": 45.677982330322266,
+   "input_rough": 0.834954358457818
+  },
+  "QuickRotation/26.avi": {
+   "distortion": 0.044875139040791594,
+   "rough": 2.824651554388249,
+   "stability": 0.9419410911209107,
+   "cropping": 0.7097582409550438,
+   "max_correction_px": 60.28125,
+   "input_rough": 1.725420037172133
+  },
+  "QuickRotation/28.avi": {
+   "distortion": 0.01826734066063793,
+   "rough": 0.983745930766822,
+   "stability": 0.9607363522949192,
+   "cropping": 0.6924857776398919,
+   "max_correction_px": 59.018943786621094,
+   "input_rough": 1.1747965839065961
+  },
+  "QuickRotation/4.avi": {
+   "distortion": 0.7703253587899928,
+   "rough": 0.6715089019148766,
+   "stability": 0.9882376678287105,
+   "cropping": 0.7004150781828925,
+   "max_correction_px": 46.074462890625,
+   "input_rough": 1.1276453194567584
+  },
+  "QuickRotation/6.avi": {
+   "distortion": 0.7044066815567154,
+   "rough": 1.1060150186357731,
+   "stability": 0.9241640647673176,
+   "cropping": 0.6983204481902437,
+   "max_correction_px": 44.46836853027344,
+   "input_rough": 2.1353337218842636
+  },
+  "QuickRotation/8.avi": {
+   "distortion": 0.7312782057415583,
+   "rough": 0.7949458823823217,
+   "stability": 0.9232464204609858,
+   "cropping": 0.6949013217803979,
+   "max_correction_px": 76.65921783447266,
+   "input_rough": 1.6047036423902203
+  }
+ }
+}
