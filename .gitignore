@@ -22,3 +22,6 @@ weights/*.tar
 # 系统杂项
 .DS_Store
 Thumbs.db
+
+# 实验中间产物 (持久化到磁盘, 避免 /tmp 随重启丢失)
+_exp/
