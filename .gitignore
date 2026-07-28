@@ -6,10 +6,15 @@ __pycache__/
 
 # 数据与产物 (体积大, 可由脚本重建)
 data/
-weights/
 *.mp4
 *.avi
 *.npz
+
+# 权重: 出厂 .pt 仅 32~64KB 且是复现评测结果的必需品, 纳入版本控制;
+# 训练中间检查点体积大, 仍排除
+weights/*.ckpt
+weights/*.pth
+weights/*.tar
 
 # 本地配置
 .claude/settings.local.json
