@@ -25,8 +25,11 @@
 bash setup_env.sh            # CPU 环境 (开发/测试);  --cuda 装 GPU 版
 source .venv/bin/activate
 
-# 推理 (纯经典模式, 无需权重)
-python stabilize.py input.mp4 output.mp4 --crop 0.12 --metrics
+# 推理 (纯经典模式, 无需权重). 不指定档位即用推荐档
+python stabilize.py input.mp4 output.mp4 --metrics
+
+# 高动态素材 (跑动/推拉镜头) 换用最稳定档
+python stabilize.py input.mp4 output.mp4 --preset most_stable
 
 # 推理 (学习增强模式, 推荐: 两个网络都启用)
 python stabilize.py input.mp4 output.mp4 \
@@ -41,6 +44,35 @@ python stabilize.py input.mp4 output.mp4 --debug-dir debug --debug-stride 5
 
 `--crop` 为裁剪预算硬约束（总裁剪比例），输出保证不出现黑边；`--metrics`
 附带输出 NUS 三指标（C/D/S，仅供仓库内部一致比较）。
+
+### 三档位 (`--preset`)
+
+三档是同一权衡——**裁掉多少画幅 ↔ 换来多稳**——上的三个工作点。参数取自
+NUS 144 段全量实测（`--preset` 默认 `recommended`，日常无需指定）：
+
+| 档位 | crop | τ | 保留画幅 | rough | distortion |
+|---|---|---|---|---|---|
+| `minimal_crop` | 0.08 | 5px | 0.921 | 0.702 | 0.912 |
+| **`recommended`**（默认） | 0.12 | 5px | 0.881 | **0.581** | 0.908 |
+| `most_stable` | 0.16 | 4px | 0.842 | 0.554 | 0.907 |
+
+（distortion 已按各裁剪比的指标量程上限归一化，否则跨档位不可比，
+见[评测指标说明](docs/评测指标说明.md#22-distortion-value畸变)。）
+
+**推荐档取 0.12 是因为拐点恰在此处**：相邻档位配对符号检验显示
+0.06→0.08（rough z=+10.67）与 0.08→0.12（z=+8.83）都是 rough 大赢且
+distortion 无显著代价，而越过 0.12 后 rough 收益立刻掉进噪声
+（0.12→0.16 z=+0.83），distortion 却开始显著恶化（z=−2.33）。
+
+> ⚠️ **`most_stable` 并非全局更稳。** 它相对推荐档的 rough 符号检验
+> z=+0.33（不显著）——收益高度集中在 **Running −14.5%、Zooming −8.6%**，
+> 而 Crowd +4.3%、Regular +1.2% 反而略差。144 段中 74 段改善（均值
+> −0.0795px）对 70 段变差（均值 +0.0287px），赢的幅度是输的 2.8 倍。
+> **它是高动态素材的专用选项，不是"更好的推荐档"。**
+
+另注：rough 对裁剪预算**非单调**——crop 取到 0.20 反而变差、0.30 全面崩坏
+（rough z=−9.50）。"裁得越多越稳"是错的，因为预算越紧，逐顶点钳位对不同
+顶点削去的量差异越大，而那本身就是剪切。
 
 ### 可视化诊断 (`--debug-dir`)
 
