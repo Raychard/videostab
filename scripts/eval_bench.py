@@ -178,6 +178,8 @@ def main():
               f"{fmt(agg(keys,key,'distortion')):>8}"
               f"{fmt(agg(keys,key,'stability')):>7}"
               f"{fmt(agg(keys,key,'rough'),4):>8}"
+              f"{fmt(agg(keys,key,'bend_p50'),2):>6}"
+              f"{fmt(agg(keys,key,'persist_px'),2):>7}"
               f"{fmt(pct('l1_ratio'),1):>6}{fmt(pct('l2_ratio'),1):>6}"
               f"{fmt(agg(keys,key,'k_mean'),2):>7}"
               f"{fmt(pct('k_ge2_ratio'),1):>7}")
@@ -185,7 +187,8 @@ def main():
     print("\n" + "=" * 80)
     print("分场景报表 (rough=绝对残余抖动, 主指标; 越小越好)")
     print(f"{'类别':14}{'配置@光流':13}{'crop':>7}{'distort':>8}{'stab':>7}"
-          f"{'rough':>8}{'L1%':>6}{'L2%':>6}{'K均值':>7}{'K≥2%':>7}")
+          f"{'rough':>8}{'弯曲':>6}{'恒残':>7}{'L1%':>6}{'L2%':>6}"
+          f"{'K均值':>7}{'K≥2%':>7}")
     print("-" * 80)
     for cat in cats:
         keys = [k for k in results if k.startswith(cat.name + "/")]

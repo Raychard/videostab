@@ -215,12 +215,18 @@ class Stabilizer:
             os.replace(tmp_path, out_path)
 
         lv = np.array([int(l) for l in levels])
+        # 果冻/弯曲指标: 从校正场直接算(代理分辨率), 乘 scale 换算到输出
+        # 分辨率量纲. NUS distortion 对网格弯曲无感, 必须单独报告.
+        from .eval.metrics import grid_jello
+        jello = {k: v * scale for k, v in
+                 grid_jello(B_all, shape_hw).items()}
         report = {
             "frames": len(lv), "shots": len(shots),
             "l1_ratio": float((lv == 1).mean()),
             "l2_ratio": float((lv == 2).mean()),
             "max_correction_px": float(np.abs(B_all).max()),
             "audio": "copied" if audio_copied else "none",
+            **jello,
         }
         if self._k_stats:   # 多单应平面数分布(视差复杂度指标)
             ks = np.array(self._k_stats, dtype=float)

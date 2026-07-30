@@ -84,6 +84,54 @@ def evaluate(orig_frames, stab_frames) -> dict:
     }
 
 
+def grid_bend_px(B: np.ndarray, shape_hw: tuple) -> np.ndarray:
+    """校正场 B (T,GH,GW,2) 的逐帧直线弯曲量(px), 返回 (T,).
+
+    对网格每行/列顶点的**位移后**位置做最小二乘直线拟合, 取残差最大值.
+    直接对应观感: "一根横跨画面的直杆被弯了多少像素". 相似/仿射变换下
+    恒为 0; 纯透视分量会引入少量非零读数(等距点经透视映射后间距不再
+    均匀), 但远小于真实网格形变的量级.
+
+    为什么需要它: NUS distortion 测的是**全局单应**的最差帧各向异性,
+    对网格局部弯曲基本无感 —— 实测两网络把弯曲量翻 2.4 倍(1.16->2.84px)
+    时该指标只降 4.3%, 果冻问题因此长期漏检(本项目第四个指标盲区).
+    """
+    h, w = float(shape_hw[0]), float(shape_hw[1])
+    T, GH, GW, _ = B.shape
+    yy, xx = np.meshgrid(np.linspace(0, h, GH), np.linspace(0, w, GW),
+                         indexing="ij")
+    px, py = xx[None] + B[..., 0], yy[None] + B[..., 1]
+    worst = np.zeros(T)
+    for v, n in ((py.reshape(T, GH, GW), GW),                # 沿行
+                 (px.transpose(0, 2, 1).reshape(T, GW, GH), GH)):  # 沿列
+        t = np.arange(n, dtype=np.float64)
+        t = (t - t.mean()) / (t.std() + 1e-12)
+        k = (v * t).mean(-1, keepdims=True)
+        fit = k * t + v.mean(-1, keepdims=True)
+        worst = np.maximum(worst, np.abs(v - fit).max((1, 2)))
+    return worst
+
+
+def grid_jello(B: np.ndarray, shape_hw: tuple) -> dict:
+    """果冻/弯曲指标包: 由校正场 B 直接计算, 不经渲染.
+
+    bend_p50/p95 : 逐帧直线弯曲量的分位数 (px)
+    persist_px   : 非相似残差场**时间均值**的 RMS —— "一直是弯的"分量;
+                   逐帧乱跳的残差在时间均值中互相抵消, 不计入
+    fluct_px     : 残差减去时间均值后的 RMS (波动分量, 对照用)
+    """
+    from ..smoothing.solver import similarity_split
+    bend = grid_bend_px(B, shape_hw)
+    _, res = similarity_split(B.astype(np.float32), shape_hw)
+    mean_res = res.mean(0, keepdims=True)
+    return {
+        "bend_p50": float(np.percentile(bend, 50)),
+        "bend_p95": float(np.percentile(bend, 95)),
+        "persist_px": float(np.sqrt((mean_res ** 2).sum(-1).mean())),
+        "fluct_px": float(np.sqrt(((res - mean_res) ** 2).sum(-1).mean())),
+    }
+
+
 def _lowfreq_ratio(sig: np.ndarray) -> float:
     """1D 信号 2~6 号频点能量占比(去 DC), NUS 稳定度定义."""
     spec = np.abs(np.fft.rfft(sig - sig.mean())) ** 2

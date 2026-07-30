@@ -64,3 +64,63 @@ def test_stability_ranks_shaky_below_static():
     shaky, _ = make_shaky_clip(T=60, amp=6.0)
     static, _ = make_shaky_clip(T=60, amp=0.0)
     assert stability_score(static) > stability_score(shaky) + 0.1
+
+
+# ---------------------------------------------------------------- 果冻/弯曲
+
+def _similarity_field(T=6, GH=12, GW=16, h=360.0, w=640.0):
+    """纯相似变换校正场: 平移+旋转+等比缩放, 弯曲必须恒为 0."""
+    yy, xx = np.meshgrid(np.linspace(0, h, GH), np.linspace(0, w, GW),
+                         indexing="ij")
+    cx, cy = xx - xx.mean(), yy - yy.mean()
+    B = np.zeros((T, GH, GW, 2), np.float32)
+    rng = np.random.default_rng(7)
+    for t in range(T):
+        a, c = rng.normal(0, 0.02), rng.normal(0, 0.02)   # 缩放-1, 旋转
+        bx, by = rng.normal(0, 5, 2)
+        B[t, ..., 0] = a * cx - c * cy + bx
+        B[t, ..., 1] = c * cx + a * cy + by
+    return B, (h, w)
+
+
+def test_grid_bend_zero_on_similarity():
+    """相似变换保持直线 -> bend 恒为 0. 该恒等式是角点空间改造的根基:
+    只要校正场来自全局相似/仿射, 果冻(直线弯曲)在数学上不可能发生."""
+    from videostab.eval.metrics import grid_bend_px, grid_jello
+    B, hw = _similarity_field()
+    assert grid_bend_px(B, hw).max() < 1e-3
+    j = grid_jello(B, hw)
+    assert j["bend_p95"] < 1e-3
+    assert j["persist_px"] < 1e-3          # 相似场无非相似残差
+
+
+def test_grid_bend_detects_shear():
+    """剪切场必须被检出, 且弯曲量与剪切幅度同量级."""
+    from videostab.eval.metrics import grid_bend_px
+    B, hw = _similarity_field()
+    T, GH, GW, _ = B.shape
+    bend0 = grid_bend_px(B, hw).max()
+    # 沿行方向加正弦弯曲: 一根横线被弯成 S 形, 峰值 3px
+    xs = np.linspace(0, np.pi * 2, GW)
+    B2 = B.copy()
+    B2[..., 1] += 3.0 * np.sin(xs)[None, None, :]
+    bend = grid_bend_px(B2, hw)
+    assert bend.min() > 1.0                # 显著非零
+    assert bend.max() < 3.0 * 1.5          # 与注入幅度同量级
+    assert bend.max() > bend0 * 100
+
+
+def test_grid_jello_persist_vs_fluct():
+    """恒定剪切进 persist, 交替翻转的剪切进 fluct —— 两个分量必须分得开.
+    persist 对应人工观察到的"一根直杆一直是弯的"."""
+    from videostab.eval.metrics import grid_jello
+    B, hw = _similarity_field(T=8)
+    xs = np.sin(np.linspace(0, np.pi * 2, B.shape[2]))
+    const, alt = B.copy(), B.copy()
+    const[..., 1] += 2.0 * xs[None, None, :]              # 时间恒定
+    signs = np.array([1, -1] * 4, np.float32)[:, None, None]
+    alt[..., 1] += 2.0 * xs[None, None, :] * signs        # 逐帧翻转
+    jc, ja = grid_jello(const, hw), grid_jello(alt, hw)
+    assert jc["persist_px"] > 3 * jc["fluct_px"]
+    assert ja["fluct_px"] > 3 * ja["persist_px"]
+    assert jc["persist_px"] > 3 * ja["persist_px"]
