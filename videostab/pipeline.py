@@ -163,6 +163,13 @@ class Stabilizer:
                              net=self.kernel_net, device=self.cfg.device)
             s = strength_curve(levels, self.cfg.guard)
             return B * s[:, None, None, None]
+        s = strength_curve(levels, self.cfg.guard)
+        B = self._solve_vertex(motions, shape_hw, shot_range, strength=s)
+        return B * s[:, None, None, None]
+
+    def _solve_vertex(self, motions, shape_hw, shot_range=None,
+                      strength=None):
+        cfg = self.cfg.smoothing
         C = accumulate_path(motions)
         if self.kernel_net is not None and len(C) > 4:
             # 预算感知 λ 需要实际代理分辨率
@@ -171,15 +178,15 @@ class Stabilizer:
                                cfg=scfg)
         else:
             P = gaussian_smooth_path(C, cfg)
-        s = strength_curve(levels, self.cfg.guard)
         B = crop_budget_project(C, P, shape_hw, cfg.crop_ratio)
         if cfg.anisotropy_cap_ratio > 0:
             B = limit_anisotropy(B, shape_hw, cfg.anisotropy_cap_ratio,
                                  cfg.crop_ratio)
-        if self._dbg is not None and self._dbg.save_summary:
+        if (self._dbg is not None and self._dbg.save_summary
+                and strength is not None):
             self._dbg_shots.append(
-                {"range": shot_range, "C": C, "P": P, "strength": s})
-        return B * s[:, None, None, None]
+                {"range": shot_range, "C": C, "P": P, "strength": strength})
+        return B
 
     # ---------- 主入口 ----------
     def stabilize(self, in_path: str, out_path: str, progress=None,
