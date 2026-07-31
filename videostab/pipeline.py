@@ -153,6 +153,16 @@ class Stabilizer:
     # ---------- 逐镜头平滑 ----------
     def _solve_shot(self, motions, levels, shape_hw, shot_range=None):
         cfg = self.cfg.smoothing
+        if cfg.corner_space:
+            # 角点空间: 全局单应约束下果冻(直线弯曲)在数学上为零.
+            # 平滑网可用(网络栈对网格形状无假设); 各向异性封顶不需要 ——
+            # 单应位移场没有非相似分量可封.
+            from .smoothing.corner import corner_solve
+            B = corner_solve(motions, shape_hw,
+                             self.cfg.propagation.grid_size, cfg,
+                             net=self.kernel_net, device=self.cfg.device)
+            s = strength_curve(levels, self.cfg.guard)
+            return B * s[:, None, None, None]
         C = accumulate_path(motions)
         if self.kernel_net is not None and len(C) > 4:
             # 预算感知 λ 需要实际代理分辨率

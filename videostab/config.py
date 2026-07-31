@@ -56,6 +56,10 @@ class SmoothingConfig:
     #     空间低通(σ=0.8/1.5)几乎无效(仅 +1.0~1.7% distortion), 只有
     #     限制幅值有效.
     anisotropy_cap_ratio: float = 5.0 / 360
+    # 角点空间求解 (M2): 平滑发生在 4 角点(8 维)而非 12x16 顶点(384 维),
+    # 输出场逐帧都是全局单应位移 => 直线弯曲在数学上为零, 果冻免疫.
+    # 代价是放弃逐顶点视差补偿. False = 现行顶点空间路径.
+    corner_space: bool = False
 
 
 @dataclass
