@@ -30,13 +30,23 @@ def main():
     p.add_argument("--lr", type=float, default=2e-4)
     p.add_argument("--crop", type=float, default=0.12)
     p.add_argument("--proxy-height", type=int, default=480)
+    p.add_argument("--corner", action="store_true",
+                   help="角点空间: 训练数据与推理端 corner_solve 同分布")
+    p.add_argument("--init", default="",
+                   help="从已有权重初始化(微调); 空=从零初始化")
     p.add_argument("--device", default="cuda" if torch.cuda.is_available()
                    else "cpu")
     args = p.parse_args()
 
-    ds = PathWindowDataset(args.cache, args.window)
+    ds = PathWindowDataset(args.cache, args.window,
+                           corner=args.corner)
     dl = DataLoader(ds, batch_size=args.bs, shuffle=True, drop_last=True)
     model = DynamicKernelNet(radius=args.radius).to(args.device)
+    if args.init:
+        ck = torch.load(args.init, map_location=args.device,
+                        weights_only=True)
+        model.load_state_dict(ck["state_dict"])
+        print(f"从 {args.init} 微调")
     opt = torch.optim.Adam(model.parameters(), lr=args.lr)
     sched = torch.optim.lr_scheduler.OneCycleLR(
         opt, max_lr=args.lr, total_steps=args.epochs * max(len(dl), 1))

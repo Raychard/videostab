@@ -88,6 +88,12 @@ def corner_solve(motions, shape_hw: tuple, grid_size: tuple,
     net: 动态核网络(DynamicKernelNet). 网络栈对网格形状同样无假设
     (Conv3d 3x3 pad1 / 逐点头 / Jacobi 抽头全在时间维), 角点即 2x2
     网格. 预算感知 λ 的 headroom 在角点上恰是最紧的(位移极值点).
+
+    **直接用顶点空间训练的 smoother.pt, 不要为角点重训** —— 已实测否决:
+    NUS 144 段, 零样本 rough 0.6072, 角点数据从零重训 0.6521 (z=-5.50
+    显著更差), 顶点权重微调 8 轮亦更差 (36 段 z=-2.00). 原因: 角点窗口
+    每个只含 4 条轨迹, 顶点窗口 192 条, 网络在丰富的速度统计上学到的
+    平滑策略泛化到角点, 反向则不成立.
     """
     cm = corner_motions(motions, shape_hw)
     C = accumulate_path(cm)                       # (T,2,2,2)

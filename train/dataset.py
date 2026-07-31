@@ -82,9 +82,14 @@ class PropagationDataset(Dataset):
 
 class PathWindowDataset(Dataset):
     """样本 = 相机路径的时间窗 (2,T,GH,GW). 窗口不跨 segment 断点,
-    索引到窗口的映射确定且均匀."""
+    索引到窗口的映射确定且均匀.
 
-    def __init__(self, cache_dir: str, window: int = 64):
+    corner=True 时把逐帧网格运动投影到全局单应子空间, 只保留 4 角点
+    位移(2x2 网格) —— 与推理端 corner_solve 的输入统计完全一致.
+    """
+
+    def __init__(self, cache_dir: str, window: int = 64,
+                 corner: bool = False):
         self.window = window
         self.paths = []    # 每个连续段的路径 C (L+1,GH,GW,2)
         self.samples = []  # (path_idx, start)
@@ -92,6 +97,9 @@ class PathWindowDataset(Dataset):
             with np.load(f) as z:
                 d = {k: z[k] for k in z.files}
             g, seg = d["grid_init"], _segments(d)
+            if corner:
+                from videostab.smoothing.corner import corner_motions
+                g = np.stack(corner_motions(list(g), tuple(d["shape_hw"])))
             for sid in np.unique(seg):
                 run = g[seg == sid]                    # 段内连续帧对
                 if len(run) + 1 < window:
