@@ -83,8 +83,8 @@ def field_from_corner_disp(B_corner: np.ndarray, shape_hw: tuple,
 
 
 def corner_solve(motions, shape_hw: tuple, grid_size: tuple,
-                 cfg: SmoothingConfig, net=None, device: str = "cpu"
-                 ) -> np.ndarray:
+                 cfg: SmoothingConfig, net=None, device: str = "cpu",
+                 return_paths: bool = False):
     """角点空间求解整链: 投影 -> 累积 -> 平滑 -> 预算 -> 反解场.
 
     与顶点空间求解器共享 accumulate/gaussian/budget 三件套(对网格形状
@@ -110,4 +110,7 @@ def corner_solve(motions, shape_hw: tuple, grid_size: tuple,
     else:
         P = gaussian_smooth_path(C, cfg)
     B_corner = crop_budget_project(C, P, shape_hw, cfg.crop_ratio)
-    return field_from_corner_disp(B_corner, shape_hw, grid_size)
+    B = field_from_corner_disp(B_corner, shape_hw, grid_size)
+    if return_paths:
+        return B, C, P
+    return B

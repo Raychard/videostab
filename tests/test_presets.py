@@ -20,7 +20,7 @@ def test_default_preset_matches_bare_config():
     """
     bare, rec = PipelineConfig().smoothing, preset("recommended").smoothing
     assert bare.crop_ratio == rec.crop_ratio
-    assert bare.anisotropy_cap_ratio == rec.anisotropy_cap_ratio
+    assert bare.corner_space == rec.corner_space
 
 
 def test_presets_are_ordered_by_crop():
@@ -31,22 +31,21 @@ def test_presets_are_ordered_by_crop():
     assert len(set(crops)) == 3          # 必须真的拉开, 不能重合
 
 
-def test_large_budget_preset_tightens_tau():
-    """最稳定档的 τ 必须比推荐档更紧.
+def test_all_presets_jello_immune():
+    """三档必须全部运行在角点空间 —— "极度厌恶果冻"是产品要求.
 
-    crop=0.16 在 τ=5px 下归一化 distortion 仅 0.8978, 显著劣于推荐档的
-    0.9083 (符号检验 z=-2.33); 收紧到 4px 才追平. 若有人把它调回 5px,
-    该档就成了"更糊且更费画幅", 失去存在意义.
+    角点空间下输出场恒为单应位移, 直线弯曲结构性为零(NUS 实测弯曲 p95
+    从 5.6px 降到 0.13px). 谁把某档切回顶点空间, 果冻就回来了.
     """
-    assert (PRESETS["most_stable"]["anisotropy_cap_ratio"]
-            < PRESETS["recommended"]["anisotropy_cap_ratio"])
+    for name in PRESETS:
+        assert PRESETS[name].get("corner_space") is True
+        assert preset(name).smoothing.corner_space is True
 
 
 @pytest.mark.parametrize("name", list(PRESETS))
 def test_every_preset_builds_and_caps_anisotropy(name):
     cfg = preset(name)
     assert 0 < cfg.smoothing.crop_ratio < 0.3      # 0.30 实测全面崩坏
-    assert cfg.smoothing.anisotropy_cap_ratio > 0  # 各档均须开启封顶
 
 
 def test_overrides_reach_pipeline_fields():

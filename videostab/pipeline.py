@@ -158,10 +158,15 @@ class Stabilizer:
             # 平滑网可用(网络栈对网格形状无假设); 各向异性封顶不需要 ——
             # 单应位移场没有非相似分量可封.
             from .smoothing.corner import corner_solve
-            B = corner_solve(motions, shape_hw,
-                             self.cfg.propagation.grid_size, cfg,
-                             net=self.kernel_net, device=self.cfg.device)
+            B, C, P = corner_solve(motions, shape_hw,
+                                   self.cfg.propagation.grid_size, cfg,
+                                   net=self.kernel_net,
+                                   device=self.cfg.device,
+                                   return_paths=True)
             s = strength_curve(levels, self.cfg.guard)
+            if self._dbg is not None and self._dbg.save_summary:
+                self._dbg_shots.append(
+                    {"range": shot_range, "C": C, "P": P, "strength": s})
             return B * s[:, None, None, None]
         s = strength_curve(levels, self.cfg.guard)
         B = self._solve_vertex(motions, shape_hw, shot_range, strength=s)
